@@ -6,12 +6,18 @@ import './article.css'
 export default React.createClass({
   render () {
     const {article} = this.props
-    const {displaytitle, description, sections: [lead]} = article.lead
+    const {displaytitle, description, sections: [lead], image} = article.lead
     const sections = article.remaining.sections
+    const imageUrl = image && image.urls[Object.keys(image.urls)[0]]
 
     return (
       <CaptureClicks>
         <div className='Article'>
+          {image ?
+            <div className='Article-leadimage' style={{
+              backgroundImage: `url(${imageUrl})`
+            }} /> :
+            null}
           <h1>{displaytitle}</h1>
           <p className='Article-description'>{description}</p>
           <div className='Section is-open'>
