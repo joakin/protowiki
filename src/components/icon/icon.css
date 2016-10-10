@@ -1,0 +1,13 @@
+.Icon {
+  border: none;
+  width: 30px;
+  height: 30px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.Icon.is-type-menu    { background-image: url('mainmenu.png'); }
+.Icon.is-type-close   { background-image: url('close.png');    }
+.Icon.is-type-home    { background-image: url('home.png');     }
+.Icon.is-type-history { background-image: url('history.png');  }
+.Icon.is-type-arrow   { background-image: url('arrow.png');    }

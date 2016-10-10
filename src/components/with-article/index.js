@@ -15,13 +15,12 @@ export default React.createClass({
   },
 
   getArticle (title) {
-    this.setState({ title })
+    this.setState({ title, article: null })
 
     articleDB
       .get(title)
       .then((dbArticle) => {
 
-        console.log(dbArticle)
         const networkArticle = article(title)
           .then((article) => {
             if (

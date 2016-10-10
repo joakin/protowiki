@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "localforage": "^1.4.3",
+    "react-router": "^4.0.0-alpha.4",
     "react-scripts": "0.6.1"
   },
   "dependencies": {

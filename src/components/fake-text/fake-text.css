@@ -1,0 +1,23 @@
+@keyframes bg-pulse {
+  0%, 70%, 100% {
+    opacity: 1;
+  } 35% {
+    opacity: 0.4;
+  }
+}
+
+.FakeTextSpan {
+  word-wrap: break-word;
+  background-color: #f0f0f0;
+  animation: bg-pulse 1.3s infinite ease-in-out;
+}
+
+.FakeTextSpan.p1 { animation-delay: 0s; }
+.FakeTextSpan.p2 { animation-delay: 0.3s; }
+.FakeTextSpan.p3 { animation-delay: 0.1s; }
+.FakeTextSpan.p4 { animation-delay: 0.5s; }
+.FakeTextSpan.p5 { animation-delay: 0.2s; }
+.FakeTextSpan.p6 { animation-delay: 0.3s; }
+.FakeTextSpan.p7 { animation-delay: 0s; }
+.FakeTextSpan.p8 { animation-delay: 0.4s; }
+.FakeTextSpan.p9 { animation-delay: 0.2s; }
