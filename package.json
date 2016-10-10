@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "localforage": "^1.4.3",
     "react-scripts": "0.6.1"
   },
   "dependencies": {
