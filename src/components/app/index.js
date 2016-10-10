@@ -11,9 +11,9 @@ export default React.createClass({
       <BrowserRouter>
         <div className='App'>
           <div className='App-header'>
-            <h1>Wikipedia</h1>
+            <span>WikipediA</span>
           </div>
-          <div className='App-intro'>
+          <div className='App-content'>
             <Match exactly pattern='/wiki/:title' component={ArticleContainer} />
             <Match exactly pattern='/' component={() =>
               <Redirect to='/wiki/Wikimedia' />

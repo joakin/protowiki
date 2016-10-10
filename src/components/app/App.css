@@ -1,12 +1,27 @@
-.App {
+.App-content {
+  padding: 0 16px;
+}
+@media (min-width: 750px) {
+  .App-content {
+    padding: 0 48px;
+    max-width: 1000px;
+  }
+}
+@media (min-width: 1000px) {
+  .App-content {
+    margin: 0 auto;
+  }
 }
 
 .App-header {
-  text-align: center;
-}
-
-.App-intro {
+  background-color: #eaecf0;
+  color: #333;
+  letter-spacing: 2px;
+  font-variant: small-caps;
+  font-family: serif;
   font-size: large;
+  text-align: center;
+  padding: 0.5em;
 }
 
 @keyframes App-logo-spin {

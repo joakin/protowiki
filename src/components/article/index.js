@@ -11,9 +11,9 @@ export default React.createClass({
 
     return (
       <CaptureClicks>
-        <div>
-          <p>{displaytitle}</p>
-          <p>{description}</p>
+        <div className='Article'>
+          <h1>{displaytitle}</h1>
+          <p className='Article-description'>{description}</p>
           <div className='Section is-open'>
             <div className='Section-body' dangerouslySetInnerHTML={{ __html: lead.text}} />
           </div>

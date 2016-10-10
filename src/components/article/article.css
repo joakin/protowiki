@@ -1,3 +1,15 @@
+.Article {
+}
+.Article h1,
+.Article h2 {
+  font-family: 'Linux Libertine','Georgia','Times',serif;
+}
+
+.Article-description {
+  font-size: small;
+  color: #ddd;
+  margin-top: 0;
+}
 
 /* Sections */
 
