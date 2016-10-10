@@ -1,14 +1,18 @@
 .Article {
 }
+.Article h1 { font-size: 1.7em; margin-bottom: 0.3em; }
+.Article h2 { font-size: 1.5em; }
 .Article h1,
 .Article h2 {
   font-family: 'Linux Libertine','Georgia','Times',serif;
+  font-weight: normal;
 }
 
 .Article-description {
-  font-size: small;
-  color: #ddd;
-  margin-top: 0;
+  font-size: smaller;
+  color: #54595d;
+  margin-top: 0em;
+  text-transform: capitalize;
 }
 
 /* Sections */
@@ -51,6 +55,7 @@
   background-color: #f9f9f9;
   width: auto !important;
   max-width: 22em !important;
+  margin: 0 auto;
   float: none !important;
   border: 1px solid lightgray;
 }
@@ -104,19 +109,18 @@
   word-wrap: normal;
   word-break: normal;
 }
-.Section .Section-body figure[typeof*='mw:Image'] {
+.Section .Section-body figure {
   display: table;
   border-collapse: collapse;
-  margin-left: 0;
-  margin-right: 0;
-  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
   overflow: auto;
   background-color: #f9f9f9;
   border: 1px solid lightgray;
   border-bottom: 0;
 }
-.Section .Section-body figure[typeof*='mw:Image'] figcaption {
+.Section .Section-body figcaption {
   display: table-caption;
   caption-side: bottom;
   font-size: 0.8em;
@@ -125,24 +129,24 @@
   border: 1px solid lightgray;
   border-top: 0;
 }
-.Section .Section-body figure[typeof*='mw:Image'] > * {
+.Section .Section-body figure > * {
   padding: 6px;
 }
 @media (min-width: 750px) {
-  .Section .Section-body figure[typeof*='mw:Image'] {
+  .Section .Section-body figure {
     width: auto;
     clear: right;
     float: right;
     margin: 1em 0 1em 1em;
   }
 }
-.Section .Section-body figure[typeof*='mw:Image'].mw-halign-right {
+.Section .Section-body figure.mw-halign-right {
   width: auto;
   clear: right;
   float: right;
   margin: 1em 0 1em 1em;
 }
-.Section .Section-body figure[typeof*='mw:Image'].mw-halign-left {
+.Section .Section-body figure.mw-halign-left {
   width: auto;
   clear: left;
   float: left;

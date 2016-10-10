@@ -18,10 +18,10 @@
   color: #333;
   letter-spacing: 2px;
   font-variant: small-caps;
-  font-family: serif;
-  font-size: large;
+  font-family: 'Linux Libertine','Georgia','Times',serif;
+  font-size: 28px;
   text-align: center;
-  padding: 0.5em;
+  padding: 10px 0.5em;
 }
 
 @keyframes App-logo-spin {
