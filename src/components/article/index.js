@@ -64,8 +64,8 @@ function ActionBar ({onDownload}) {
 
 function printUrl ({title, pageSize = 'A5', marginsType = 0}) {
   return `https://pdf-electron.wmflabs.org/pdf?` +
-    `accessKey=secret&waitForText=${title}&` +
-    `url=https://autowiki.surge.sh/wiki/${title}&` +
+    `accessKey=secret&delay=5&` +
+    `url=${encodeURIComponent(`https://autowiki.surge.sh/wiki/${title}`)}&` +
     `pageSize=${pageSize}&marginsType=${marginsType}`
 }
 
