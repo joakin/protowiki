@@ -18,7 +18,7 @@ export default React.createClass({
               backgroundImage: `url(${imageUrl})`
             }} /> :
             null}
-          <h1>{displaytitle}</h1>
+          <h1 dangerouslySetInnerHTML={{ __html: displaytitle}} />
           <p className='Article-description'>{description}</p>
           <Section html={lead.text} />
           <div>
@@ -36,7 +36,7 @@ function Section ({title, html}) {
   return (
     <div className='Section is-open'>
       {title ?
-        <h2>{title}</h2> : null}
+        <h2 dangerouslySetInnerHTML={{ __html: title}} /> : null}
       <div className='Section-body' dangerouslySetInnerHTML={{ __html: html}} />
     </div>
   )
