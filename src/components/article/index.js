@@ -20,15 +20,10 @@ export default React.createClass({
             null}
           <h1>{displaytitle}</h1>
           <p className='Article-description'>{description}</p>
-          <div className='Section is-open'>
-            <div className='Section-body' dangerouslySetInnerHTML={{ __html: lead.text}} />
-          </div>
+          <Section html={lead.text} />
           <div>
-          {sections.map(({id, line, text}) =>
-            <div key={id + '-' + line} className='Section is-open'>
-              <h2>{line}</h2>
-              <div className='Section-body' dangerouslySetInnerHTML={{ __html: text}} />
-            </div>
+          {sections.map(({id, line, text, anchor}) =>
+            <Section key={id + '-' + line} title={line} html={text} />
           )}
           </div>
         </div>
@@ -36,5 +31,15 @@ export default React.createClass({
     )
   }
 })
+
+function Section ({title, html}) {
+  return (
+    <div className='Section is-open'>
+      {title ?
+        <h2>{title}</h2> : null}
+      <div className='Section-body' dangerouslySetInnerHTML={{ __html: html}} />
+    </div>
+  )
+}
 
 // <Icon type={types.ARROW} className='Section-toggle-icon'/>
