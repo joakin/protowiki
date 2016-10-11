@@ -1,10 +1,10 @@
 const HOST = 'en.wikipedia.org'
+// import 'whatwg-fetch'
 const fetch = window.fetch
 
-const restHeaders = {
+const restOptions = {
   mode: 'cors',
-  headers: {
-  }
+  headers: {}
 }
 
 const rest = (host, endpoint) =>
@@ -15,6 +15,6 @@ const endpoints = {
 }
 
 export function article (title) {
-  return fetch(rest(HOST, endpoints.article(title)), restHeaders)
+  return fetch(rest(HOST, endpoints.article(title)), restOptions)
     .then((resp) => resp.json())
 }
