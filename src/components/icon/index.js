@@ -11,5 +11,9 @@ export const types = {
   CLOSE: 'close',
   HOME: 'home',
   HISTORY: 'history',
-  ARROW: 'arrow'
+  ARROW: 'arrow',
+  DOWNLOAD: 'download',
+  EDIT: 'edit',
+  WATCH: 'watch',
+  LANGUAGE: 'language'
 }

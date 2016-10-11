@@ -6,8 +6,12 @@
   background-repeat: no-repeat;
 }
 
-.Icon.is-type-menu    { background-image: url('mainmenu.png'); }
-.Icon.is-type-close   { background-image: url('close.png');    }
-.Icon.is-type-home    { background-image: url('home.png');     }
-.Icon.is-type-history { background-image: url('history.png');  }
-.Icon.is-type-arrow   { background-image: url('arrow.png');    }
+.Icon.is-type-menu     { background-image: url('icons/mainmenu.png');  }
+.Icon.is-type-close    { background-image: url('icons/close.png');     }
+.Icon.is-type-home     { background-image: url('icons/home.png');      }
+.Icon.is-type-history  { background-image: url('icons/history.png');   }
+.Icon.is-type-arrow    { background-image: url('icons/arrow.png');     }
+.Icon.is-type-download { background-image: url('icons/download.png');  }
+.Icon.is-type-edit     { background-image: url('icons/edit.png');      }
+.Icon.is-type-watch    { background-image: url('icons/star.png');      }
+.Icon.is-type-language { background-image: url('icons/languages.png'); }
