@@ -21,7 +21,7 @@ export default React.createClass({
     return (
       <CaptureClicks>
         <div className='Article'>
-          {image ?
+          {false && image ?
             <div className='Article-leadimage' style={{
               backgroundImage: `url(${imageUrl})`
             }} /> :
