@@ -8,9 +8,32 @@ import './article.css'
 export default React.createClass({
 
   downloadArticle () {
-    window.open(printUrl({
+    const url = printUrl({
       title: this.props.title
-    }))
+    });
+    window.open(url);
+  },
+
+  downloadSummary() {
+    console.log('Fetch article summary');
+  },
+
+  moveGetSummaryContainer() {
+    const summary = document.querySelector('div.get-summary');
+    const firstParagraph = document.querySelector('.Section-body p');
+
+    if (firstParagraph) {
+      firstParagraph.appendChild(summary);
+    } else {
+      console.warn('No infobox nor section found, remove container');
+      document.querySelector('.Article').removeChild(summary);
+    }
+  },
+
+  componentDidMount() {
+    if (flags.DOWNLOAD_SUMMARY) {
+      this.moveGetSummaryContainer();
+    }
   },
 
   render () {
@@ -36,7 +59,19 @@ export default React.createClass({
             <Section key={id + '-' + line} title={line} html={text} />
           )}
           </div>
+          {flags.DOWNLOAD_SUMMARY ?
+              <div className="get-summary">
+                  <a onClick={ this.downloadSummary }>
+                      <Icon type={types.GET_SUMMARY} />
+                      <span>Get article summary (JPG 15kb)</span>
+                  </a>
+              </div> : null
+          }
+
+
+
         </div>
+
       </CaptureClicks>
     )
   }
