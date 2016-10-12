@@ -6,6 +6,8 @@ import Article from '../article';
 import FakeText from '../fake-text';
 import OnlineStatusBar from '../online-status-bar';
 import Menu from '../menu'
+import Footer from '../footer'
+import Logo from '../logo'
 import Icon, {types} from '../icon';
 import flags from '../../flags'
 import './App.css';
@@ -34,7 +36,7 @@ export default React.createClass({
                 <div>
                   <Icon type={types.MENU} onClick={() => this.toggleMenu(true)} />
                 </div>
-                <span className='App-logo'>WikipediA</span>
+                <Logo size={60} />
                 <div>
                 </div>
               </div>
@@ -44,8 +46,9 @@ export default React.createClass({
                 <Match exactly pattern='/' component={() =>
                   <Redirect to='/wiki/Wikimedia' />
                 } />
-                <Miss component={NoMatch}/>
+                <Miss component={NoMatch} />
               </div>
+              <Footer />
             </div>
             {flags.ONLINE_STATUS_BAR ?
               <OnlineStatusBar online={online} /> : null}

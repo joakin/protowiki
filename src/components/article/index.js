@@ -54,7 +54,6 @@ export default React.createClass({
 
   render () {
     const {article} = this.props
-    console.log(article.lead)
     const {displaytitle, description, sections: [lead], image} = article.lead
     const sections = article.remaining.sections
 
