@@ -15,5 +15,6 @@ export const types = {
   DOWNLOAD: 'download',
   EDIT: 'edit',
   WATCH: 'watch',
-  LANGUAGE: 'language'
+  LANGUAGE: 'language',
+  GET_SUMMARY: 'get-summary'
 }

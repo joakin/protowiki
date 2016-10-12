@@ -9,3 +9,4 @@ build () {
 
 build autowiki
 build wikilater-1
+build flashcard-1
