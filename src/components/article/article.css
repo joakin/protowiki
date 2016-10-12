@@ -89,7 +89,7 @@
   border-right: 0;
   text-align: center;
   margin-top: 0.5em;
-  margin-bottom: 0.5  em;
+  margin-bottom: 0.5em;
 }
 .Section .Section-body .get-summary div.Icon {
   margin-right: 0.3em;
@@ -120,7 +120,7 @@
   border-bottom-width: 1px;
 }
 
-.Section .Section-body .infobox tbody tr:first-child th {
+.Section .Section-body .infobox>tbody>tr:first-child  {
   border-top-width: 0;
 }
 

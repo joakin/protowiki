@@ -1,7 +1,7 @@
 const flags = {
   DOWNLOAD_IN_ACTION_BAR: false,
   REGISTER_SW: false,
-  DOWNLOAD_SUMMARY: false
+  DOWNLOAD_SUMMARY: true
 };
 
 switch (process.env.REACT_APP_PROTOTYPE) {

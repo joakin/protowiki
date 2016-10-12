@@ -2,6 +2,7 @@ import React from 'react';
 import CaptureClicks from '../capture-clicks'
 import Icon, {types} from '../icon'
 import flags from '../../flags'
+import ReactDOM from 'react-dom';
 
 import './article.css'
 
@@ -18,21 +19,33 @@ export default React.createClass({
     console.log('Fetch article summary');
   },
 
-  moveGetSummaryContainer() {
-    const summary = document.querySelector('div.get-summary');
+  createGetSummaryElement() {
+    const summary =
+      <a onClick={this.downloadSummary}>
+        <Icon type={types.GET_SUMMARY} />
+        <span>Get article summary (JPG 15kb)</span>
+      </a>;
     const firstParagraph = document.querySelector('.Section-body p');
+    const wrapper = document.createElement('div');
+    wrapper.className = 'get-summary';
 
     if (firstParagraph) {
-      firstParagraph.appendChild(summary);
+      firstParagraph.appendChild(wrapper);
+      ReactDOM.render(summary, wrapper);
     } else {
       console.warn('No infobox nor section found, remove container');
-      document.querySelector('.Article').removeChild(summary);
     }
   },
 
   componentDidMount() {
     if (flags.DOWNLOAD_SUMMARY) {
-      this.moveGetSummaryContainer();
+      this.createGetSummaryElement();
+    }
+  },
+
+  componentWillUnmount() {
+    if (flags.DOWNLOAD_SUMMARY) {
+      ReactDOM.unmountComponentAtNode(document.querySelector('.get-summary'));
     }
   },
 
@@ -59,17 +72,6 @@ export default React.createClass({
             <Section key={id + '-' + line} title={line} html={text} />
           )}
           </div>
-          {flags.DOWNLOAD_SUMMARY ?
-              <div className="get-summary">
-                  <a onClick={ this.downloadSummary }>
-                      <Icon type={types.GET_SUMMARY} />
-                      <span>Get article summary (JPG 15kb)</span>
-                  </a>
-              </div> : null
-          }
-
-
-
         </div>
 
       </CaptureClicks>
