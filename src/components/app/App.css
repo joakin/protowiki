@@ -21,8 +21,13 @@
   font-family: 'Linux Libertine','Georgia','Times',serif;
   font-size: 28px;
   text-align: center;
-  padding: 10px 0.5em;
+  padding: 8px 0.5em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+.App-header>div { flex: 1; }
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
