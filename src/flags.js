@@ -2,7 +2,7 @@ const flags = {
   DOWNLOAD_IN_ACTION_BAR: false,
   REGISTER_SW: false,
   ONLINE_STATUS_BAR: false,
-  DOWNLOAD_SUMMARY: true
+  DOWNLOAD_SUMMARY: false
 }
 
 switch (process.env.REACT_APP_PROTOTYPE) {
