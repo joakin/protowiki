@@ -2,15 +2,51 @@ import React from 'react';
 import CaptureClicks from '../capture-clicks'
 import Icon, {types} from '../icon'
 import flags from '../../flags'
+import ReactDOM from 'react-dom';
 
 import './article.css'
 
 export default React.createClass({
 
   downloadArticle () {
-    window.open(printUrl({
+    const url = printUrl({
       title: this.props.title
-    }))
+    });
+    window.open(url);
+  },
+
+  downloadSummary() {
+    console.log('Fetch article summary');
+  },
+
+  createGetSummaryElement() {
+    const summary =
+      <a onClick={this.downloadSummary}>
+        <Icon type={types.GET_SUMMARY} />
+        <span>Get article summary (JPG 15kb)</span>
+      </a>;
+    const firstParagraph = document.querySelector('.Section-body p');
+    const wrapper = document.createElement('div');
+    wrapper.className = 'get-summary';
+
+    if (firstParagraph) {
+      firstParagraph.appendChild(wrapper);
+      ReactDOM.render(summary, wrapper);
+    } else {
+      console.warn('No infobox nor section found, remove container');
+    }
+  },
+
+  componentDidMount() {
+    if (flags.DOWNLOAD_SUMMARY) {
+      this.createGetSummaryElement();
+    }
+  },
+
+  componentWillUnmount() {
+    if (flags.DOWNLOAD_SUMMARY) {
+      ReactDOM.unmountComponentAtNode(document.querySelector('.get-summary'));
+    }
   },
 
   render () {
@@ -37,6 +73,7 @@ export default React.createClass({
           )}
           </div>
         </div>
+
       </CaptureClicks>
     )
   }
