@@ -1,10 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Match, Redirect, Miss } from 'react-router';
 import WithArticle from '../with-article';
+import WithOnline from '../with-online';
 import Article from '../article';
 import FakeText from '../fake-text';
+import OnlineStatusBar from '../online-status-bar';
 import Menu from '../menu'
 import Icon, {types} from '../icon';
+import flags from '../../flags'
 import './App.css';
 
 export default React.createClass({
@@ -22,28 +25,32 @@ export default React.createClass({
   render () {
     return (
       <BrowserRouter>
-        <div>
-          <Menu isOpen={this.state.isMenuOpen}
-            onItemClick={() => this.toggleMenu(false)} onBackdropClick={() => this.toggleMenu(false)} />
-          <div className='App'>
-            <div className='App-header'>
-              <div>
-                <Icon type={types.MENU} onClick={() => this.toggleMenu(true)} />
+        <WithOnline>{({online}) =>
+          <div>
+            <Menu isOpen={this.state.isMenuOpen}
+              onItemClick={() => this.toggleMenu(false)} onBackdropClick={() => this.toggleMenu(false)} />
+            <div className={'App ' + (!online ? 'is-offline' : '')}>
+              <div className='App-header'>
+                <div>
+                  <Icon type={types.MENU} onClick={() => this.toggleMenu(true)} />
+                </div>
+                <span className='App-logo'>WikipediA</span>
+                <div>
+                </div>
               </div>
-              <span className='App-logo'>WikipediA</span>
-              <div>
+              <div className='App-content'>
+                <Match exactly pattern='/wiki/:title' component={ArticleContainer} />
+                <Match exactly pattern='/about' component={About} />
+                <Match exactly pattern='/' component={() =>
+                  <Redirect to='/wiki/Wikimedia' />
+                } />
+                <Miss component={NoMatch}/>
               </div>
             </div>
-            <div className='App-content'>
-              <Match exactly pattern='/wiki/:title' component={ArticleContainer} />
-              <Match exactly pattern='/about' component={About} />
-              <Match exactly pattern='/' component={() =>
-                <Redirect to='/wiki/Wikimedia' />
-              } />
-              <Miss component={NoMatch}/>
-            </div>
+            {flags.ONLINE_STATUS_BAR ?
+              <OnlineStatusBar online={online} /> : null}
           </div>
-        </div>
+        }</WithOnline>
       </BrowserRouter>
     );
   }
