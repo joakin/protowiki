@@ -1,6 +1,8 @@
 import React from 'react';
 import CaptureClicks from '../capture-clicks'
 import Icon, {types} from '../icon'
+import ActionBar from '../action-bar'
+import Section from '../section'
 import flags from '../../flags'
 import ReactDOM from 'react-dom';
 
@@ -78,28 +80,6 @@ export default React.createClass({
     )
   }
 })
-
-function Section ({title, html}) {
-  return (
-    <div className='Section is-open'>
-      {title ?
-        <h2 dangerouslySetInnerHTML={{ __html: title}} /> : null}
-      <div className='Section-body' dangerouslySetInnerHTML={{ __html: html}} />
-    </div>
-  )
-}
-
-function ActionBar ({onDownload}) {
-  return (
-    <div className='ActionBar'>
-      <Icon type={types.LANGUAGE}/>
-      {flags.DOWNLOAD_IN_ACTION_BAR ?
-        <Icon type={types.DOWNLOAD} onClick={onDownload}/> : null}
-      <Icon type={types.WATCH}/>
-      <Icon type={types.EDIT}/>
-    </div>
-  )
-}
 
 function printUrl ({title, pageSize = 'A5', marginsType = 0}) {
   return `https://pdf-electron.wmflabs.org/pdf?` +

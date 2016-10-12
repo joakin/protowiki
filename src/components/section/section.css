@@ -1,0 +1,195 @@
+.Section .Section-title {
+  border-bottom: 1px solid #e2e3e4;
+  padding: 0.5em 0.5em 0.5em 36px;
+  position: relative;
+}
+.Section .Section-title .Section-toggle-icon {
+  position: absolute;
+  left: 8px;
+  top: 0.7em;
+  width: 16px;
+  background-size: 100%;
+}
+.Section.is-open .Section-toggle-icon {
+  transform: scaleY(-1);
+}
+.Section.is-open .Section-body {
+  display: block;
+}
+.Section .Section-body {
+  display: none;
+}
+.Section .Section-body img {
+  max-width: 100%;
+  height: auto;
+}
+.Section .Section-body a {
+  text-decoration: none;
+  color: #0645ad;
+  background: none;
+}
+.Section .Section-body a:visited {
+  color: #0b0080;
+}
+
+.Section .Section-body .get-summary {
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
+  border-color: #EAECF0;
+  border-style: solid;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left: 0;
+  border-right: 0;
+  text-align: center;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+.Section .Section-body .get-summary div.Icon {
+  margin-right: 0.3em;
+}
+
+.Section .Section-body .get-summary a{
+  color: #36c;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+}
+.Section .Section-body .get-summary a>* {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.Section .Section-body .infobox {
+  background-color: #f9f9f9;
+  width: auto !important;
+  max-width: 22em !important;
+  margin: 0 auto;
+  float: none !important;
+  border-color: lightgray;
+  border-style: solid;
+  border-left-width: 0;
+  border-right-width: 0;
+  border-top-width: 0;
+  border-bottom-width: 1px;
+}
+
+.Section .Section-body .infobox>tbody>tr:first-child  {
+  border-top-width: 0;
+}
+
+@media (min-width: 1000px) {
+  .Section .Section-body .infobox {
+    float: right !important;
+    clear: right;
+    margin: 0 0 1em 1em;
+  }
+}
+.Section .Section-body .infobox caption {
+  font-size: 125%;
+  font-weight: bold;
+  padding: 0.2em;
+}
+.Section .Section-body .infobox td,
+.Section .Section-body .infobox th {
+  vertical-align: top;
+  text-align: left;
+  border-top: 1px solid lightgray;
+}
+.Section .Section-body .infobox table tr:first-child > th,
+.Section .Section-body .infobox table tr:first-child > td {
+  border-top-width: 0;
+}
+.Section .Section-body .hatnote {
+  font-size: 0.8em;
+  font-style: italic;
+  color: #777777;
+}
+.Section .Section-body > table {
+  max-width: 100%;
+  overflow-x: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.Section .Section-body > table tr > td > span {
+  white-space: normal !important;
+}
+.Section .Section-body #coordinates {
+  display: none;
+}
+.Section .Section-body table th {
+  background-color: #f8f8f8;
+}
+.Section .Section-body table th,
+.Section .Section-body td {
+  padding: 0.2em 0.5em;
+  font-size: 80%;
+  word-wrap: normal;
+  word-break: normal;
+}
+.Section .Section-body figure {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  overflow: auto;
+  background-color: #f9f9f9;
+  border: 1px solid lightgray;
+  border-bottom: 0;
+}
+.Section .Section-body figcaption {
+  display: table-caption;
+  caption-side: bottom;
+  font-size: 0.8em;
+  text-align: left;
+  background-color: #f9f9f9;
+  border: 1px solid lightgray;
+  border-top: 0;
+}
+.Section .Section-body figure > * {
+  padding: 6px;
+}
+@media (min-width: 750px) {
+  .Section .Section-body figure {
+    width: auto;
+    clear: right;
+    float: right;
+    margin: 1em 0 1em 1em;
+  }
+}
+.Section .Section-body figure.mw-halign-right {
+  width: auto;
+  clear: right;
+  float: right;
+  margin: 1em 0 1em 1em;
+}
+.Section .Section-body figure.mw-halign-left {
+  width: auto;
+  clear: left;
+  float: left;
+  margin: 1em 1em 1em 0;
+}
+.Section .Section-body .hlist dl,
+.Section .Section-body .hlist ol,
+.Section .Section-body .hlist ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: disc;
+}
+.Section .Section-body .hlist dd:last-child:after,
+.Section .Section-body .hlist li:last-child:after {
+  content: "";
+}
+.Section .Section-body .hlist dd:after,
+.Section .Section-body .hlist li:after {
+  content: " · ";
+  font-weight: bold;
+}
+.Section .Section-body .hlist dd,
+.Section .Section-body .hlist dt,
+.Section .Section-body .hlist li {
+  margin: 0;
+  display: inline;
+}

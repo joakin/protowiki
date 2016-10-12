@@ -1,0 +1,14 @@
+.ActionBar {
+  border-width: 1px 0;
+  border-style: solid;
+  border-top-color: #eaecf0;
+  border-bottom-color: #c8ccd1;
+  padding: 0.5em 0;
+  text-align: right;
+}
+.ActionBar>:first-child { float: left; margin-left: 0 }
+.ActionBar>* { display: inline-block; margin-left: 1em; }
+@media print {
+  .ActionBar { display: none; }
+}
+
