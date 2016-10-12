@@ -15,33 +15,35 @@ export default React.createClass({
   },
 
   getArticle (title) {
-    this.setState({ title, article: null })
+    if (this.state.title !== title) {
+      this.setState({ title, article: null })
 
-    articleDB
-      .get(title)
-      .then((dbArticle) => {
+      articleDB
+        .get(title)
+        .then((dbArticle) => {
 
-        const networkArticle = article(title)
-          .then((article) => {
-            if (
-              !dbArticle ||
-              (dbArticle && dbArticle.revision !== article.revision)
-            ) {
-              articleDB.set(title, article)
-              this.updateArticle(title, article)
-            }
-          })
-          .catch(console.error)
+          const networkArticle = article(title)
+            .then((article) => {
+              if (
+                !dbArticle ||
+                (dbArticle && dbArticle.revision !== article.revision)
+              ) {
+                articleDB.set(title, article)
+                this.updateArticle(title, article)
+              }
+            })
+            .catch(console.error)
 
-        if (dbArticle) {
-          this.updateArticle(title, dbArticle)
-          return dbArticle
-        } else {
-          return networkArticle
-        }
+          if (dbArticle) {
+            this.updateArticle(title, dbArticle)
+            return dbArticle
+          } else {
+            return networkArticle
+          }
 
-      })
-      .catch(console.error)
+        })
+        .catch(console.error)
+    }
   },
 
   componentDidMount () { this.getArticle(this.props.title) },
