@@ -14,7 +14,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && cp build/index.html build/404.html && cp build/index.html build/200.html && sw-precache --root='build/' --static-file-globs='build/**/!(*map*)'",
+    "build": "react-scripts build && cp build/index.html build/404.html && cp build/index.html build/200.html && npm run sw-precache",
+    "sw-precache": "sw-precache --root='build/' --static-file-globs='build/**/!(*map*)' --navigate-fallback='index.html'", 
+
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "deploy": "surge -p build/ -d autowiki.surge.sh"
