@@ -3,6 +3,7 @@ import CaptureClicks from '../capture-clicks'
 import Icon, {types} from '../icon'
 import ActionBar from '../action-bar'
 import Section from '../section'
+import LeadImage from '../lead-image'
 import flags from '../../flags'
 import ReactDOM from 'react-dom';
 
@@ -53,17 +54,15 @@ export default React.createClass({
 
   render () {
     const {article} = this.props
+    console.log(article.lead)
     const {displaytitle, description, sections: [lead], image} = article.lead
     const sections = article.remaining.sections
-    const imageUrl = image && image.urls[Object.keys(image.urls)[0]]
 
     return (
       <CaptureClicks>
         <div className='Article'>
           {false && image ?
-            <div className='Article-leadimage' style={{
-              backgroundImage: `url(${imageUrl})`
-            }} /> :
+            <LeadImage image={image} /> :
             null}
           <h1 dangerouslySetInnerHTML={{ __html: displaytitle}} />
           <p className='Article-description'>{description}</p>

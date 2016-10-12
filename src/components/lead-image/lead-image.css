@@ -1,0 +1,20 @@
+.LeadImage {
+  overflow: hidden;
+  position: relative;
+  height: 200px;
+  width: 100%;
+}
+
+.LeadImage>* {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+.LeadImage-back {
+  background-size: cover;
+  filter: blur(20px);
+}
+.LeadImage-front {
+  background-size: contain;
+}
