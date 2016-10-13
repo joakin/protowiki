@@ -15,15 +15,18 @@ export default React.createClass({
     let saveButton
     let bounds
     let animatedSaveButton
-    const rotationDuration = 1000
+    const rotationDuration = 750
     const animationDuration = 750
+
+    const menuItemTo = document.querySelector('.Menu-list li:last-child a')
+    const toBounds = menuItemTo.getBoundingClientRect()
+    console.log(toBounds)
 
     const buttonAnimation = new Promise((resolve, reject) => {
       this.setState({ saved: true })
       return resolve(animationFrame())
     })
     .then(() => {
-      console.log('after saved true')
       saveButton = ReactDOM.findDOMNode(this).querySelector('.ActionBar-save')
       bounds = saveButton.getBoundingClientRect()
       animatedSaveButton = saveButton.cloneNode(true)
@@ -31,13 +34,12 @@ export default React.createClass({
 
       saveButton.style.transition =
         `transform ${rotationDuration / 1000}s ease-out`
-      saveButton.style.transform = 'rotateY(359deg)'
+      saveButton.style.transform = 'rotateY(0deg)'
 
       return animationFrame(() => {
-        saveButton.style.transition =
-          `transform ${rotationDuration / 1000}s ease-out`
-        saveButton.style.transform = 'rotateY(0deg)'
+        saveButton.style.transform = 'rotateY(180deg)'
       }).then(() => wait(rotationDuration))
+      .then(() => { saveButton.style.transform = 'rotateY(0deg)' })
     })
 
     const flyingAnimation = buttonAnimation.then(() => {
@@ -51,7 +53,7 @@ export default React.createClass({
 
       return animationFrame(() => {
         animatedSaveButton.style.transform =
-          `translateX(${0}px) translateY(${0}px) rotate(-359deg)`
+          `translateX(${toBounds.width / 3}px) translateY(${toBounds.top + (toBounds.height / 2)}px) rotate(-359deg)`
         animatedSaveButton.style.opacity = 0.7
       }).then(() => wait(animationDuration))
     })
@@ -73,7 +75,9 @@ export default React.createClass({
           ? <Icon type={saved ? types.UNSAVE : types.SAVE}
             className='ActionBar-save'
             onClick={() => {
-              onSave(this.onSaveClick())
+              saved
+                ? this.setState({ saved: false })
+                : onSave(this.onSaveClick())
             }} />
           : null}
         {flags.DOWNLOAD_IN_ACTION_BAR
@@ -92,7 +96,6 @@ function wait (ms) {
 function animationFrame (fn) {
   return new Promise((resolve, reject) =>
     window.requestAnimationFrame(() => {
-      console.log('animated frame')
       if (fn) fn()
       resolve()
     }))
