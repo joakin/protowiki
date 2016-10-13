@@ -89,16 +89,15 @@ export default React.createClass({
   }
 })
 
-
-function getPrintingServiceUrl(type, delay, url, pageSize, marginsType) {
+function getPrintingServiceUrl (type, delay, url, pageSize = 'A5', marginsType = 0) {
   return `https://pdf-electron.wmflabs.org/${type}?` +
       `accessKey=secret&delay=${delay}&` +
       `url=${encodeURIComponent(url)}&` +
-      `pageSize=${pageSize}&marginsType=${marginsType}`;
+      `pageSize=${pageSize}&marginsType=${marginsType}`
 }
 
-function getPrintFlashcardUrl({title}) {
-  return getPrintingServiceUrl('jpeg', 5, `https://autowiki.surge.sh/wiki/${title}`, null , 0);
+function getPrintFlashcardUrl ({title}) {
+  return getPrintingServiceUrl('pdf', 5, `https://autowiki.surge.sh/flashcard/${title}`, 'A5', 0);
 }
 
 function getPrintPDFUrl ({title, pageSize = 'A5', marginsType = 0}) {
