@@ -17,3 +17,6 @@
   transform: translateY(0px);
   transition: transform 0.25s ease-out;
 }
+@media print {
+  .OnlineStatusBar { display: none; }
+}
