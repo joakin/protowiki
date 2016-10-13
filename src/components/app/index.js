@@ -9,6 +9,7 @@ import Menu from '../menu'
 import Footer from '../footer'
 import Logo from '../logo'
 import Icon, {types} from '../icon'
+import SavedPages from '../saved-pages'
 import flags from '../../flags'
 import './App.css'
 
@@ -48,6 +49,7 @@ export default React.createClass({
                 <Match exactly pattern='/wiki/:title' render={renderArticle} />
                 <Match exactly pattern='/flashcard/:title' render={({params}) => renderArticle({params}, true)} />
                 <Match exactly pattern='/about' component={About} />
+                <Match exactly pattern='/saved' component={SavedPages} />
                 <Match exactly pattern='/' component={() =>
                   <Redirect to='/wiki/Wikimedia' />
                 } />

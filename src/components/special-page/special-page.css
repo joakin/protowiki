@@ -1,0 +1,11 @@
+.SpecialPage {}
+.SpecialPage>h2 {
+  margin-bottom: 8px;
+}
+.SpecialPage-subtitle {
+  font-size: 0.8em;
+  color: #54595D;
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
