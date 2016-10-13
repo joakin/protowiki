@@ -1,16 +1,16 @@
-import React from 'react';
-import { BrowserRouter, Match, Redirect, Miss } from 'react-router';
-import WithArticle from '../with-article';
-import WithOnline from '../with-online';
-import Article from '../article';
-import FakeText from '../fake-text';
-import OnlineStatusBar from '../online-status-bar';
+import React from 'react'
+import { BrowserRouter, Match, Redirect, Miss } from 'react-router'
+import WithArticle from '../with-article'
+import WithOnline from '../with-online'
+import Article from '../article'
+import FakeText from '../fake-text'
+import OnlineStatusBar from '../online-status-bar'
 import Menu from '../menu'
 import Footer from '../footer'
 import Logo from '../logo'
-import Icon, {types} from '../icon';
+import Icon, {types} from '../icon'
 import flags from '../../flags'
-import './App.css';
+import './App.css'
 
 export default React.createClass({
 
@@ -37,11 +37,11 @@ export default React.createClass({
                   <Icon type={types.MENU} onClick={() => this.toggleMenu(true)} />
                 </div>
                 <Logo size={60} />
-                <div>
-                </div>
+                <div>{/* Empty right side */}</div>
               </div>
               <div className='App-content'>
-                <Match exactly pattern='/wiki/:title' component={ArticleContainer} />
+                <Match exactly pattern='/wiki/:title' render={({params}) =>
+                  <ArticleContainer params={params} onSave={() => {}} />} />
                 <Match exactly pattern='/about' component={About} />
                 <Match exactly pattern='/' component={() =>
                   <Redirect to='/wiki/Wikimedia' />
@@ -50,22 +50,22 @@ export default React.createClass({
               </div>
               <Footer />
             </div>
-            {flags.ONLINE_STATUS_BAR ?
-              <OnlineStatusBar online={online} /> : null}
+            {flags.ONLINE_STATUS_BAR
+              ? <OnlineStatusBar online={online} /> : null}
           </div>
         }</WithOnline>
       </BrowserRouter>
-    );
+    )
   }
-});
+})
 
-function ArticleContainer ({ params }) {
+function ArticleContainer ({ params, onSave }) {
   return (
     <WithArticle title={params.title}>
       {({title, article}) =>
-        article ?
-          <Article title={title} article={article} /> :
-          <FakeText />
+        article
+          ? <Article title={title} article={article} onSave={onSave} />
+          : <FakeText />
       }
     </WithArticle>
   )

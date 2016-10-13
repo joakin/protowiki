@@ -53,19 +53,20 @@ export default React.createClass({
   },
 
   render () {
-    const {article} = this.props
+    const {article, onSave} = this.props
     const {displaytitle, description, sections: [lead], image} = article.lead
     const sections = article.remaining.sections
 
     return (
       <CaptureClicks>
         <div className='Article'>
-          {false && image ?
-            <LeadImage image={image} /> :
-            null}
+          {false && image
+            ? <LeadImage image={image} /> : null}
           <h1 dangerouslySetInnerHTML={{ __html: displaytitle}} />
           <p className='Article-description'>{description}</p>
-          <ActionBar onDownload={this.downloadArticle}/>
+          <ActionBar
+            onDownload={this.downloadArticle}
+            onSave={onSave} />
           <Section html={lead.text} />
           <div>
           {sections.map(({id, line, text, anchor}) =>

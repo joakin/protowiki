@@ -12,3 +12,9 @@
   .ActionBar { display: none; }
 }
 
+.ActionBar-save.flying {
+  position: absolute;
+  opacity: 1;
+  top: 0;
+  left: 0;
+}
