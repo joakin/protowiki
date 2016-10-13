@@ -18,6 +18,8 @@ switch (process.env.REACT_APP_PROTOTYPE) {
   case 'wikilater-1':
     flags.DOWNLOAD_IN_ACTION_BAR = true;
   break;
+  default:
+    //nothing enabled
 }
 
 export default flags

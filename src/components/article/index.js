@@ -8,18 +8,22 @@ import flags from '../../flags'
 import ReactDOM from 'react-dom';
 
 import './article.css'
+import './flashcard-print.css'
 
 export default React.createClass({
 
   downloadArticle () {
-    const url = printUrl({
+    const url = getPrintPDFUrl({
       title: this.props.title
     });
     window.open(url);
   },
 
   downloadSummary() {
-    console.log('Fetch article summary');
+    const url = getPrintFlashcardUrl({
+      title: this.props.title
+    });
+    window.open(url);
   },
 
   createGetSummaryElement() {
@@ -41,7 +45,7 @@ export default React.createClass({
   },
 
   componentDidMount() {
-    if (this.props.isFlashcard == true) {
+    if (this.props.isFlashcard === true) {
       document.body.classList.add('flashcard')
     } else {
       document.body.classList.remove('flashcard')
@@ -65,7 +69,7 @@ export default React.createClass({
     return (
       <CaptureClicks>
         <div className='Article'>
-          {false && image
+          {this.props.isFlashcard && image
             ? <LeadImage image={image} /> : null}
           <h1 dangerouslySetInnerHTML={{ __html: displaytitle}} />
           <p className='Article-description'>{description}</p>
@@ -85,11 +89,20 @@ export default React.createClass({
   }
 })
 
-function printUrl ({title, pageSize = 'A5', marginsType = 0}) {
-  return `https://pdf-electron.wmflabs.org/pdf?` +
-    `accessKey=secret&delay=5&` +
-    `url=${encodeURIComponent(`https://autowiki.surge.sh/wiki/${title}`)}&` +
-    `pageSize=${pageSize}&marginsType=${marginsType}`
+
+function getPrintingServiceUrl(type, delay, url, pageSize, marginsType) {
+  return `https://pdf-electron.wmflabs.org/${type}?` +
+      `accessKey=secret&delay=${delay}&` +
+      `url=${encodeURIComponent(url)}&` +
+      `pageSize=${pageSize}&marginsType=${marginsType}`;
+}
+
+function getPrintFlashcardUrl({title}) {
+  return getPrintingServiceUrl('jpeg', 5, `https://autowiki.surge.sh/wiki/${title}`, null , 0);
+}
+
+function getPrintPDFUrl ({title, pageSize = 'A5', marginsType = 0}) {
+  return getPrintingServiceUrl('pdf', 5, `https://autowiki.surge.sh/wiki/${title}`, pageSize, marginsType);
 }
 
 // <Icon type={types.ARROW} className='Section-toggle-icon'/>
