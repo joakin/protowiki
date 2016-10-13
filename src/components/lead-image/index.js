@@ -1,17 +1,8 @@
 import React from 'react'
+import Image from '../image'
 
-import './lead-image.css'
-
-export default function ({image}) {
+export default function LeadImage ({image}) {
   const imageUrl = image && image.urls[Object.keys(image.urls)[0]]
-  const backgroundImageStyle = {
-    backgroundImage: `url(${imageUrl})`
-  }
-
-  return (
-    <div className='LeadImage'>
-      <span className='LeadImage-back' style={backgroundImageStyle} />
-      <span className='LeadImage-front' style={backgroundImageStyle} />
-    </div>
-  )
+  return <Image url={imageUrl} width='100%' height='200px' />
 }
+

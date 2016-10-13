@@ -1,12 +1,14 @@
-import React from 'react';
-import {Link} from 'react-router';
-import Icon, {types} from '../icon';
+import React from 'react'
+import {Link} from 'react-router'
+import Icon, {types} from '../icon'
+import flags from '../../flags'
 
 import './menu.css'
 
 const menuItems = [
-  { label: 'Home', path: '/', icon: types.HOME }
-]
+  { label: 'Home', path: '/', icon: types.HOME },
+  flags.SAVE_PAGE ? { label: 'Saved pages', path: '/saved', icon: types.SAVEDPAGES } : null
+].filter((i) => !!i)
 
 export default React.createClass({
 

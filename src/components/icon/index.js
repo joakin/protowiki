@@ -18,5 +18,6 @@ export const types = {
   LANGUAGE: 'language',
   GET_SUMMARY: 'get-summary',
   SAVE: 'save',
-  UNSAVE: 'unsave'
+  UNSAVE: 'unsave',
+  SAVEDPAGES: 'savedpages'
 }
