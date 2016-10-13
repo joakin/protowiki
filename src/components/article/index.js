@@ -41,6 +41,11 @@ export default React.createClass({
   },
 
   componentDidMount() {
+    if (this.props.isFlashcard == true) {
+      document.body.classList.add('flashcard')
+    } else {
+      document.body.classList.remove('flashcard')
+    }
     if (flags.DOWNLOAD_SUMMARY) {
       this.createGetSummaryElement();
     }

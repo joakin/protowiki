@@ -25,6 +25,11 @@ export default React.createClass({
   },
 
   render () {
+    const renderArticle = ({params}, isFlashcard) =>
+      <ArticleContainer params={params} isFlashcard={isFlashcard} onSave={([openMenu, animationDone]) => {
+        openMenu.then(() => this.toggleMenu(true))
+        animationDone.then(() => this.toggleMenu(false))
+      }} />
     return (
       <BrowserRouter>
         <WithOnline>{({online}) =>
@@ -40,11 +45,8 @@ export default React.createClass({
                 <div>{/* Empty right side */}</div>
               </div>
               <div className='App-content'>
-                <Match exactly pattern='/wiki/:title' render={({params}) =>
-                  <ArticleContainer params={params} onSave={([openMenu, animationDone]) => {
-                    openMenu.then(() => this.toggleMenu(true))
-                    animationDone.then(() => this.toggleMenu(false))
-                  }} />} />
+                <Match exactly pattern='/wiki/:title' render={renderArticle} />
+                <Match exactly pattern='/flashcard/:title' render={({params}) => renderArticle({params}, true)} />
                 <Match exactly pattern='/about' component={About} />
                 <Match exactly pattern='/' component={() =>
                   <Redirect to='/wiki/Wikimedia' />
@@ -62,12 +64,12 @@ export default React.createClass({
   }
 })
 
-function ArticleContainer ({ params, onSave }) {
+function ArticleContainer ({ params, onSave, isFlashcard }) {
   return (
     <WithArticle title={params.title}>
       {({title, article}) =>
         article
-          ? <Article title={title} article={article} onSave={onSave} />
+          ? <Article title={title} article={article} onSave={onSave} isFlashcard={isFlashcard} />
           : <FakeText />
       }
     </WithArticle>
