@@ -10,8 +10,8 @@ export default function ({image}) {
 
   return (
     <div className='LeadImage'>
-      <div className='LeadImage-back' style={backgroundImageStyle} />
-      <div className='LeadImage-front' style={backgroundImageStyle} />
+      <span className='LeadImage-back' style={backgroundImageStyle} />
+      <span className='LeadImage-front' style={backgroundImageStyle} />
     </div>
   )
 }
