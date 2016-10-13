@@ -1,0 +1,9 @@
+.Logo.spinning {
+  animation: logo-spin infinite 0.3s ease-in-out;
+}
+
+@keyframes logo-spin {
+  from { transform: rotateZ(0deg); }
+  to { transform: rotateZ(360deg); }
+}
+
