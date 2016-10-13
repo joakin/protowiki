@@ -107,10 +107,10 @@ body.flashcard .Section .Section-body .infobox th:first-child {
 /* using Lato for body type.
 Lato is an open source serif typeface specfically designed for legibility and reading
 */
-body.flashcard .mw-body-content p {
+body.flashcard p {
     font-family: "Lato", sans-serif;
-    font-size: 14pt;
-    line-height: 21pt;
+    font-size: 14px;
+    line-height: 21px;
     margin-top: 10px;
 }
 
@@ -136,7 +136,7 @@ body.flashcard .Article-description:after {
 - H4, H5, H6 = 12pt
 */
 /* article name */
-body.flashcard .firstHeading, h1 {
+body.flashcard h1 {
     font-family: serif;
     font-size: 28px;
     line-height: 32px;
@@ -144,7 +144,7 @@ body.flashcard .firstHeading, h1 {
     font-weight: normal;
 }
 
-body.flashcard .mw-body-content h2, h2 {
+body.flashcard h2 {
     page-break-before: avoid;
     font-family: sans-serif;
     font-size: 20px;
@@ -157,7 +157,7 @@ body.flashcard .mw-body-content h2, h2 {
     padding-bottom: 5px;
 }
 
-body.flashcard .mw-body-content h3, h3 {
+body.flashcard h3 {
     font-size: 18px;
     page-break-before: avoid;
     font-family: sans-serif;
@@ -169,7 +169,7 @@ body.flashcard .mw-body-content h3, h3 {
 }
 
 /* scanning indicator for H3s
-.mw-body-content h3:before {
+h3:before {
     content: " ";
     height: 1px;
     width: 30px;
@@ -181,9 +181,9 @@ body.flashcard .mw-body-content h3, h3 {
 }
 */
 /* rest of the headers*/
-body.flashcard .mw-body-content h4, h4,
-body.flashcard .mw-body-content h5, h5,
-body.flashcard .mw-body-content h6, h6 {
+body.flashcard h4,
+body.flashcard h5,
+body.flashcard h6 {
     page-break-before: avoid;
     font-family: sans-serif;
     font-size: 16px;
@@ -318,12 +318,16 @@ body.flashcard table.wikitable caption {
     font-size: 13px;
 }
 
-body.flashcard table.wikitable > tr > th, table.wikitable > * > tr > th {
+body.flashcard table.wikitable > tr > th,
+body.flashcard table.wikitable > * > tr > th {
     background-color: #FFF;
     text-align: center;
 }
 
-body.flashcard table.wikitable > tr > th, table.wikitable > tr > td, table.wikitable > * > tr > th, table.wikitable > * > tr > td {
+body.flashcard table.wikitable > tr > th,
+body.flashcard table.wikitable > tr > td,
+body.flashcard table.wikitable > * > tr > th,
+body.flashcard table.wikitable > * > tr > td {
     border: 1px solid #EAECF0;
     padding: 0.2em 0.4em;
 }
@@ -366,16 +370,10 @@ body.flashcard .references li {
 - tone down the license info
 - add Wikimedia Foundation branding as Wikipedia is a Wikimedia Project
 */
-body.flashcard .printfooter {
-    padding-top: 10px;
-    border-top: 3px solid #ccc;
-    margin-top: 10px;
-    font-size: 14px;
-}
-
 body.flashcard .Footer {
+    font-size: 14px;
     border-top: 1px solid #eee;
-    padding: 20px 100px;
+    padding: 20px 1em;
     margin-top: 12px;
     background-color: #F2F2F2 !important;
     text-align: center;
@@ -387,11 +385,6 @@ body.flashcard .Footer-logo {
 
 body.flashcard .Footer ul {
     display: none !important;
-    /*font-size: 14px;*/
-    /*display: block;*/
-    /*list-style: none;*/
-    /*padding-bottom: 10px;*/
-    /*color: #999;*/
 }
 
 body.flashcard .Footer:after {
