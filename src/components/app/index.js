@@ -41,7 +41,10 @@ export default React.createClass({
               </div>
               <div className='App-content'>
                 <Match exactly pattern='/wiki/:title' render={({params}) =>
-                  <ArticleContainer params={params} onSave={() => {}} />} />
+                  <ArticleContainer params={params} onSave={([openMenu, animationDone]) => {
+                    openMenu.then(() => this.toggleMenu(true))
+                    animationDone.then(() => this.toggleMenu(false))
+                  }} />} />
                 <Match exactly pattern='/about' component={About} />
                 <Match exactly pattern='/' component={() =>
                   <Redirect to='/wiki/Wikimedia' />

@@ -16,5 +16,7 @@ export const types = {
   EDIT: 'edit',
   WATCH: 'watch',
   LANGUAGE: 'language',
-  GET_SUMMARY: 'get-summary'
+  GET_SUMMARY: 'get-summary',
+  SAVE: 'save',
+  UNSAVE: 'unsave'
 }
