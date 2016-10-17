@@ -97,11 +97,11 @@ function getPrintingServiceUrl (type, delay, url, pageSize = 'A5', marginsType =
 }
 
 function getPrintFlashcardUrl ({title}) {
-  return getPrintingServiceUrl('pdf', 5, `https://autowiki.surge.sh/flashcard/${title}`, 'A5', 0);
+  return getPrintingServiceUrl('pdf', 10, `https://autowiki.surge.sh/flashcard/${title}`, 'A5', 0);
 }
 
 function getPrintPDFUrl ({title, pageSize = 'A5', marginsType = 0}) {
-  return getPrintingServiceUrl('pdf', 5, `https://autowiki.surge.sh/wiki/${title}`, pageSize, marginsType);
+  return getPrintingServiceUrl('pdf', 10, `https://autowiki.surge.sh/wiki/${title}`, pageSize, marginsType);
 }
 
 // <Icon type={types.ARROW} className='Section-toggle-icon'/>
