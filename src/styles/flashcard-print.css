@@ -47,7 +47,7 @@ body.flashcard .catlinks,
 body.flashcard .mw-editsection,
 body.flashcard #administrator,
 body.flashcard #coordinates .image,
-body.flashcard .Article div:last-child,
+body.flashcard .Article>div:last-child, /* Remaining sections */
 body.flashcard .infobox img,
 body.flashcard div.ActionBar,
 body.flashcard div.App-header,
