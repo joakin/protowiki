@@ -33,7 +33,7 @@ export default React.createClass({
       </a>;
     const firstParagraph = document.querySelector('.Section-body p');
     const wrapper = document.createElement('div');
-    wrapper.className = 'get-summary';
+    wrapper.className = 'Article-get-summary';
 
     if (firstParagraph) {
       firstParagraph.appendChild(wrapper);
@@ -56,7 +56,7 @@ export default React.createClass({
 
   componentWillUnmount() {
     if (flags.DOWNLOAD_SUMMARY) {
-      ReactDOM.unmountComponentAtNode(document.querySelector('.get-summary'));
+      ReactDOM.unmountComponentAtNode(document.querySelector('.Article-get-summary'));
     }
   },
 

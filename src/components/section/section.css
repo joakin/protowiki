@@ -32,34 +32,6 @@
   color: #0b0080;
 }
 
-.Section .Section-body .get-summary {
-  padding-top: 0.3em;
-  padding-bottom: 0.3em;
-  border-color: #EAECF0;
-  border-style: solid;
-  border-top-width: 1px;
-  border-bottom-width: 1px;
-  border-left: 0;
-  border-right: 0;
-  text-align: center;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-}
-.Section .Section-body .get-summary div.Icon {
-  margin-right: 0.3em;
-}
-
-.Section .Section-body .get-summary a{
-  color: #36c;
-  text-decoration: none;
-  font-weight: bold;
-  display: block;
-}
-.Section .Section-body .get-summary a>* {
-  display: inline-block;
-  vertical-align: middle;
-}
-
 .Section .Section-body .infobox {
   background-color: #f9f9f9;
   width: auto !important;
