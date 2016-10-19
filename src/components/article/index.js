@@ -95,12 +95,15 @@ function getPrintingServiceUrl (type, delay, url, pageSize = 'A5', marginsType =
       `pageSize=${pageSize}&marginsType=${marginsType}`
 }
 
+const printOrigin = window.location.host.indexOf('localhost') === 0
+  ? 'http://autowiki.surge.sh' : window.location.origin
+
 function getPrintFlashcardUrl ({title}) {
-  return getPrintingServiceUrl('pdf', 10, `https://autowiki.surge.sh/flashcard/${title}`, 'A5', 0);
+  return getPrintingServiceUrl('pdf', 10, `${printOrigin}/flashcard/${title}`, 'A5', 0)
 }
 
 function getPrintPDFUrl ({title, pageSize = 'A5', marginsType = 0}) {
-  return getPrintingServiceUrl('pdf', 10, `https://autowiki.surge.sh/wiki/${title}`, pageSize, marginsType);
+  return getPrintingServiceUrl('pdf', 10, `${printOrigin}/wiki/${title}`, pageSize, marginsType)
 }
 
 // <Icon type={types.ARROW} className='Section-toggle-icon'/>
