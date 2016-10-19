@@ -8,7 +8,6 @@ import flags from '../../flags'
 import ReactDOM from 'react-dom';
 
 import './article.css'
-import './flashcard-print.css'
 
 export default React.createClass({
 

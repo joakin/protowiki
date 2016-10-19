@@ -1,0 +1,363 @@
+@media print {
+
+  /*
+  - Have some padding and body typeface
+  - Turn color to pure black. good for printing pure black
+  */
+
+  /*
+  @page {
+  size: 90vw 90vh;
+  }
+  */
+
+
+  body {-webkit-print-color-adjust: exact;}
+
+  body {
+    padding: 10px 10px;
+    font-family: sans-serif;
+  }
+
+  .noprint,
+  .mw-indicators,
+  .App-header,
+  #jump-to-nav,
+  .mw-redirectedfrom,
+  .hatnote,
+  #toc,
+  #mw-navigation,
+  #footer-places,
+  .mw-cite-backlink,
+  .play-btn-large,
+  .mbox-small,
+  .navbox,
+  .catlinks,
+  .mw-editsection,
+  #administrator,
+  #coordinates .image{
+    display: none;
+  }
+
+  /*
+  - Basic infobox styling
+  */
+  .infobox {
+    border: 1px solid #aaa;
+    border-spacing: 3px;
+    background-color: #fff;
+    border-radius: 2px;
+    color: black;
+    margin: 0.5em 0 0.5em 1em;
+    padding: 0.2em;
+  }
+
+  .infobox a {
+    border-bottom: none;
+  }
+
+  /*
+  - Main article textual content - sans serif
+  */
+
+  /* using Lato for body type.
+  Lato is an open source serif typeface specfically designed for legibility and reading
+  */
+  body p {
+    font-family: "Lato", sans-serif;
+    font-size: 14px;
+    line-height: 21px;
+    margin-top: 10px;
+  }
+
+  /* article title separator - print element from classic editorial practices */
+
+  .Article-description:after {
+    content: " ";
+    display: block;
+    width: 50px;
+    background-color: #666!important;
+    height: 1px;
+    margin-top: 15px;
+  }
+
+
+  /* header styling
+  - Big part of typography
+  - headers should be closer to the next <p> than the <p> before
+
+  ====TYPOGRAPHY=====
+
+  - H1 = 26pt
+  - H2 = 18pt
+  - H3 = 14pt
+  - H4, H5, H6 = 12pt
+  */
+
+  /* article name */
+  .firstHeading, h1 {
+    font-family: serif;
+    font-size: 28px;
+    line-height: 32px;
+    margin-bottom: 5px;
+    font-weight: normal;
+  }
+
+
+
+  h2 {
+    page-break-before: avoid;
+    font-family: sans-serif;
+    font-size: 20px;
+    line-height: 24px;
+    border-bottom: 2px solid #222;
+    margin-bottom: 0.25em;
+    padding: 0;
+    overflow: hidden;
+    display: block;
+    padding-bottom: 5px;
+  }
+
+  h3 {
+    font-size: 18px;
+    page-break-before:avoid;
+    font-family: sans-serif;
+    line-height: 20px;
+    position: relative;
+    padding: 0;
+    display: block;
+    margin: 30px 0px 0px 0px;
+  }
+
+  /* scanning indicator for H3s
+  h3:before {
+  content: " ";
+  height: 1px;
+  width: 30px;
+  position: absolute;
+  left:-40px;
+  top: 50%;
+  display: block;
+  background: #000;
+  }
+  */
+
+
+  /* rest of the headers*/
+
+  h4,
+  h5,
+  h6{
+    page-break-before:avoid;
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 18px;
+    position: relative;
+    padding: 0;
+    display: block;
+    margin: 30px 0px 0px 0px;
+  }
+
+  /* reference brackets */
+
+  .mw-ref a {
+    font-size: 14px;
+    border-bottom: none;
+  }
+
+  /* all kind of content types
+  - Media
+  - Images
+  - Tables
+  - lists
+  - bullets
+  - layout classes, right left center
+  */
+
+  .thumb {
+    margin-bottom: .5em;
+    width: auto;
+    background-color: transparent;
+  }
+
+  .thumb a{
+    border-bottom: none;
+  }
+  .center {
+    width: 100%;
+    text-align: center;
+  }
+
+  div.tright {
+    margin: .5em 0 1.3em 1.4em;
+  }
+
+  div.tleft {
+    margin: .5em 1.4em 1.3em 0;
+  }
+
+  div.tright, div.floatright, table.floatright {
+    clear: right;
+    float: right;
+  }
+
+  div.tleft, div.floatleft, table.floatleft {
+    clear: left;
+    float: left;
+  }
+
+  div.floatright, table.floatright {
+    margin: 0 0 .5em .5em;
+    border: 0;
+  }
+
+  ul.gallery {
+    margin: 2px;
+    padding: 2px;
+    display: block;
+  }
+  ul.gallery, li.gallerybox {
+    zoom: 1;
+  }
+
+  div#content .gallerybox div.thumb {
+    background-color: #FFF;
+  }
+  li.gallerybox div.thumb {
+    text-align: center;
+    border: 1px solid #ccc;
+    background-color: #FFF;
+    margin: 2px;
+  }
+  li.gallerybox {
+    vertical-align: top;
+    display: -moz-inline-box;
+    display: inline-block;
+  }
+  li {
+    margin-bottom: .1em;
+  }
+  div.gallerytext {
+    overflow: hidden;
+    font-size: 10px;
+    padding: 2px 4px;
+    word-wrap: break-word;
+  }
+  ul {
+    list-style-type: disc;
+    list-style-image: url(data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22…%229.5%22%20r%3D%222.5%22%20fill%3D%22%2300528c%22%2F%3E%0A%3C%2Fsvg%3E%0A);
+    list-style-image: url(/w/skins/Vector/images/bullet-icon.svg?90d59)!ie;
+    list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAANCAIAAADuXjPfAAAABnRST…t9AAAAHklEQVR4AWP4jwrowWcI6oEgEBtIISNCfFT9mOYDACO/lbNIGC/yAAAAAElFTkSuQmCC) \9;
+    list-style-image: url(/w/skins/Vector/images/bullet-icon.png?e31f8) \9!ie;
+  }
+  ul {
+    list-style-type: square;
+    margin: .3em 0 0 1.6em;
+    padding: 0;
+  }
+
+  table.wikitable {
+    margin: 1em 0;
+    background-color: #FFF;
+    border: 1px solid #aaa;
+    border-collapse: collapse;
+    color: #000;
+  }
+
+  table.wikitable caption {
+    padding: 5px;
+    font-size: 13px;
+  }
+  table.wikitable > tr > th, table.wikitable > * > tr > th {
+    background-color: #FFF;
+    text-align: center;
+  }
+  table.wikitable > tr > th, table.wikitable > tr > td, table.wikitable > * > tr > th, table.wikitable > * > tr > td {
+    border: 1px solid #EAECF0;
+    padding: 0.2em 0.4em;
+  }
+
+  div.thumbinner {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 5px;
+    background-color: #FFF;
+    font-size: 12px;
+    color: #666;
+    text-align: left;
+    overflow: hidden;
+  }
+
+  .thumbinner {
+    min-width: 100px;
+  }
+
+  *.center * {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  ul {
+    margin-top: 10px;
+  }
+  ul li {
+    padding: 5px 0px;
+    font-size: 10px;
+  }
+  .refbegin ul li,
+  .references li{
+    font-size: 13px;
+    color: #666;
+    padding: 5px 0px;
+  }
+
+  /* New footer
+  - the page URL
+  - Last updated as primary info
+  - tone down the license info
+  - add Wikimedia Foundation branding as Wikipedia is a Wikimedia Project
+  */
+  .printfooter {
+    padding-top: 10px;
+    border-top: 3px solid #ccc;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  #footer {
+    border-top: 1px solid #eee;
+    padding: 20px 15px;
+    margin-top: 12px;
+    background-color: #F2F2F2;
+  }
+
+  #footer-info {
+    margin: 0;
+    padding: 0;
+  }
+
+  #footer-info li:first-child {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+  }
+  #footer-info li {
+    font-size: 14px;
+    display: block;
+    list-style: none;
+    padding-bottom: 10px;
+    color: #999;
+  }
+  #footer-info li a{
+    color: #999;
+  }
+  #footer-info:before {
+    content: " ";
+    background-image: url('https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia_wordmark@2x.png');
+    background-size: auto 32px;
+    background-repeat: no-repeat;
+    height: 32px;
+    display: block;
+    margin: 15px 0px 30px;
+  }
+
+}
