@@ -12,8 +12,8 @@ export default function Image ({url, width = '100%', height = 'auto'}) {
 
   return (
     <div className='Image' style={containerStyle}>
-      <span className='Image-back' style={backgroundImageStyle} />
-      <span className='Image-front' style={backgroundImageStyle} />
+      <div className='Image-back' style={backgroundImageStyle} />
+      <div className='Image-front' style={backgroundImageStyle} />
     </div>
   )
 }
