@@ -9,7 +9,7 @@
 .ActionBar>:first-child { float: left; margin-left: 0 }
 .ActionBar>* { display: inline-block; margin-left: 1em; }
 @media print {
-  .ActionBar { display: none; }
+  .ActionBar { display: none !important; }
 }
 
 .ActionBar-save.flying {

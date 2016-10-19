@@ -18,5 +18,5 @@
   transition: transform 0.25s ease-out;
 }
 @media print {
-  .OnlineStatusBar { display: none; }
+  .OnlineStatusBar { display: none !important; }
 }
