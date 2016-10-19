@@ -4,7 +4,7 @@ const VERSION_KEY = 'version'
 const VERSION = 1
 
 const db = init()
-export default db;
+export default db
 
 // Init localforage. Clear DB if version number is old.
 function init () {
@@ -15,9 +15,9 @@ function init () {
   return lf.getItem(VERSION_KEY)
     .then((oldVersion) => {
       // If the DB version is old, clear it out.
-      return (oldVersion < VERSION) ?
-        lf.clear().then(setVersion) :
-        setVersion()
+      return (oldVersion < VERSION)
+        ? lf.clear().then(setVersion)
+        : setVersion()
     })
 }
 

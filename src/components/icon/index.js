@@ -3,7 +3,7 @@ import React from 'react'
 import './icon.css'
 
 export default function ({ type, className, ...attrs }) {
-  return <div {...attrs} className={`Icon is-type-${type} ${className || ''}`}/>
+  return <div {...attrs} className={`Icon is-type-${type} ${className || ''}`} />
 }
 
 export const types = {

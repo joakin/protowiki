@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import * as articleDB from '../../db/article'
 import {article} from '../../api'
 
@@ -21,7 +21,6 @@ export default React.createClass({
       articleDB
         .get(title)
         .then((dbArticle) => {
-
           const networkArticle = article(title)
             .then((article) => {
               if (
@@ -40,7 +39,6 @@ export default React.createClass({
           } else {
             return networkArticle
           }
-
         })
         .catch(console.error)
     }
@@ -51,7 +49,7 @@ export default React.createClass({
   componentWillReceiveProps (props) { this.getArticle(props.title) },
 
   render () {
-    return this.props.children(this.state);
+    return this.props.children(this.state)
   }
 
 })

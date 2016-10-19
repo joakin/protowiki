@@ -6,6 +6,7 @@
     "localforage": "^1.4.3",
     "react-router": "^4.0.0-alpha.4",
     "react-scripts": "0.6.1",
+    "standard": "^8.4.0",
     "sw-precache": "^4.1.0"
   },
   "dependencies": {
@@ -15,11 +16,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && cp build/index.html build/404.html && cp build/index.html build/200.html && npm run sw-precache",
-    "sw-precache": "sw-precache --root='build/' --static-file-globs='build/**/!(*map*)' --navigate-fallback='index.html'", 
-
+    "sw-precache": "sw-precache --root='build/' --static-file-globs='build/**/!(*map*)' --navigate-fallback='index.html'",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "deploy": "surge -p build/ -d autowiki.surge.sh"
+    "deploy": "surge -p build/ -d autowiki.surge.sh",
+    "lint": "standard --fix"
   },
   "homepage": "/"
 }
