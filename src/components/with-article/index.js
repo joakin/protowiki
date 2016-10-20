@@ -19,35 +19,43 @@ export default React.createClass({
     if (this.state.title !== title) {
       this.setState({ title, data: RemoteData.Loading() })
 
+      // Trigger network and cache requests in parallel
+      const networkArticle = article(title)
       articleDB
         .get(title)
         .then((dbArticle) => {
-          const networkArticle = article(title)
-            .then((article) => {
-              if (
-                !dbArticle ||
-                (dbArticle && dbArticle.revision !== article.revision)
-              ) {
-                articleDB.set(title, article)
-                this.updateData(title, RemoteData.Success(article))
-              }
-            })
-
+          // Set the saved article if it exists
           if (dbArticle) {
             this.updateData(title, RemoteData.Success(dbArticle))
           }
 
-          return networkArticle
+          // When the network comes back
+          return networkArticle.then((article) => {
+            if (
+              /* !dbArticle || // Don't save all articles now */
+              // If the article was saved, update it in DB (if new revision)
+              (dbArticle && dbArticle.revision !== article.revision)
+            ) {
+              // Auto-update currently viewed article
+              this.updateData(title, RemoteData.Success(article))
+
+              return articleDB.set(title, article)
+            }
+          })
         })
         .catch((e) => {
           if (this.state.title === title) {
             RemoteData.match(this.state.data, {
-              // Article came from DB, don't show error
+              // There's an good representation of an article being showed,
+              // don't show error because it removes content.
               Success: _ => _,
-              // If anything else happens then set the error
+
+              // If there's an error and there's no valid article content then
+              // then set the error
               _: _ => this.updateData(title, RemoteData.Failure(e))
             })
           }
+
           console.error(`Error: Failed to update article ${title}`)
           console.error(e)
         })

@@ -9,3 +9,7 @@ export function get (title) {
 export function set (title, article) {
   return lf.setItem(key(title), article)
 }
+
+export function remove (title) {
+  return lf.removeItem(key(title))
+}
