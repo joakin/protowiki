@@ -71,7 +71,7 @@ export default React.createClass({
 
 function ArticleContainer ({ params, onSave, isFlashcard }) {
   return (
-    <WithArticle title={params.title}>
+    <WithArticle title={decodeURIComponent(params.title)}>
       {({title, data}) =>
         RemoteData.match(data, {
           NotAsked: _ => null,
