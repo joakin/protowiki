@@ -11,6 +11,9 @@ import Logo from '../logo'
 import Icon, {types} from '../icon'
 import SavedPages from '../saved-pages'
 import flags from '../../flags'
+import RemoteData from '../../data/remote-data'
+
+
 import './App.css'
 
 export default React.createClass({
@@ -69,10 +72,19 @@ export default React.createClass({
 function ArticleContainer ({ params, onSave, isFlashcard }) {
   return (
     <WithArticle title={params.title}>
-      {({title, article}) =>
-        article
-          ? <Article title={title} article={article} onSave={onSave} isFlashcard={isFlashcard} />
-          : <FakeText />
+      {({title, data}) =>
+        RemoteData.match(data, {
+          NotAsked: _ => null,
+          Loading: _ => <FakeText />,
+          Success: article =>
+            <Article title={title} article={article}
+              onSave={onSave} isFlashcard={isFlashcard} />,
+          Failure: e =>
+            <div>
+              <h1>{title}</h1>
+              <p>There was a problem retrieving <em>{title}</em></p>
+            </div>
+        })
       }
     </WithArticle>
   )

@@ -28,6 +28,7 @@
 }
 .App-header>div { flex: 1; }
 
+.App-content { min-height: 400px; }
 
 .App.is-offline {
   padding-bottom: 50px;

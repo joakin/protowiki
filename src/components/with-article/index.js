@@ -1,22 +1,23 @@
 import React from 'react'
 import * as articleDB from '../../db/article'
 import {article} from '../../api'
+import RemoteData from '../../data/remote-data'
 
 export default React.createClass({
 
   getInitialState () {
-    return { title: null, article: null }
+    return { title: null, data: RemoteData.NotAsked() }
   },
 
-  updateArticle (title, article) {
+  updateData (title, data) {
     if (this.state.title === title) {
-      this.setState({ article })
+      this.setState({ data })
     }
   },
 
   getArticle (title) {
     if (this.state.title !== title) {
-      this.setState({ title, article: null })
+      this.setState({ title, data: RemoteData.Loading() })
 
       articleDB
         .get(title)
@@ -28,19 +29,28 @@ export default React.createClass({
                 (dbArticle && dbArticle.revision !== article.revision)
               ) {
                 articleDB.set(title, article)
-                this.updateArticle(title, article)
+                this.updateData(title, RemoteData.Success(article))
               }
             })
-            .catch(console.error)
 
           if (dbArticle) {
-            this.updateArticle(title, dbArticle)
-            return dbArticle
-          } else {
-            return networkArticle
+            this.updateData(title, RemoteData.Success(dbArticle))
           }
+
+          return networkArticle
         })
-        .catch(console.error)
+        .catch((e) => {
+          if (this.state.title === title) {
+            RemoteData.match(this.state.data, {
+              // Article came from DB, don't show error
+              Success: _ => _,
+              // If anything else happens then set the error
+              _: _ => this.updateData(title, RemoteData.Failure(e))
+            })
+          }
+          console.error(`Error: Failed to update article ${title}`)
+          console.error(e)
+        })
     }
   },
 
