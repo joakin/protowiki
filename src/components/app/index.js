@@ -3,6 +3,7 @@ import { BrowserRouter, Match, Redirect, Miss } from 'react-router'
 import WithArticle from '../with-article'
 import WithOnline from '../with-online'
 import Article from '../article'
+import Flashcard from '../flashcard'
 import FakeText from '../fake-text'
 import OnlineStatusBar from '../online-status-bar'
 import Menu from '../menu'
@@ -12,7 +13,6 @@ import Icon, {types} from '../icon'
 import SavedPages from '../saved-pages'
 import flags from '../../flags'
 import RemoteData from '../../data/remote-data'
-
 
 import './App.css'
 
@@ -28,18 +28,21 @@ export default React.createClass({
     })
   },
 
+  onArticleSave ([iconFlip, iconFly]) {
+    iconFlip.then(() => this.toggleMenu(true))
+    iconFly.then(() => this.toggleMenu(false))
+  },
+
   render () {
-    const renderArticle = ({params}, isFlashcard) =>
-      <ArticleContainer params={params} isFlashcard={isFlashcard} onSave={([openMenu, animationDone]) => {
-        openMenu.then(() => this.toggleMenu(true))
-        animationDone.then(() => this.toggleMenu(false))
-      }} />
     return (
       <BrowserRouter>
         <WithOnline>{({online}) =>
           <div>
+
             <Menu isOpen={this.state.isMenuOpen}
-              onItemClick={() => this.toggleMenu(false)} onBackdropClick={() => this.toggleMenu(false)} />
+              onItemClick={() => this.toggleMenu(false)}
+              onBackdropClick={() => this.toggleMenu(false)} />
+
             <div className={'App ' + (!online ? 'is-offline' : '')}>
               <div className='App-header'>
                 <div>
@@ -48,20 +51,26 @@ export default React.createClass({
                 <Logo size={60} />
                 <div>{/* Empty right side */}</div>
               </div>
+
               <div className='App-content'>
+
                 <Match exactly pattern='/wiki/:title' render={renderArticle} />
-                <Match exactly pattern='/flashcard/:title' render={({params}) => renderArticle({params}, true)} />
+                <Match exactly pattern='/flashcard/:title' render={renderFlashcard} />
                 <Match exactly pattern='/about' component={About} />
                 <Match exactly pattern='/saved' component={SavedPages} />
                 <Match exactly pattern='/' component={() =>
                   <Redirect to='/wiki/Wikimedia' />
                 } />
                 <Miss component={NoMatch} />
+
               </div>
+
               <Footer />
             </div>
+
             {flags.ONLINE_STATUS_BAR
               ? <OnlineStatusBar online={online} /> : null}
+
           </div>
         }</WithOnline>
       </BrowserRouter>
@@ -69,7 +78,7 @@ export default React.createClass({
   }
 })
 
-function ArticleContainer ({ params, onSave, isFlashcard }) {
+function renderArticle ({ params, onSave }, render) {
   return (
     <WithArticle title={decodeURIComponent(params.title)}>
       {({title, data}) =>
@@ -77,8 +86,8 @@ function ArticleContainer ({ params, onSave, isFlashcard }) {
           NotAsked: _ => null,
           Loading: _ => <FakeText />,
           Success: article =>
-            <Article title={title} article={article}
-              onSave={onSave} isFlashcard={isFlashcard} />,
+            render ? render({ title, article, onSave })
+              : <Article title={title} article={article} onSave={onSave} />,
           Failure: e =>
             <div>
               <h1>{title}</h1>
@@ -88,6 +97,10 @@ function ArticleContainer ({ params, onSave, isFlashcard }) {
       }
     </WithArticle>
   )
+}
+
+function renderFlashcard (props) {
+  return renderArticle(props, (ps) => <Flashcard {...ps} />)
 }
 
 function NoMatch () {
