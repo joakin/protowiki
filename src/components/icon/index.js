@@ -19,5 +19,13 @@ export const types = {
   GET_SUMMARY: 'get-summary',
   SAVE: 'save',
   UNSAVE: 'unsave',
-  SAVEDPAGES: 'savedpages'
+  SAVEDPAGES: 'savedpages',
+
+  ANONYMOUS: 'anonymous',
+  CONTRIBUTIONS: 'contributions',
+  NEARBY: 'nearby',
+  PROFILE: 'profile',
+  RANDOM: 'random',
+  SETTINGS: 'settings',
+  WATCHLIST: 'watchlist'
 }

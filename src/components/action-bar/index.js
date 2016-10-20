@@ -18,7 +18,7 @@ export default React.createClass({
     const rotationDuration = 750
     const animationDuration = 750
 
-    const menuItemTo = document.querySelector('.Menu-list li:last-child a')
+    const menuItemTo = document.querySelector('.Menu-list .Icon.is-type-savedpages')
     const toBounds = menuItemTo.getBoundingClientRect()
     console.log(toBounds)
 
