@@ -54,8 +54,11 @@ export default React.createClass({
 
               <div className='App-content'>
 
-                <Match exactly pattern='/wiki/:title' render={renderArticle} />
-                <Match exactly pattern='/flashcard/:title' render={renderFlashcard} />
+                <Match exactly pattern='/wiki/:title'
+                  render={renderArticle.bind(null, this.onArticleSave)} />
+                <Match exactly pattern='/flashcard/:title'
+                  render={renderFlashcard.bind(null, this.onArticleSave)} />
+
                 <Match exactly pattern='/about' component={About} />
                 <Match exactly pattern='/saved' component={SavedPages} />
                 <Match exactly pattern='/' component={() =>
@@ -78,7 +81,7 @@ export default React.createClass({
   }
 })
 
-function renderArticle ({ params, onSave }, render) {
+function renderArticle (onSave, { params }, render) {
   return (
     <WithArticle title={decodeURIComponent(params.title)}>
       {({title, data}) =>
@@ -99,8 +102,8 @@ function renderArticle ({ params, onSave }, render) {
   )
 }
 
-function renderFlashcard (props) {
-  return renderArticle(props, (ps) => <Flashcard {...ps} />)
+function renderFlashcard (onSave, props) {
+  return renderArticle(props, (ps) => <Flashcard {...ps} onSave={onSave} />)
 }
 
 function NoMatch () {
