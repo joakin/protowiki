@@ -7,10 +7,17 @@ import Section from '../section'
 import LeadImage from '../lead-image'
 import {printUrl, printFlashcardUrl} from '../../api'
 import flags from '../../flags'
+import * as savedPages from '../../db/saved-pages'
 
 import './article.css'
 
 export default React.createClass({
+
+  getInitialState () {
+    return {
+      saved: false
+    }
+  },
 
   componentDidMount () {
     if (flags.DOWNLOAD_SUMMARY) {
@@ -22,6 +29,29 @@ export default React.createClass({
     if (flags.DOWNLOAD_SUMMARY) { removeGetSummaryElement() }
   },
 
+  setSavedFromOrigin (origin) {
+    if (this.props.origin.isSaved()) {
+      this.setState({ saved: true })
+    }
+  },
+
+  componentWillMount () { this.setSavedFromOrigin(this.props.origin) },
+
+  componentWillReceiveProps (nextProps) { this.setSavedFromOrigin(this.props.origin) },
+
+  onSave (...args) {
+    // Save to DB
+    savedPages.set(this.props.title, this.props.article)
+    this.setState({ saved: true })
+
+    this.props.onSave(...args)
+  },
+
+  onUnsave () {
+    savedPages.remove(this.props.title)
+    this.setState({ saved: false })
+  },
+
   openPrintUrl (getUrl) {
     window.open(getUrl({ title: this.props.title }))
   },
@@ -30,7 +60,7 @@ export default React.createClass({
   downloadSummary () { this.openPrintUrl(printFlashcardUrl) },
 
   render () {
-    const {article, onSave, showLeadImage} = this.props
+    const {article, showLeadImage} = this.props
     const {displaytitle, description, sections: [lead], image} = article.lead
     const sections = article.remaining.sections
 
@@ -46,8 +76,9 @@ export default React.createClass({
           <p className='Article-description'>{description}</p>
 
           <ActionBar
+            saved={this.state.saved}
             onDownload={this.downloadArticle}
-            onSave={onSave} />
+            onSave={this.onSave} onUnsave={this.onUnsave} />
 
           <Section html={lead.text} />
 

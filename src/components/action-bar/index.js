@@ -7,10 +7,6 @@ import './action-bar.css'
 
 export default React.createClass({
 
-  getInitialState () {
-    return { saved: false }
-  },
-
   onSaveClick () {
     let saveButton
     let bounds
@@ -20,12 +16,9 @@ export default React.createClass({
 
     const menuItemTo = document.querySelector('.Menu-list .Icon.is-type-savedpages')
     const toBounds = menuItemTo.getBoundingClientRect()
-    console.log(toBounds)
 
-    const buttonAnimation = new Promise((resolve, reject) => {
-      this.setState({ saved: true })
-      return resolve(animationFrame())
-    })
+    // Wait a tick for the saving to happen and then start animating
+    const buttonAnimation = animationFrame()
     .then(() => {
       saveButton = ReactDOM.findDOMNode(this).querySelector('.ActionBar-save')
       bounds = saveButton.getBoundingClientRect()
@@ -66,8 +59,7 @@ export default React.createClass({
   },
 
   render () {
-    const {onDownload, onSave} = this.props
-    const {saved} = this.state
+    const {saved, onDownload, onSave, onUnsave} = this.props
     return (
       <div className='ActionBar'>
         <Icon type={types.LANGUAGE} />
@@ -76,7 +68,7 @@ export default React.createClass({
             className='ActionBar-save'
             onClick={() => {
               saved
-                ? this.setState({ saved: false })
+                ? onUnsave()
                 : onSave(this.onSaveClick())
             }} />
           : null}

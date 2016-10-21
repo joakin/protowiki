@@ -1,7 +1,7 @@
 import lf from 'localforage'
 
 const VERSION_KEY = 'version'
-const VERSION = 1
+const VERSION = 2
 
 const db = init()
 export default db

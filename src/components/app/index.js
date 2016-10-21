@@ -84,13 +84,13 @@ export default React.createClass({
 function renderArticle (onSave, { params }, render) {
   return (
     <WithArticle title={decodeURIComponent(params.title)}>
-      {({title, data}) =>
+      {({title, data, origin}) =>
         RemoteData.match(data, {
           NotAsked: _ => null,
           Loading: _ => <FakeText />,
           Success: article =>
-            render ? render({ title, article, onSave })
-              : <Article title={title} article={article} onSave={onSave} />,
+            render ? render({ title, article, origin, onSave })
+              : <Article title={title} article={article} origin={origin} onSave={onSave} />,
           Failure: e =>
             <div>
               <h1>{title}</h1>
