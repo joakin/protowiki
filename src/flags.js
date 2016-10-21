@@ -19,7 +19,11 @@ switch (process.env.REACT_APP_PROTOTYPE) {
     flags.DOWNLOAD_IN_ACTION_BAR = true
     break
   default:
-    // nothing enabled
+    // Enable everything
+    Object.keys(flags).forEach((flag) => {
+      flags[flag] = true
+    })
+    break
 }
 
 export default flags
