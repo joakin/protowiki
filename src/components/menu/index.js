@@ -30,8 +30,8 @@ export default React.createClass({
       <div className={'Menu ' + (isOpen ? 'is-open' : '')}>
         <div className='Menu-backdrop' onClick={onBackdropClick} />
         <div className='Menu-menu'>
-          {menus.map((menuItems) =>
-            <ul className='Menu-list'>
+          {menus.map((menuItems, i) =>
+            <ul key={`menu-${i}`} className='Menu-list'>
               {menuItems.map(({ label, path, icon }) =>
                 <li key={label}>
                   <Link className='Menu-item' to={path} onClick={onItemClick}>
