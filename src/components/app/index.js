@@ -2,11 +2,9 @@ import React from 'react'
 import { BrowserRouter, Match, Redirect, Miss } from 'react-router'
 import { connect } from 'react-redux'
 import Actions from '../../actions'
-import WithArticle from '../with-article'
+import ArticlePage from '../article-page'
 import TrackOnlineStatus from '../track-online-status'
-import Article from '../article'
 import Flashcard from '../flashcard'
-import FakeText from '../fake-text'
 import OnlineStatusBar from '../online-status-bar'
 import Menu from '../menu'
 import Footer from '../footer'
@@ -14,7 +12,6 @@ import Logo from '../logo'
 import Icon, {types} from '../icon'
 import SavedPages from '../saved-pages'
 import flags from '../../flags'
-import RemoteData from '../../data/remote-data'
 
 import './App.css'
 
@@ -81,29 +78,12 @@ const dispatchToProps = (dispatch) => ({
 
 export default connect(stateToProps, dispatchToProps)(App)
 
-function renderArticle ({ params }, render) {
-  return (
-    <WithArticle title={decodeURIComponent(params.title)}>
-      {({title, data, origin}) =>
-        RemoteData.match(data, {
-          NotAsked: _ => null,
-          Loading: _ => <FakeText />,
-          Success: article =>
-            render ? render({ title, article, origin })
-              : <Article title={title} article={article} origin={origin} />,
-          Failure: e =>
-            <div>
-              <h1>{title}</h1>
-              <p>There was a problem retrieving <em>{title}</em></p>
-            </div>
-        })
-      }
-    </WithArticle>
-  )
+function renderArticle ({ params }) {
+  return <ArticlePage title={decodeURIComponent(params.title)} />
 }
 
-function renderFlashcard (props) {
-  return renderArticle(props, (ps) => <Flashcard {...ps} />)
+function renderFlashcard ({ params }) {
+  return <ArticlePage title={decodeURIComponent(params.title)} component={Flashcard} />
 }
 
 function NoMatch () {
