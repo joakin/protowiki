@@ -1,11 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { connect } from 'react-redux'
 import Icon, {types} from '../icon'
 import flags from '../../flags'
+import Actions from '../../actions'
 
 import './action-bar.css'
 
-export default React.createClass({
+const ActionBar = React.createClass({
 
   onSaveClick () {
     let saveButton
@@ -55,7 +57,8 @@ export default React.createClass({
     })
     .catch((e) => console.error(e))
 
-    return [buttonAnimation, flyingAnimation]
+    buttonAnimation.then(() => this.props.openMenu())
+    flyingAnimation.then(() => this.props.closeMenu())
   },
 
   render () {
@@ -69,7 +72,7 @@ export default React.createClass({
             onClick={() => {
               saved
                 ? onUnsave()
-                : onSave(this.onSaveClick())
+                : (this.onSaveClick(), onSave())
             }} />
           : null}
         {flags.DOWNLOAD_IN_ACTION_BAR
@@ -80,6 +83,13 @@ export default React.createClass({
     )
   }
 })
+
+const dispatchToProps = (dispatch) => ({
+  openMenu: () => dispatch(Actions.OpenMenu),
+  closeMenu: () => dispatch(Actions.CloseMenu)
+})
+
+export default connect(null, dispatchToProps)(ActionBar)
 
 function wait (ms) {
   return new Promise((resolve, reject) => setTimeout(resolve, ms))

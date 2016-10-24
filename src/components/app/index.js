@@ -1,5 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Match, Redirect, Miss } from 'react-router'
+import { connect } from 'react-redux'
+import Actions from '../../actions'
 import WithArticle from '../with-article'
 import WithOnline from '../with-online'
 import Article from '../article'
@@ -16,37 +18,23 @@ import RemoteData from '../../data/remote-data'
 
 import './App.css'
 
-export default React.createClass({
-
-  getInitialState () {
-    return { isMenuOpen: false }
-  },
-
-  toggleMenu (visible) {
-    this.setState({
-      isMenuOpen: Boolean(visible)
-    })
-  },
-
-  onArticleSave ([iconFlip, iconFly]) {
-    iconFlip.then(() => this.toggleMenu(true))
-    iconFly.then(() => this.toggleMenu(false))
-  },
+const App = React.createClass({
 
   render () {
+    const {isMenuOpen, openMenu, closeMenu} = this.props
+
     return (
       <BrowserRouter>
         <WithOnline>{({online}) =>
           <div>
 
-            <Menu isOpen={this.state.isMenuOpen}
-              onItemClick={() => this.toggleMenu(false)}
-              onBackdropClick={() => this.toggleMenu(false)} />
+            <Menu isOpen={isMenuOpen}
+              onItemClick={closeMenu} onBackdropClick={closeMenu} />
 
             <div className={'App ' + (!online ? 'is-offline' : '')}>
               <div className='App-header'>
                 <div>
-                  <Icon type={types.MENU} onClick={() => this.toggleMenu(true)} />
+                  <Icon type={types.MENU} onClick={openMenu} />
                 </div>
                 <Logo size={60} />
                 <div>{/* Empty right side */}</div>
@@ -54,10 +42,8 @@ export default React.createClass({
 
               <div className='App-content'>
 
-                <Match exactly pattern='/wiki/:title'
-                  render={renderArticle.bind(null, this.onArticleSave)} />
-                <Match exactly pattern='/flashcard/:title'
-                  render={renderFlashcard.bind(null, this.onArticleSave)} />
+                <Match exactly pattern='/wiki/:title' render={renderArticle} />
+                <Match exactly pattern='/flashcard/:title' render={renderFlashcard} />
 
                 <Match exactly pattern='/about' component={About} />
                 <Match exactly pattern='/saved' component={SavedPages} />
@@ -81,7 +67,18 @@ export default React.createClass({
   }
 })
 
-function renderArticle (onSave, { params }, render) {
+const stateToProps = ({menu}) => ({
+  isMenuOpen: menu.isOpen
+})
+
+const dispatchToProps = (dispatch) => ({
+  openMenu: () => dispatch(Actions.OpenMenu),
+  closeMenu: () => dispatch(Actions.CloseMenu)
+})
+
+export default connect(stateToProps, dispatchToProps)(App)
+
+function renderArticle ({ params }, render) {
   return (
     <WithArticle title={decodeURIComponent(params.title)}>
       {({title, data, origin}) =>
@@ -89,8 +86,8 @@ function renderArticle (onSave, { params }, render) {
           NotAsked: _ => null,
           Loading: _ => <FakeText />,
           Success: article =>
-            render ? render({ title, article, origin, onSave })
-              : <Article title={title} article={article} origin={origin} onSave={onSave} />,
+            render ? render({ title, article, origin })
+              : <Article title={title} article={article} origin={origin} />,
           Failure: e =>
             <div>
               <h1>{title}</h1>
@@ -102,8 +99,8 @@ function renderArticle (onSave, { params }, render) {
   )
 }
 
-function renderFlashcard (onSave, props) {
-  return renderArticle(props, (ps) => <Flashcard {...ps} onSave={onSave} />)
+function renderFlashcard (props) {
+  return renderArticle(props, (ps) => <Flashcard {...ps} />)
 }
 
 function NoMatch () {

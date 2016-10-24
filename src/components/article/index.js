@@ -43,8 +43,6 @@ export default React.createClass({
     // Save to DB
     savedPages.set(this.props.title, this.props.article)
     this.setState({ saved: true })
-
-    this.props.onSave(...args)
   },
 
   onUnsave () {
