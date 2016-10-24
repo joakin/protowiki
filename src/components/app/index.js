@@ -3,7 +3,7 @@ import { BrowserRouter, Match, Redirect, Miss } from 'react-router'
 import { connect } from 'react-redux'
 import Actions from '../../actions'
 import WithArticle from '../with-article'
-import WithOnline from '../with-online'
+import TrackOnlineStatus from '../track-online-status'
 import Article from '../article'
 import Flashcard from '../flashcard'
 import FakeText from '../fake-text'
@@ -21,54 +21,57 @@ import './App.css'
 const App = React.createClass({
 
   render () {
-    const {isMenuOpen, openMenu, closeMenu} = this.props
+    const {isMenuOpen, isOnline, openMenu, closeMenu} = this.props
 
     return (
       <BrowserRouter>
-        <WithOnline>{({online}) =>
-          <div>
 
-            <Menu isOpen={isMenuOpen}
-              onItemClick={closeMenu} onBackdropClick={closeMenu} />
+        <div>
 
-            <div className={'App ' + (!online ? 'is-offline' : '')}>
-              <div className='App-header'>
-                <div>
-                  <Icon type={types.MENU} onClick={openMenu} />
-                </div>
-                <Logo size={60} />
-                <div>{/* Empty right side */}</div>
+          <TrackOnlineStatus />
+
+          <Menu isOpen={isMenuOpen}
+            onItemClick={closeMenu} onBackdropClick={closeMenu} />
+
+          <div className={'App ' + (!isOnline ? 'is-offline' : '')}>
+            <div className='App-header'>
+              <div>
+                <Icon type={types.MENU} onClick={openMenu} />
               </div>
-
-              <div className='App-content'>
-
-                <Match exactly pattern='/wiki/:title' render={renderArticle} />
-                <Match exactly pattern='/flashcard/:title' render={renderFlashcard} />
-
-                <Match exactly pattern='/about' component={About} />
-                <Match exactly pattern='/saved' component={SavedPages} />
-                <Match exactly pattern='/' component={() =>
-                  <Redirect to='/wiki/Wikimedia' />
-                } />
-                <Miss component={NoMatch} />
-
-              </div>
-
-              <Footer />
+              <Logo size={60} />
+              <div>{/* Empty right side */}</div>
             </div>
 
-            {flags.ONLINE_STATUS_BAR
-              ? <OnlineStatusBar online={online} /> : null}
+            <div className='App-content'>
 
+              <Match exactly pattern='/wiki/:title' render={renderArticle} />
+              <Match exactly pattern='/flashcard/:title' render={renderFlashcard} />
+
+              <Match exactly pattern='/about' component={About} />
+              <Match exactly pattern='/saved' component={SavedPages} />
+              <Match exactly pattern='/' component={() =>
+                <Redirect to='/wiki/Wikimedia' />
+              } />
+              <Miss component={NoMatch} />
+
+            </div>
+
+            <Footer />
           </div>
-        }</WithOnline>
+
+          {flags.ONLINE_STATUS_BAR
+            ? <OnlineStatusBar online={isOnline} /> : null}
+
+        </div>
+
       </BrowserRouter>
     )
   }
 })
 
-const stateToProps = ({menu}) => ({
-  isMenuOpen: menu.isOpen
+const stateToProps = ({menu, online}) => ({
+  isMenuOpen: menu.isOpen,
+  isOnline: online
 })
 
 const dispatchToProps = (dispatch) => ({
