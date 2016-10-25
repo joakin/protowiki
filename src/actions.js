@@ -1,4 +1,5 @@
 import * as articleDB from './db/article'
+import * as savedPages from './db/saved-pages'
 import {article} from './api'
 
 export default {
@@ -46,5 +47,17 @@ export default {
           })
       }
     }
+  },
+
+  // Saved pages
+  saveArticle (title, article) {
+    savedPages.set(title, article)
+    return { type: 'ArticleSaved', title, article }
+  },
+
+  removeSavedArticle (title) {
+    savedPages.remove(title)
+    return { type: 'ArticleUnsaved', title }
   }
+
 }

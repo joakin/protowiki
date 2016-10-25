@@ -16,18 +16,23 @@ const Origin = Union({
 const initial = {
   title: null,
   data: RemoteData.NotAsked(),
-  origin: Origin.Unknown()
+  origin: Origin.Unknown(),
+  saved: false
 }
 
 export default reducer(initial, {
 
   GetArticle: (state, {title}) =>
-    ({ title, data: RemoteData.Loading(), origin: Origin.Unknown() }),
+    ({ ...initial, title, data: RemoteData.Loading() }),
 
   FromDB: (state, {title, article}) =>
     title === state.title
-      ? {title, data: RemoteData.Success(article), origin: Origin.DB()}
-      : state,
+      ? {
+        title,
+        data: RemoteData.Success(article),
+        origin: Origin.DB(),
+        saved: true
+      } : state,
 
   FromNetwork: (state, {title, article}) =>
     title === state.title && (
@@ -37,8 +42,11 @@ export default reducer(initial, {
       (state.data.isSuccess() &&
        state.data.unwrap().revision !== article.revision)
     )
-      ? {title, data: RemoteData.Success(article), origin: Origin.Network()}
-      : state,
+      ? {
+        ...state, // Inherit props like `saved` but update content and origin
+        data: RemoteData.Success(article),
+        origin: Origin.Network()
+      } : state,
 
   GetArticleFailure: (state, {title, error}) =>
     state.title === title
@@ -52,8 +60,13 @@ export default reducer(initial, {
         _: _ => ({
           title, data: RemoteData.Failure(error), origin: Origin.Unknown()
         })
-      })
-      : state,
+      }) : state,
+
+  ArticleSaved: (state, {title}) =>
+    state.title === title ? {...state, saved: true} : state,
+
+  ArticleUnsaved: (state, {title}) =>
+    state.title === title ? {...state, saved: false} : state,
 
   _: state => state
 

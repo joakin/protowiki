@@ -62,7 +62,10 @@ const ActionBar = React.createClass({
   },
 
   render () {
-    const {saved, onDownload, onSave, onUnsave} = this.props
+    const {
+      title, data, saved, onDownload, saveArticle, removeSavedArticle
+    } = this.props
+
     return (
       <div className='ActionBar'>
         <Icon type={types.LANGUAGE} />
@@ -71,8 +74,8 @@ const ActionBar = React.createClass({
             className='ActionBar-save'
             onClick={() => {
               saved
-                ? onUnsave()
-                : (this.onSaveClick(), onSave())
+                ? removeSavedArticle(title)
+                : (this.onSaveClick(), saveArticle(title, data.unwrap()))
             }} />
           : null}
         {flags.DOWNLOAD_IN_ACTION_BAR
@@ -84,12 +87,18 @@ const ActionBar = React.createClass({
   }
 })
 
-const dispatchToProps = (dispatch) => ({
+const stateToProps = ({currentArticle}) => currentArticle
+
+const dispatchToProps = (dispatch, {title, data}) => ({
   openMenu: () => dispatch(Actions.OpenMenu),
-  closeMenu: () => dispatch(Actions.CloseMenu)
+  closeMenu: () => dispatch(Actions.CloseMenu),
+  saveArticle: (title, article) =>
+    dispatch(Actions.saveArticle(title, article)),
+  removeSavedArticle: (title) =>
+    dispatch(Actions.removeSavedArticle(title))
 })
 
-export default connect(null, dispatchToProps)(ActionBar)
+export default connect(stateToProps, dispatchToProps)(ActionBar)
 
 function wait (ms) {
   return new Promise((resolve, reject) => setTimeout(resolve, ms))

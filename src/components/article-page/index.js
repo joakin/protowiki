@@ -12,7 +12,7 @@ const ArticlePage = React.createClass({
   componentWillReceiveProps (props) { props.getArticle(props.title) },
 
   render () {
-    const {title, data, origin} = this.props.article
+    const {title, data} = this.props.article
 
     let Component = this.props.component || Article
 
@@ -22,7 +22,7 @@ const ArticlePage = React.createClass({
       Loading: _ => <FakeText />,
 
       Success: article =>
-        <Component title={title} article={article} origin={origin} />,
+        <Component title={title} article={article} />,
 
       Failure: e =>
         <div>
