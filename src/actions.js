@@ -52,7 +52,7 @@ export default {
   // Saved pages
   getSavedPages () {
     return (dispatch) => {
-      savedPages.get()
+      return savedPages.get()
         .then((pages) => {
           dispatch({ type: 'SavedPages', pages })
           dispatch({ type: 'TotalSavedPages', total: pages.length })
@@ -62,7 +62,7 @@ export default {
 
   saveArticle (title, article) {
     return (dispatch) => {
-      savedPages.set(title, article)
+      return savedPages.set(title, article)
         .then((total) => {
           dispatch({ type: 'ArticleSaved', title, article })
           dispatch({ type: 'TotalSavedPages', total })
@@ -72,7 +72,7 @@ export default {
 
   removeSavedArticle (title) {
     return (dispatch) => {
-      savedPages.remove(title)
+      return savedPages.remove(title)
         .then((total) => {
           dispatch({ type: 'ArticleUnsaved', title })
           dispatch({ type: 'TotalSavedPages', total })
