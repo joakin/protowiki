@@ -50,14 +50,34 @@ export default {
   },
 
   // Saved pages
+  getSavedPages () {
+    return (dispatch) => {
+      savedPages.get()
+        .then((pages) => {
+          dispatch({ type: 'SavedPages', pages })
+          dispatch({ type: 'TotalSavedPages', total: pages.length })
+        })
+    }
+  },
+
   saveArticle (title, article) {
-    savedPages.set(title, article)
-    return { type: 'ArticleSaved', title, article }
+    return (dispatch) => {
+      savedPages.set(title, article)
+        .then((total) => {
+          dispatch({ type: 'ArticleSaved', title, article })
+          dispatch({ type: 'TotalSavedPages', total })
+        })
+    }
   },
 
   removeSavedArticle (title) {
-    savedPages.remove(title)
-    return { type: 'ArticleUnsaved', title }
+    return (dispatch) => {
+      savedPages.remove(title)
+        .then((total) => {
+          dispatch({ type: 'ArticleUnsaved', title })
+          dispatch({ type: 'TotalSavedPages', total })
+        })
+    }
   }
 
 }

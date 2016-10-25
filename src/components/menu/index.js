@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router'
 import Icon, {types} from '../icon'
 import flags from '../../flags'
+import SavedPagesMenuItem from '../saved-pages-menu-item'
 
 import './menu.css'
 
@@ -13,7 +14,12 @@ const menus = [[
 
 ], [
 
-  flags.SAVE_PAGE ? { label: 'Saved pages', path: '/saved', icon: types.SAVEDPAGES } : null,
+  flags.SAVE_PAGE ? {
+    label: <SavedPagesMenuItem />,
+    path: '/saved',
+    icon: types.SAVEDPAGES
+  } : null,
+
   { label: 'Login', path: '/', icon: types.ANONYMOUS }
 
 ].filter((i) => !!i), [

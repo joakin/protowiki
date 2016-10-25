@@ -18,6 +18,7 @@ export function set (title, article) {
       pages.push(savedPage)
     }
     return Promise.all([lf.setItem(key(), pages), articleDB.set(title, article)])
+      .then(() => pages.length)
   })
 }
 
@@ -30,7 +31,7 @@ export function remove (title) {
       return Promise.all([
         lf.setItem(key(), pages),
         articleDB.remove(title)
-      ])
+      ]).then(() => pages.length)
     }
   })
 }
