@@ -12,59 +12,24 @@ const ActionBar = React.createClass({
 
   onSaveClick () {
     let saveButton
-    let bounds
-    let animatedSaveButton
-    const rotationDuration = 750
-    const animationDuration = 750
-
-    const menuItemTo = document.querySelector('.Menu-list .Icon.is-type-savedpages')
-    const toBounds = menuItemTo.getBoundingClientRect()
 
     // Wait a tick for the saving to happen and then start animating
-    const buttonAnimation = animationFrame()
-    .then(() => {
+    animationFrame(() => {
       saveButton = ReactDOM.findDOMNode(this).querySelector('.ActionBar-save')
-      bounds = saveButton.getBoundingClientRect()
-      animatedSaveButton = saveButton.cloneNode(true)
-      animatedSaveButton.className += ' flying'
-
-      saveButton.style.transition =
-        `transform ${rotationDuration / 1000}s ease-out`
-      saveButton.style.transform = 'rotateY(0deg)'
-
-      return animationFrame(() => {
-        saveButton.style.transform = 'rotateY(180deg)'
-      }).then(() => wait(rotationDuration))
-      .then(() => { saveButton.style.transform = 'rotateY(0deg)' })
+      saveButton.className += ' pulse'
     })
-
-    const flyingAnimation = buttonAnimation.then(() => {
-      animatedSaveButton.style.transition =
-        `opacity ${animationDuration / 1000}s ease-out,` +
-        `transform ${animationDuration / 1000}s ease-in-out`
-      animatedSaveButton.style.transform =
-        `translateX(${bounds.left}px) translateY(${bounds.top}px) rotate(0deg)`
-
-      document.body.appendChild(animatedSaveButton)
-
-      return animationFrame(() => {
-        animatedSaveButton.style.transform =
-          `translateX(${toBounds.width / 3}px) translateY(${toBounds.top + (toBounds.height / 2)}px) rotate(-359deg)`
-        animatedSaveButton.style.opacity = 0.7
-      }).then(() => wait(animationDuration))
-    })
-    .then(() => {
-      animatedSaveButton.remove()
-    })
-    .catch((e) => console.error(e))
-
-    buttonAnimation.then(() => this.props.openMenu())
-    flyingAnimation.then(() => this.props.closeMenu())
+    .then(() => wait(
+      /* Keep in sync with the CSS animation duration */ 500 +
+      /* Small wait time */ 400
+    ))
+    .then(() => this.props.openMenu())
+    .then(() => wait(1500))
+    .then(() => this.props.closeMenu())
   },
 
   render () {
     const {
-      title, data, saved, onDownload, saveArticle, removeSavedArticle
+      title, data, saved, saveArticle, removeSavedArticle
     } = this.props
 
     return (
@@ -76,7 +41,8 @@ const ActionBar = React.createClass({
             onClick={() => {
               saved
                 ? removeSavedArticle(title)
-                : (this.onSaveClick(), saveArticle(title, data.unwrap()))
+                : saveArticle(title, data.unwrap())
+                  .then(() => this.onSaveClick())
             }} />
           : null}
         {flags.DOWNLOAD_IN_ACTION_BAR
