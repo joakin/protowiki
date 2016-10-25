@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Icon, {types} from '../icon'
 import flags from '../../flags'
 import Actions from '../../actions'
+import {printUrl} from '../../api'
 
 import './action-bar.css'
 
@@ -79,7 +80,9 @@ const ActionBar = React.createClass({
             }} />
           : null}
         {flags.DOWNLOAD_IN_ACTION_BAR
-          ? <Icon type={types.DOWNLOAD} onClick={onDownload} /> : null}
+          ? <Icon type={types.DOWNLOAD} onClick={() =>
+            window.open(printUrl({ title }))
+          } /> : null}
         <Icon type={types.WATCH} />
         <Icon type={types.EDIT} />
       </div>

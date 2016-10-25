@@ -5,7 +5,7 @@ import CaptureClicks from '../capture-clicks'
 import ActionBar from '../action-bar'
 import Section from '../section'
 import LeadImage from '../lead-image'
-import {printUrl, printFlashcardUrl} from '../../api'
+import {printFlashcardUrl} from '../../api'
 import flags from '../../flags'
 
 import './article.css'
@@ -22,12 +22,9 @@ export default React.createClass({
     if (flags.DOWNLOAD_SUMMARY) { removeGetSummaryElement() }
   },
 
-  openPrintUrl (getUrl) {
-    window.open(getUrl({ title: this.props.title }))
+  downloadSummary () {
+    window.open(printFlashcardUrl({ title: this.props.title }))
   },
-
-  downloadArticle () { this.openPrintUrl(printUrl) },
-  downloadSummary () { this.openPrintUrl(printFlashcardUrl) },
 
   render () {
     const {article, showLeadImage} = this.props
@@ -45,7 +42,7 @@ export default React.createClass({
           <h1 dangerouslySetInnerHTML={{__html: displaytitle}} />
           <p className='Article-description'>{description}</p>
 
-          <ActionBar onDownload={this.downloadArticle} />
+          <ActionBar />
 
           <Section html={lead.text} />
 
