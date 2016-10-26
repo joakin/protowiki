@@ -1,4 +1,5 @@
 .SavedPages {}
+.SavedPages-error { padding: 0 16px; }
 
 .PageList-item {
   border-color: #eaecf0;

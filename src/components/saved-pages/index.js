@@ -65,10 +65,10 @@ export default React.createClass({
                     <div className='PageList-item-contents'>
                       <Link className='PageList-item-link' to={`/wiki/${encodeURIComponent(page.title)}`} />
                       <div className='PageList-item-header'>
-                        <div className='PageList-item-title'>{page.displaytitle}</div>
-                        <div className='PageList-item-subtitle'>
-                          {page.description}
-                        </div>
+                        <div className='PageList-item-title'
+                          dangerouslySetInnerHTML={{ __html: page.displaytitle }} />
+                        <div className='PageList-item-subtitle'
+                          dangerouslySetInnerHTML={{ __html: page.description }} />
                       </div>
                       <div className='PageList-item-footer'>
                         <div className='PageList-item-last-updated'>
@@ -80,7 +80,7 @@ export default React.createClass({
                       </div>
                     </div>
                   </div>)
-                : <p>You don't have any saved pages</p>
+                : <p className='SavedPages-error'>You don't have any saved pages</p>
               }
             </div>
         })}
