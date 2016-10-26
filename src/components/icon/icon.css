@@ -27,3 +27,5 @@
 .Icon.is-type-random        { background-size: 24px; background-image: url('icons/random.svg');        }
 .Icon.is-type-settings      { background-size: 24px; background-image: url('icons/settings.svg');      }
 .Icon.is-type-watchlist     { background-size: 24px; background-image: url('icons/watchlist.svg');     }
+
+.Icon.is-type-green-check { background-size: 16px; background-image: url('icons/green_check.svg'); }

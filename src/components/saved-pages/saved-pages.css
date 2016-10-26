@@ -62,3 +62,14 @@
 .PageList-item-size {
   color: #029d7b;
 }
+
+.OfflineMarker {
+  text-transform: uppercase;
+  color: #029d7b;
+  font-size: 0.8em;
+}
+.OfflineMarker > * {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 0.3em;
+}

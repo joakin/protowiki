@@ -27,5 +27,7 @@ export const types = {
   PROFILE: 'profile',
   RANDOM: 'random',
   SETTINGS: 'settings',
-  WATCHLIST: 'watchlist'
+  WATCHLIST: 'watchlist',
+
+  GREENCHECK: 'green-check'
 }

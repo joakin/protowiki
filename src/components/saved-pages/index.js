@@ -7,6 +7,7 @@ import FakeText from '../fake-text'
 import {Link} from 'react-router'
 import relativeDate from 'relative-date'
 import prettyBytes from 'pretty-bytes'
+import Icon, {types} from '../icon'
 
 import './saved-pages.css'
 
@@ -40,7 +41,11 @@ export default React.createClass({
     })
 
     return (
-      <SpecialPage title='Saved pages' subtitle={subtitle}>
+      <SpecialPage title='Saved pages' subtitle={subtitle}
+        headerActions={
+          <OfflineMarker />
+        }
+      >
         {RemoteData.match(this.state.pages, {
           NotAsked: _ => null,
 
@@ -83,3 +88,12 @@ export default React.createClass({
     )
   }
 })
+
+function OfflineMarker () {
+  return (
+    <div className='OfflineMarker'>
+      <Icon type={types.GREENCHECK} />
+      Offline
+    </div>
+  )
+}
