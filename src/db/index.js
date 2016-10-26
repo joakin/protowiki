@@ -10,7 +10,8 @@ export default db
 function init () {
   lf.config({
     name: 'Wikipedia',
-    version: VERSION
+    version: VERSION,
+    driver: [lf.INDEXEDDB, lf.LOCALSTORAGE]
   })
   return lf.getItem(VERSION_KEY)
     .then((oldVersion) => {
