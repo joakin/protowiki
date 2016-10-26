@@ -55,7 +55,7 @@ export default {
       return savedPages.get()
         .then((pages) => {
           dispatch({ type: 'SavedPages', pages })
-          dispatch({ type: 'TotalSavedPages', total: pages.length })
+          dispatch({ type: 'TotalSavedPages', total: (pages && pages.length) || 0 })
         })
     }
   },
