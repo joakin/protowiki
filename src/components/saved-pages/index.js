@@ -52,14 +52,19 @@ export default React.createClass({
               {pages && pages.length
                 ? pages.map((page, i) =>
                   <div key={'page' + i} className='PageList-item'>
-                    <Image width='72px' height='72px'
+                    <Image width='88px' height='88px'
                       url={page.image && page.image.urls[Object.keys(page.image.urls)[0]]} />
 
                     <div className='PageList-item-contents'>
                       <Link className='PageList-item-link' to={`/wiki/${encodeURIComponent(page.title)}`} />
-                      <div className='PageList-item-title'>{page.displaytitle}</div>
-                      <div className='PageList-item-subtitle'>
-                        {page.description}
+                      <div className='PageList-item-header'>
+                        <div className='PageList-item-title'>{page.displaytitle}</div>
+                        <div className='PageList-item-subtitle'>
+                          {page.description}
+                        </div>
+                      </div>
+                      <div className='PageList-item-footer'>
+                        Banana
                       </div>
                     </div>
                   </div>)
