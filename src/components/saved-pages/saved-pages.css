@@ -42,13 +42,23 @@
 }
 .PageList-item-subtitle, .PageList-item-footer {
   font-size: 0.8em;
-  text-transform: capitalize;
   margin-top: 0.2em;
+}
+.PageList-item-subtitle:first-letter {
+  text-transform: capitalize;
 }
 
 .PageList-item-header {
 }
 .PageList-item-footer {
-  color: #9aa0a7;
   font-style: italic;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.PageList-item-last-updated {
+  color: #9aa0a7;
+}
+.PageList-item-size {
+  color: #029d7b;
 }

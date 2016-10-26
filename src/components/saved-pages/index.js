@@ -5,6 +5,8 @@ import RemoteData from '../../data/remote-data'
 import {get} from '../../db/saved-pages'
 import FakeText from '../fake-text'
 import {Link} from 'react-router'
+import relativeDate from 'relative-date'
+import prettyBytes from 'pretty-bytes'
 
 import './saved-pages.css'
 
@@ -64,7 +66,12 @@ export default React.createClass({
                         </div>
                       </div>
                       <div className='PageList-item-footer'>
-                        Banana
+                        <div className='PageList-item-last-updated'>
+                          Saved {relativeDate(page.lastSave)}
+                        </div>
+                        <div className='PageList-item-size'>
+                          {prettyBytes(page.size)}
+                        </div>
                       </div>
                     </div>
                   </div>)
