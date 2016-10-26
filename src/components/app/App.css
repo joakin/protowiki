@@ -31,5 +31,6 @@
 .App-content { min-height: 400px; }
 
 .App.is-offline {
-  padding-bottom: 50px;
+  /* Height of the offline bar */
+  padding-bottom: 25px;
 }

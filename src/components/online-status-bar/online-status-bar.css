@@ -3,13 +3,14 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 35px;
-  line-height: 35px;
+  height: 26px;
+  line-height: 26px;
   z-index: 5;
   font-size: 0.75em;
   text-align: center;
-  background-color: #f3f4f7;
-  text-transform: uppercase;
+  background-color: #00af89;
+  color: white;
+  font-weight: bold;
   transform: translateY(100px);
   transition: transform 0.25s ease-out;
 }
