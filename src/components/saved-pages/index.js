@@ -6,7 +6,7 @@ import {get} from '../../db/saved-pages'
 import FakeText from '../fake-text'
 import {Link} from 'react-router'
 import relativeDate from 'relative-date'
-import prettyBytes from 'pretty-bytes'
+import prettyBytes from './pretty-bytes'
 import Icon, {types} from '../icon'
 
 import './saved-pages.css'
