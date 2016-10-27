@@ -38,12 +38,12 @@ const ActionBar = React.createClass({
         {flags.SAVE_PAGE
           ? <Icon type={saved ? types.UNSAVE : types.SAVE}
             className='ActionBar-save'
-            onClick={() => {
+            onClick={() =>
               saved
                 ? removeSavedArticle(title)
                 : saveArticle(title, data.unwrap())
                   .then(() => this.onSaveClick())
-            }} />
+            } />
           : null}
         {flags.DOWNLOAD_IN_ACTION_BAR
           ? <Icon type={types.DOWNLOAD} onClick={() =>
