@@ -3,21 +3,28 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 26px;
-  line-height: 26px;
   z-index: 5;
   font-size: 0.75em;
   text-align: center;
-  background-color: #00af89;
+  background-color: #555a5f;
   color: white;
   font-weight: bold;
   transform: translateY(100px);
   transition: transform 0.25s ease-out;
 }
+
+.OnlineStatusBar>* {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 35px;
+  height: 35px;
+}
+
 .OnlineStatusBar.offline {
   transform: translateY(0px);
   transition: transform 0.25s ease-out;
 }
+
 @media print {
   .OnlineStatusBar { display: none !important; }
 }

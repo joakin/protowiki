@@ -29,5 +29,6 @@ export const types = {
   SETTINGS: 'settings',
   WATCHLIST: 'watchlist',
 
-  GREENCHECK: 'green-check'
+  GREENCHECK: 'green-check',
+  OFFLINE: 'offline'
 }

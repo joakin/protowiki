@@ -29,3 +29,4 @@
 .Icon.is-type-watchlist     { background-size: 24px; background-image: url('icons/watchlist.svg');     }
 
 .Icon.is-type-green-check { background-size: 16px; background-image: url('icons/green_check.svg'); }
+.Icon.is-type-offline { background-size: 16px; background-image: url('icons/offline.svg'); }
