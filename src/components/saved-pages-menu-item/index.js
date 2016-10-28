@@ -7,18 +7,21 @@ import './saved-pages-menu-item.css'
 const SavedPagesMenuItem = React.createClass({
   componentDidMount () { this.props.updateTotal() },
 
-  render (savedPages) {
+  render () {
+    const {total, highlightSavedPages} = this.props
     return (
-      <span className='SavedPagesMenuItem'>
+      <span className={`SavedPagesMenuItem ${highlightSavedPages ? 'is-highlighted' : ''}`}>
         <span>Saved pages</span>
-        <span className='SavedPagesMenuItem-total'>{this.props.total}</span>
+        <span className='SavedPagesMenuItem-total'>{total}</span>
       </span>
     )
   }
 })
 
 export default connect(
-  ({savedPages}) => savedPages,
+  ({savedPages, toggles}) => ({
+    total: savedPages.total, highlightSavedPages: toggles.highlightSavedPages
+  }),
   (dispatch) => ({
     updateTotal: () => dispatch(Actions.getSavedPages())
   })

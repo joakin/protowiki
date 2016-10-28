@@ -78,6 +78,13 @@ export default {
           dispatch({ type: 'TotalSavedPages', total })
         })
     }
+  },
+
+  highlightSavedPages (highlighted) {
+    return {
+      type: 'HighlightSavedPages',
+      highlighted
+    }
   }
 
 }

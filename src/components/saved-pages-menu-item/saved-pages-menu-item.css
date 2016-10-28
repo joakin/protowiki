@@ -12,3 +12,7 @@
   border-radius: 1em;
   background-color: gray;
 }
+.SavedPagesMenuItem.is-highlighted .SavedPagesMenuItem-total {
+  background-color: #00af89;
+  color: white;
+}
