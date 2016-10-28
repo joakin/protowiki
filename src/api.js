@@ -8,7 +8,7 @@ const rest = (host, endpoint) =>
   `https://${host}/api/rest_v1${endpoint}`
 
 const endpoints = {
-  article: (title) => `/page/mobile-sections/${title}?redirect=true`
+  article: (title) => `/page/mobile-sections/${title}`
 }
 
 export function article (title) {
