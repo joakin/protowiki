@@ -17,7 +17,7 @@ const SavedPages = React.createClass({
   componentDidMount () { this.props.getSavedPages() },
 
   render () {
-    const {pages} = this.props
+    const {pages, hasSeenSavedPagesInfo, seenSavedPagesInfo} = this.props
 
     const count = (pages.withDefault([]) || []).length
     const subtitle = count
@@ -30,6 +30,16 @@ const SavedPages = React.createClass({
           <OfflineMarker />
         }
       >
+        {hasSeenSavedPagesInfo ? null : (
+          <p style={{ padding: '1em' }}>
+            You can read these pages even when you are offline!
+            <br />
+            We recommend adding this page to your homescreen for easy access.
+            <br />
+            <button style={{ cursor: 'pointer' }} onClick={seenSavedPagesInfo}>Got it!</button>
+          </p>
+        )}
+
         {RemoteData.match(pages, {
           NotAsked: _ => null,
 
@@ -56,8 +66,15 @@ const SavedPages = React.createClass({
 })
 
 export default connect(
-  ({ savedPages }) => ({ pages: savedPages.pages }),
-  (dispatch) => ({ getSavedPages: () => dispatch(Actions.getSavedPages()) })
+  ({ savedPages, persistentToggles }) => ({
+    pages: savedPages.pages,
+    hasSeenSavedPagesInfo: persistentToggles.hasSeenSavedPagesInfo
+  }),
+  (dispatch) => ({
+    getSavedPages: () => dispatch(Actions.getSavedPages()),
+    seenSavedPagesInfo: () =>
+      dispatch(Actions.setPersistentToggle('hasSeenSavedPagesInfo', true))
+  })
 )(SavedPages)
 
 function OfflineMarker () {

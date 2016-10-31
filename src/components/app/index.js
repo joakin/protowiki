@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Actions from '../../actions'
 import ArticlePage from '../article-page'
 import TrackOnlineStatus from '../track-online-status'
+import LoadPersistentToggles from '../load-persistent-toggles'
 import Flashcard from '../flashcard'
 import OnlineStatusBar from '../online-status-bar'
 import Menu from '../menu'
@@ -15,56 +16,52 @@ import flags from '../../flags'
 
 import './App.css'
 
-const App = React.createClass({
+function App ({isMenuOpen, isOnline, openMenu, closeMenu}) {
+  return (
+    <BrowserRouter>
 
-  render () {
-    const {isMenuOpen, isOnline, openMenu, closeMenu} = this.props
+      <div>
 
-    return (
-      <BrowserRouter>
+        <TrackOnlineStatus />
+        <LoadPersistentToggles />
 
-        <div>
+        <Menu isOpen={isMenuOpen}
+          onItemClick={closeMenu} onBackdropClick={closeMenu} />
 
-          <TrackOnlineStatus />
-
-          <Menu isOpen={isMenuOpen}
-            onItemClick={closeMenu} onBackdropClick={closeMenu} />
-
-          <div className={'App ' + (!isOnline ? 'is-offline' : '')}>
-            <div className='App-header'>
-              <div>
-                <IconLink type={types.MENU} onClick={openMenu} />
-              </div>
-              <Logo size={60} />
-              <div>{/* Empty right side */}</div>
+        <div className={'App ' + (!isOnline ? 'is-offline' : '')}>
+          <div className='App-header'>
+            <div>
+              <IconLink type={types.MENU} onClick={openMenu} />
             </div>
-
-            <div className='App-content'>
-
-              <Match exactly pattern='/wiki/:title' render={renderArticle} />
-              <Match exactly pattern='/flashcard/:title' render={renderFlashcard} />
-
-              <Match exactly pattern='/about' component={About} />
-              <Match exactly pattern='/saved' component={SavedPages} />
-              <Match exactly pattern='/' component={() =>
-                <Redirect to='/wiki/Wikimedia' />
-              } />
-              <Miss component={NoMatch} />
-
-            </div>
-
-            <Footer />
+            <Logo size={60} />
+            <div>{/* Empty right side */}</div>
           </div>
 
-          {flags.ONLINE_STATUS_BAR
-            ? <OnlineStatusBar online={isOnline} /> : null}
+          <div className='App-content'>
 
+            <Match exactly pattern='/wiki/:title' render={renderArticle} />
+            <Match exactly pattern='/flashcard/:title' render={renderFlashcard} />
+
+            <Match exactly pattern='/about' component={About} />
+            <Match exactly pattern='/saved' component={SavedPages} />
+            <Match exactly pattern='/' component={() =>
+              <Redirect to='/wiki/Wikimedia' />
+            } />
+            <Miss component={NoMatch} />
+
+          </div>
+
+          <Footer />
         </div>
 
-      </BrowserRouter>
-    )
-  }
-})
+        {flags.ONLINE_STATUS_BAR
+          ? <OnlineStatusBar online={isOnline} /> : null}
+
+      </div>
+
+    </BrowserRouter>
+  )
+}
 
 const stateToProps = ({menu, online}) => ({
   isMenuOpen: menu.isOpen,

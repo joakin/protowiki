@@ -1,5 +1,6 @@
 import * as articleDB from './db/article'
 import * as savedPages from './db/saved-pages'
+import * as persistentToggles from './db/persistent-toggles'
 import RemoteData from './data/remote-data'
 import {article} from './api'
 
@@ -97,6 +98,25 @@ export default {
     return {
       type: 'HighlightSavedPages',
       highlighted
+    }
+  },
+
+  // Persistent toggles
+  loadPersistentToggles () {
+    return (dispatch, getState) => {
+      return persistentToggles.get()
+      .then((toggles) =>
+        dispatch({ type: 'SetPersistentToggles', toggles }))
+      .catch((e) => console.error(e))
+    }
+  },
+
+  setPersistentToggle (key, value) {
+    return (dispatch, getState) => {
+      dispatch({ type: 'SetPersistentToggle', key, value })
+      // Persist tokens to storage after a change to survive refreshes
+      return persistentToggles.set(getState().persistentToggles)
+        .catch((e) => console.error(e))
     }
   }
 
