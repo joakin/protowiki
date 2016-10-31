@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
-import Icon, {types} from '../icon'
+import {IconLink, types} from '../icon'
 import flags from '../../flags'
 import Actions from '../../actions'
 import {printUrl} from '../../api'
@@ -43,9 +43,9 @@ const ActionBar = React.createClass({
 
     return (
       <div className='ActionBar'>
-        <Icon type={types.LANGUAGE} />
+        <IconLink type={types.LANGUAGE} />
         {flags.SAVE_PAGE
-          ? <Icon type={saved ? types.UNSAVE : types.SAVE}
+          ? <IconLink type={saved ? types.UNSAVE : types.SAVE}
             className='ActionBar-save'
             onClick={() =>
               saved
@@ -57,11 +57,11 @@ const ActionBar = React.createClass({
             } />
           : null}
         {flags.DOWNLOAD_IN_ACTION_BAR
-          ? <Icon type={types.DOWNLOAD} onClick={() =>
+          ? <IconLink type={types.DOWNLOAD} onClick={() =>
             window.open(printUrl({ title }))
           } /> : null}
-        <Icon type={types.WATCH} />
-        <Icon type={types.EDIT} />
+        <IconLink type={types.WATCH} />
+        <IconLink type={types.EDIT} />
       </div>
     )
   }

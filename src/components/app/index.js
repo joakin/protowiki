@@ -9,7 +9,7 @@ import OnlineStatusBar from '../online-status-bar'
 import Menu from '../menu'
 import Footer from '../footer'
 import Logo from '../logo'
-import Icon, {types} from '../icon'
+import {IconLink, types} from '../icon'
 import SavedPages from '../saved-pages'
 import flags from '../../flags'
 
@@ -33,7 +33,7 @@ const App = React.createClass({
           <div className={'App ' + (!isOnline ? 'is-offline' : '')}>
             <div className='App-header'>
               <div>
-                <Icon type={types.MENU} onClick={openMenu} />
+                <IconLink type={types.MENU} onClick={openMenu} />
               </div>
               <Logo size={60} />
               <div>{/* Empty right side */}</div>

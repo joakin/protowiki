@@ -2,8 +2,18 @@ import React from 'react'
 
 import './icon.css'
 
-export default function ({ type, className, ...attrs }) {
-  return <div {...attrs} className={`Icon is-type-${type} ${className || ''}`} />
+export default function Icon ({ tag = 'div', type, className, ...attrs }) {
+  return React.createElement(
+    tag,
+    {
+      ...attrs,
+      className: `Icon is-type-${type} ${className || ''}`
+    }
+  )
+}
+
+export function IconLink (props) {
+  return <Icon tag='a' {...props} />
 }
 
 export const types = {
