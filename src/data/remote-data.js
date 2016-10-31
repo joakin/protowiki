@@ -6,12 +6,17 @@ const RemoteData = Union({
   Failure: {},
   Success: {}
 }, {
-  unwrap () {
+  withDefault (def) {
     return RemoteData.match(this, {
-      Success: (data) => data,
-      _: () => new Error('No data to unwrap')
+      Success: data => data,
+      _: _ => def
     })
   },
+
+  unwrap () {
+    return this.withDefault(new Error('No data to unwrap'))
+  },
+
   isSuccess () {
     return RemoteData.match(this, {
       Success: () => true,

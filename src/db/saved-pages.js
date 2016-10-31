@@ -5,6 +5,7 @@ export function key (title) { return `saved-pages` }
 
 export function get () {
   return lf.getItem(key())
+    .then((ps) => ps || [])
 }
 
 export function set (title, article) {
@@ -18,7 +19,7 @@ export function set (title, article) {
       pages.push(savedPage)
     }
     return Promise.all([lf.setItem(key(), pages), articleDB.set(title, article)])
-      .then(() => pages.length)
+      .then(() => pages)
   })
 }
 
@@ -31,7 +32,7 @@ export function remove (title) {
       return Promise.all([
         lf.setItem(key(), pages),
         articleDB.remove(title)
-      ]).then(() => pages.length)
+      ]).then(() => pages)
     }
   })
 }

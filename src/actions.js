@@ -1,5 +1,6 @@
 import * as articleDB from './db/article'
 import * as savedPages from './db/saved-pages'
+import RemoteData from './data/remote-data'
 import {article} from './api'
 
 export default {
@@ -51,21 +52,33 @@ export default {
 
   // Saved pages
   getSavedPages () {
-    return (dispatch) => {
-      return savedPages.get()
-        .then((pages) => {
-          dispatch({ type: 'SavedPages', pages })
-          dispatch({ type: 'TotalSavedPages', total: (pages && pages.length) || 0 })
-        })
+    return (dispatch, getState) => {
+      return RemoteData.match(getState().savedPages.pages, {
+        // If there's a pages request in progress, do nothing
+        Loading: _ => Promise.resolve(),
+
+        // Otherwise request them
+        _: _ => {
+          dispatch({ type: 'SavedPages', pages: RemoteData.Loading() })
+          return savedPages.get()
+            .then((pages) => {
+              dispatch({ type: 'SavedPages', pages: RemoteData.Success(pages) })
+            })
+            .catch((e) => {
+              console.error(e)
+              dispatch({ type: 'SavedPages', pages: RemoteData.Failure(e) })
+            })
+        }
+      })
     }
   },
 
   saveArticle (title, article) {
     return (dispatch) => {
       return savedPages.set(title, article)
-        .then((total) => {
+        .then((pages) => {
           dispatch({ type: 'ArticleSaved', title, article })
-          dispatch({ type: 'TotalSavedPages', total })
+          dispatch({ type: 'SavedPages', pages: RemoteData.Success(pages) })
         })
     }
   },
@@ -73,9 +86,9 @@ export default {
   removeSavedArticle (title) {
     return (dispatch) => {
       return savedPages.remove(title)
-        .then((total) => {
+        .then((pages) => {
           dispatch({ type: 'ArticleUnsaved', title })
-          dispatch({ type: 'TotalSavedPages', total })
+          dispatch({ type: 'SavedPages', pages: RemoteData.Success(pages) })
         })
     }
   },

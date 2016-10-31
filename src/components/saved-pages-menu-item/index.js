@@ -5,6 +5,7 @@ import Actions from '../../actions'
 import './saved-pages-menu-item.css'
 
 const SavedPagesMenuItem = React.createClass({
+
   componentDidMount () { this.props.updateTotal() },
 
   render () {
@@ -20,7 +21,10 @@ const SavedPagesMenuItem = React.createClass({
 
 export default connect(
   ({savedPages, toggles}) => ({
-    total: savedPages.total, highlightSavedPages: toggles.highlightSavedPages
+    total: savedPages.pages.isSuccess()
+      ? savedPages.pages.unwrap().length
+      : savedPages.pages.withDefault('-'),
+    highlightSavedPages: toggles.highlightSavedPages
   }),
   (dispatch) => ({
     updateTotal: () => dispatch(Actions.getSavedPages())
