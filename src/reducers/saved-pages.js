@@ -2,8 +2,7 @@ import {reducer} from './util'
 import RemoteData from '../data/remote-data'
 
 const initialState = {
-  pages: RemoteData.NotAsked(),
-  total: 0
+  pages: RemoteData.NotAsked()
 }
 
 export default reducer(initialState, {
