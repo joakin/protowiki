@@ -2,15 +2,16 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Actions from '../../actions'
 import SpecialPage from '../special-page'
-import Image from '../image'
+import PageList from '../page-list'
 import RemoteData from '../../data/remote-data'
 import FakeText from '../fake-text'
-import {Link} from 'react-router'
 import relativeDate from 'relative-date'
 import prettyBytes from './pretty-bytes'
 import Icon, {types} from '../icon'
 
 import './saved-pages.css'
+
+import savePlusOfflineImage from '../icon/icons/save-plus-offline.svg'
 
 const SavedPages = React.createClass({
 
@@ -30,30 +31,32 @@ const SavedPages = React.createClass({
           <OfflineMarker />
         }
       >
-        {hasSeenSavedPagesInfo ? null : (
-          <FirstTimeMessage onClose={seenSavedPagesInfo} />
-        )}
+        <div className='SavedPages'>
+          {hasSeenSavedPagesInfo ? null : (
+            <FirstTimeMessage onClose={seenSavedPagesInfo} />
+          )}
 
-        {RemoteData.match(pages, {
-          NotAsked: _ => null,
+          {RemoteData.match(pages, {
+            NotAsked: _ => null,
 
-          Loading: _ => <FakeText />,
+            Loading: _ => <FakeText />,
 
-          Failure: _ =>
-            <SavedPagesError>Failed to retrieve the list of pages</SavedPagesError>,
+            Failure: _ =>
+              <SavedPagesError>Failed to retrieve the list of pages</SavedPagesError>,
 
-          Success: pages =>
-            <PageList pages={pages}
-              whenEmpty={() => <SavedPagesError>You don't have any saved pages</SavedPagesError>}
-              footer={(page) => [
-                <div key='up' className='PageList-item-last-updated'>
-                  Saved {relativeDate(page.lastSave)}
-                </div>,
-                <div key='si' className='PageList-item-size'>
-                  {prettyBytes(page.size)}
-                </div>
-              ]} />
-        })}
+            Success: pages =>
+              <PageList pages={pages}
+                whenEmpty={() => <SavedPagesError>You don't have any saved pages</SavedPagesError>}
+                footer={(page) => [
+                  <div key='up' className='PageList-item-last-updated'>
+                    Saved {relativeDate(page.lastSave)}
+                  </div>,
+                  <div key='si' className='PageList-item-size'>
+                    {prettyBytes(page.size)}
+                  </div>
+                ]} />
+          })}
+        </div>
       </SpecialPage>
     )
   }
@@ -84,42 +87,20 @@ function SavedPagesError ({children}) {
   return <p className='SavedPages-error'>{children}</p>
 }
 
-function PageList ({pages, whenEmpty, footer}) {
-  return (
-    <div className='PageList'>
-      {pages && pages.length
-        ? pages.map((page, i) =>
-          <div key={'page' + i} className='PageList-item'>
-            <Image width='88px' height='88px'
-              url={page.image && page.image.urls[Object.keys(page.image.urls)[0]]} />
-
-            <div className='PageList-item-contents'>
-              <Link className='PageList-item-link' to={`/wiki/${encodeURIComponent(page.title)}`} />
-              <div className='PageList-item-header'>
-                <div className='PageList-item-title'
-                  dangerouslySetInnerHTML={{ __html: page.displaytitle }} />
-                <div className='PageList-item-subtitle'
-                  dangerouslySetInnerHTML={{ __html: page.description }} />
-              </div>
-              <div className='PageList-item-footer'>
-                {footer(page)}
-              </div>
-            </div>
-          </div>)
-        : whenEmpty ? whenEmpty() : null
-      }
-    </div>
-  )
-}
-
 function FirstTimeMessage ({ onClose }) {
   return (
-    <p style={{ padding: '1em' }}>
-      You can read these pages even when you are offline!
-      <br />
-      We recommend adding this page to your homescreen for easy access.
-      <br />
-      <button style={{ cursor: 'pointer' }} onClick={onClose}>Got it!</button>
-    </p>
+    <div className='SavedPages-FirstTimeMessage'>
+      <p><img style={{ marginLeft: '5px' }} src={savePlusOfflineImage} /></p>
+      <p>
+        You can read these pages even when you are offline!
+        <br />
+        We recommend adding this page to your homescreen for easy access.
+      </p>
+      <p>
+        <a className='SavedPages-FirstTimeMessage-close' onClick={onClose}>
+          Got it!
+        </a>
+      </p>
+    </div>
   )
 }
