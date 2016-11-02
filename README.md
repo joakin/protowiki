@@ -45,14 +45,19 @@ Lint sources for problems and automatically fix errors when possible.
 Prototypes are compiled and deployed with the script
 [`./scripts/deploy.sh`][deploy].
 
+You'll need to install surge.sh CLI tool with `npm install -g surge` before
+deploying.
+
 It just runs `npm run build` with the `REACT_APP_PROTOTYPE` set to each
 prototype defined on [flags.js][flags].
 
 Then it deploys the bundle of static files to `surge.sh` with the name of the
-prototype. If you need to deploy to the existing urls ask for the credentials
-of the surge account that previously deployed them, or adapt the build script
-to deploy to a differently prefixed name or to a different service.
+prototype.
 
+If you need to deploy to the existing urls ask for the credentials of the surge
+account that previously deployed them, or adapt the build script to deploy to
+a differently prefixed subdomain name or deploy to a different static file
+hosting service.
 
 
 [flags]: https://github.com/joakin/protowiki/blob/master/src/flags.js
