@@ -31,13 +31,7 @@ const SavedPages = React.createClass({
         }
       >
         {hasSeenSavedPagesInfo ? null : (
-          <p style={{ padding: '1em' }}>
-            You can read these pages even when you are offline!
-            <br />
-            We recommend adding this page to your homescreen for easy access.
-            <br />
-            <button style={{ cursor: 'pointer' }} onClick={seenSavedPagesInfo}>Got it!</button>
-          </p>
+          <FirstTimeMessage onClose={seenSavedPagesInfo} />
         )}
 
         {RemoteData.match(pages, {
@@ -115,5 +109,17 @@ function PageList ({pages, whenEmpty, footer}) {
         : whenEmpty ? whenEmpty() : null
       }
     </div>
+  )
+}
+
+function FirstTimeMessage ({ onClose }) {
+  return (
+    <p style={{ padding: '1em' }}>
+      You can read these pages even when you are offline!
+      <br />
+      We recommend adding this page to your homescreen for easy access.
+      <br />
+      <button style={{ cursor: 'pointer' }} onClick={onClose}>Got it!</button>
+    </p>
   )
 }
