@@ -5,14 +5,28 @@
 
 .Image>* {
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0; left: 0; height: 100%; width: 100%;
   background-repeat: no-repeat;
   background-position: 50% 50%;
+  background-color: transparent;
 }
 .Image-back {
+  z-index: 3;
   background-size: cover;
   filter: blur(20px);
 }
+@media print {
+  .Image-back {
+    /*
+     * filter: blur is broken when printing on Chrome, as such the background
+     * blur will appear as a small rectangle in the top left corner instead of
+     * expanding to full width+height like it should do.
+     * As a result, don't display the background
+     */
+    display: none;
+  }
+}
 .Image-front {
+  z-index: 4;
   background-size: contain;
 }

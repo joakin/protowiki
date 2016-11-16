@@ -1,25 +1,56 @@
-.SavedPages {}
+.SavedPages {
+  position: relative;
+}
+.SavedPages-error { padding: 0 16px; }
 
-.PageList-item {
-  border-color: #eaecf0;
-  border-style: solid;
-  border-width: 1px 0;
+.PageList-item-last-updated {
+  color: #9aa0a7;
+}
+.PageList-item-size {
+  /* color: #029d7b; */
+  color: #9aa0a7;
 }
 
-.PageList-item {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  width: 100%;
-}
-.PageList-item-contents {
-  flex: 1;
-  padding-left: 1em;
-}
-.PageList-item-title {
-  font-weight: bold;
-}
-.PageList-item-subtitle {
+.OfflineMarker {
+  text-transform: uppercase;
+  color: #029d7b;
   font-size: 0.8em;
-  color: #73777D;
+}
+.OfflineMarker > * {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 0.3em;
+}
+
+.SavedPages-FirstTimeMessage {
+  padding: 1em 1.5em;
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  background-color: #3366cc;
+  color: white;
+  z-index: 9;
+}
+
+/* Top arrow triangle */
+.SavedPages-FirstTimeMessage:before {
+  content: '';
+	width: 0; height: 0;
+	font-size: 0; line-height: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 8px solid #3366cc;
+	top: -8px;
+	left: 30px;
+	position: absolute;
+}
+
+
+.SavedPages-FirstTimeMessage-close, .SavedPages-FirstTimeMessage-close:visited {
+  background-color: white;
+  color: #3366cc;
+  border-radius: 3px;
+  display: inline-block;
+  padding: 0.7em 1.4em;
+  font-size: 0.8em;
+  font-weight: bold;
 }

@@ -19,3 +19,29 @@
   margin-top: 0em;
   text-transform: capitalize;
 }
+
+.Article-get-summary {
+  padding: 0.3em 0;
+  border: 0px solid #eaecf0;
+  border-width: 1px 0;
+  text-align: center;
+  margin: 0.5em 0;
+}
+.Article-get-summary div.Icon {
+  margin-right: 0.3em;
+}
+
+.Article-get-summary a {
+  color: #36c;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+}
+.Article-get-summary a>* {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@media print {
+  .Article-get-summary { display: none; }
+}

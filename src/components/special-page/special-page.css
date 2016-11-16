@@ -1,11 +1,28 @@
 .SpecialPage {}
-.SpecialPage>h2 {
-  margin-bottom: 8px;
+
+.SpecialPage-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.SpecialPage-header-actions {
+  margin-top: 6px;
+}
+
+.SpecialPage-title>h2 {
+  margin: 0 0 4px;
+  color: #37393d;
 }
 .SpecialPage-subtitle {
   font-size: 0.8em;
-  color: #54595D;
+  color: #9aa0a7;
   margin-top: 0;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
 }
 
+.SpecialPage-content {
+  margin: 0 -16px;
+  padding-bottom: 2em;
+}

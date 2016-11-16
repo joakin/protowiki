@@ -1,4 +1,5 @@
 .Icon {
+  display: block;
   border: none;
   width: 30px;
   height: 30px;
@@ -19,3 +20,14 @@
 .Icon.is-type-save        { background-image: url('icons/save.png');        }
 .Icon.is-type-unsave      { background-image: url('icons/unsave.png');      }
 .Icon.is-type-savedpages  { background-image: url('icons/savedpages.png');  }
+
+.Icon.is-type-anonymous     { background-size: 24px; background-image: url('icons/anonymous.svg');     }
+.Icon.is-type-contributions { background-size: 24px; background-image: url('icons/contributions.svg'); }
+.Icon.is-type-nearby        { background-size: 24px; background-image: url('icons/nearby.svg');        }
+.Icon.is-type-profile       { background-size: 24px; background-image: url('icons/profile.svg');       }
+.Icon.is-type-random        { background-size: 24px; background-image: url('icons/random.svg');        }
+.Icon.is-type-settings      { background-size: 24px; background-image: url('icons/settings.svg');      }
+.Icon.is-type-watchlist     { background-size: 24px; background-image: url('icons/watchlist.svg');     }
+
+.Icon.is-type-green-check { background-size: 16px; background-image: url('icons/green_check.svg'); }
+.Icon.is-type-offline { background-size: 16px; background-image: url('icons/offline.svg'); }

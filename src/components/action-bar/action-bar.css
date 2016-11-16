@@ -9,13 +9,25 @@
 .ActionBar>:first-child { float: left; margin-left: 0 }
 .ActionBar>* { display: inline-block; margin-left: 1em; }
 @media print {
-  .ActionBar { display: none; }
+  .ActionBar { display: none !important; }
 }
 
-.ActionBar-save.flying {
-  position: absolute;
-  z-index: 20;
-  opacity: 1;
-  top: 0;
-  left: 0;
+.ActionBar-save.pulse {
+  animation-name: pulse;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.2, 1.2, 1.2);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
 }

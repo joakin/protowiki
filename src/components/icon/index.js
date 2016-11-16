@@ -2,8 +2,18 @@ import React from 'react'
 
 import './icon.css'
 
-export default function ({ type, className, ...attrs }) {
-  return <div {...attrs} className={`Icon is-type-${type} ${className || ''}`}/>
+export default function Icon ({ tag = 'div', type, className, ...attrs }) {
+  return React.createElement(
+    tag,
+    {
+      ...attrs,
+      className: `Icon is-type-${type} ${className || ''}`
+    }
+  )
+}
+
+export function IconLink (props) {
+  return <Icon tag='a' {...props} />
 }
 
 export const types = {
@@ -19,5 +29,16 @@ export const types = {
   GET_SUMMARY: 'get-summary',
   SAVE: 'save',
   UNSAVE: 'unsave',
-  SAVEDPAGES: 'savedpages'
+  SAVEDPAGES: 'savedpages',
+
+  ANONYMOUS: 'anonymous',
+  CONTRIBUTIONS: 'contributions',
+  NEARBY: 'nearby',
+  PROFILE: 'profile',
+  RANDOM: 'random',
+  SETTINGS: 'settings',
+  WATCHLIST: 'watchlist',
+
+  GREENCHECK: 'green-check',
+  OFFLINE: 'offline'
 }

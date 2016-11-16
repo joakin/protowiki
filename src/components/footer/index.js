@@ -14,7 +14,7 @@ export default function Footer () {
         </a>{' '}
         unless otherwise noted.
       </p>
-      <ul>
+      <ul className='Footer-links'>
         <li>
           <a href='//m.wikimediafoundation.org/wiki/Terms_of_Use'>
           Terms of Use</a>

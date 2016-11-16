@@ -6,8 +6,19 @@
   font-size: 0.9em;
   clear:both;
 }
-
 .Footer-logo {
   padding-bottom: 0.5em;
   border-bottom: solid 1px #c8ccd1;
+}
+
+@media print {
+  .Footer {
+    background-color: transparent;
+  }
+  .Footer-logo {
+    border-bottom: none;
+  }
+  .Footer-links {
+    display: none;
+  }
 }

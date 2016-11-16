@@ -16,9 +16,8 @@
 }
 .Menu-menu {
   width: 250px;
-  background-color: #444;
+  background-color: #333;
   color: white;
-  border-left: 12px solid #333;
   box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.3);
   z-index: 11;
   transform: translateX(-290px);
@@ -31,28 +30,31 @@
   transform: translateX(0);
 }
 
+.Menu-list {
+  background-color: #444;
+  margin: 0 0 1em;
+}
+
 .Menu-list, .Menu-footer-list {
   list-style-type: none;
-  margin: 0;
   padding: 0;
 }
 
 .Menu-item {
   display: flex;
   align-items: center;
-  padding: 0.5em 1em 0.5em 0.5em;
+  padding: 0.5em 1em;
   text-decoration: none;
   color: white;
   border: 1px solid #777;
-  border-width: 1px 0;
+  border-width: 1px 0 0;
 }
-.Menu-item:first-child { border-top: none; }
+.Menu-list li:first-child .Menu-item { border-top: none; }
 .Menu-item .Icon {
   margin-right: 1em;
 }
 
 .Menu-footer-list {
-  margin-top: 1em;
   font-size: 0.75em;
 }
 .Menu-footer-list>li>a {
