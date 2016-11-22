@@ -49,18 +49,15 @@ export default reducer(initial, {
       } : state,
 
   GetArticleFailure: (state, {title, error}) =>
-    state.title === title
-      ? RemoteData.match(state.data, {
-        // There's an good representation of an article being showed, don't
-        // show error in the UI because it removes content.
-        Success: _ => _,
-
-        // If there's an error and there's no valid article content then
-        // then set the error
-        _: _ => ({
-          title, data: RemoteData.Failure(error), origin: Origin.Unknown()
-        })
-      }) : state,
+    // If it's not the current article, or it is and there is successful data,
+    // ignore the error
+    (state.title !== title ||
+     (state.title === title && state.data.isSuccess())) ? state
+      // If there's an error and there's no valid article content then
+      // then set the error
+      : ({
+        title, data: RemoteData.Failure(error), origin: Origin.Unknown()
+      }),
 
   ArticleSaved: (state, {title}) =>
     state.title === title ? {...state, saved: true} : state,
