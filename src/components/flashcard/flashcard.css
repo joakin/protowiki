@@ -48,65 +48,20 @@ body.flashcard .catlinks,
 body.flashcard .mw-editsection,
 body.flashcard #administrator,
 body.flashcard #coordinates .image,
-body.flashcard .Article>div:last-child, /* Remaining sections */
 body.flashcard .infobox img,
 body.flashcard div.ActionBar,
 body.flashcard div.App-header,
 body.flashcard .ambox-Refimprove,
 body.flashcard .vertical-navbox,
 body.flashcard .mw-ref,
-body.flashcard .Article .Article-body,
-body.flashcard .Article-get-summary,
-body.flashcard .Article-description,
 body.flashcard .Section .Section-body .infobox
 {
     display: none;
 }
 
-body.flashcard .Article div.Section-body p:first-child {
-    font-weight: bold;
-}
-
 
 body.flashcard .Section .Section-body a,
 body.flashcard .Section .Section-body a:visited {
-    color: #222;
-}
-
-/*
-- Basic infobox styling
-*/
-body.flashcard .Section .Section-body .infobox {
-    border: 1px solid #C8CCD1 !important;
-    border-spacing: 0px !important;
-    background-color: #fff !important;
-    border-radius: 2px;
-    color: #222;
-    margin: auto;
-    padding: 0em;
-}
-
-body.flashcard .Section .Section-body .infobox tbody {
-    width: 100% !important;
-    max-width: 100% !important;
-}
-
-body.flashcard .Section .Section-body .infobox a {
-    border-bottom: none;
-}
-
-body.flashcard .Section .Section-body .infobox td,
-body.flashcard .infobox th {
-    background-color: white !important;
-}
-
-body.flashcard .Section .Section-body .infobox tr:nth-child(2) {
-    display: none;
-}
-
-body.flashcard .Section .Section-body .infobox th:first-child {
-    border-bottom: none;
-    background-color: #F5F6F7 !important;
     color: #222;
 }
 
@@ -122,18 +77,6 @@ body.flashcard p {
     line-height: 21px;
     margin-top: 10px;
 }
-
-/* article title separator - print element from classic editorial practices */
-/*
-body.flashcard .Article-description:after {
-    content: " ";
-    display: block;
-    width: 50px;
-    background-color: #666 !important;
-    height: 1px;
-    margin-top: 15px;
-}
-*/
 
 /* header styling
 - Big part of typography
@@ -179,18 +122,6 @@ body.flashcard h3 {
     margin: 30px 0px 0px 0px;
 }
 
-/* scanning indicator for H3s
-h3:before {
-    content: " ";
-    height: 1px;
-    width: 30px;
-    position: absolute;
-    left:-40px;
-    top: 50%;
-    display: block;
-    background: #000;
-}
-*/
 /* rest of the headers*/
 body.flashcard h4,
 body.flashcard h5,
@@ -203,12 +134,6 @@ body.flashcard h6 {
     padding: 0;
     display: block;
     margin: 30px 0px 0px 0px;
-}
-
-/* reference brackets */
-body.flashcard .mw-ref a {
-    font-size: 14px;
-    border-bottom: none;
 }
 
 /* all kind of content types
@@ -368,42 +293,6 @@ body.flashcard ul li {
     font-size: 10pt;
 }
 
-body.flashcard.refbegin ul li,
-body.flashcard .references li {
-    font-size: 13px;
-    color: #666;
-    padding: 5px 0px;
-}
-
-/* New footer
-- the page URL
-- Last updated as primary info
-- tone down the license info
-- add Wikimedia Foundation branding as Wikipedia is a Wikimedia Project
-*/
 body.flashcard .Footer {
-    font-size: 14px;
-    border-top: 1px solid #eee;
-    padding: 20px 1em;
-    margin-top: 12px;
-    text-align: center;
-}
-
-body.flashcard .Footer-logo {
     display: none;
-}
-
-body.flashcard .Footer ul {
-    display: none !important;
-}
-
-body.flashcard .Footer:after {
-    content: " ";
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/60/Wmf_logo_horiz_K.svg');
-    background-size: auto 32px;
-    background-repeat: no-repeat;
-    height: 32px;
-    display: block;
-    margin: 10px 15px;
-    background-position: center;
 }

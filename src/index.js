@@ -10,7 +10,6 @@ import offline from './offline'
 
 import './styles/index.css'
 import './styles/print.css'
-import './styles/flashcard-print.css'
 
 // Init DB
 import './db'

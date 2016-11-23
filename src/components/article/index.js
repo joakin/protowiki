@@ -13,12 +13,14 @@ import './article.css'
 export default React.createClass({
 
   componentDidMount () {
+    document.body.classList.add('article')
     if (flags.DOWNLOAD_SUMMARY) {
       createGetSummaryElement(this.downloadSummary)
     }
   },
 
   componentWillUnmount () {
+    document.body.classList.remove('article')
     if (flags.DOWNLOAD_SUMMARY) { removeGetSummaryElement() }
   },
 
