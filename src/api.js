@@ -32,6 +32,6 @@ export function printFlashcardUrl ({title}) {
   return getPrintingServiceUrl('pdf', `${printOrigin}/flashcard/${title}`, 'A5', 0)
 }
 
-export function printUrl ({title, pageSize = 'A5', marginsType = 0}) {
+export function printUrl ({title, pageSize = 'Legal', marginsType = 0}) {
   return getPrintingServiceUrl('pdf', `${printOrigin}/print/${title}`, pageSize, marginsType)
 }
