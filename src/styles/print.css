@@ -16,6 +16,7 @@
 
     body {
         font-family: sans-serif;
+        font-size: 18px;
     }
 
     /* top branding */
@@ -67,7 +68,9 @@
         border-radius: 2px;
         color: black;
         margin: 15px !important;
-        padding: 0.2em;
+        padding: 0pm;
+        width: 100%;
+        font-size: 1.6em;
     }
 
     .infobox a {
@@ -83,8 +86,8 @@
     */
     body p {
         font-family:  sans-serif;
-        font-size: 16px;
-        line-height: 26px;
+        font-size: 1.9em;
+        line-height: 1.6em;
         margin-top: 10px;
     }
     .Section .Section-body  a{
@@ -101,16 +104,17 @@
     /* article title separator - print element from classic editorial practices */
 
     .Article-description  {
-        font-size: 16px;
-        color: #000;
+        font-size: 1.9em;
+        line-height: 1.6em;
+        color: #666;
         margin-top: 0;
     }
 
     .Article-description:after {
         content: " ";
         display: block;
-        width: 30px;
-        background-color: #666!important;
+        width: 2em;
+        background-color: #666 !important;
         height: 1px;
         margin-top: 15px;
     }
@@ -133,8 +137,8 @@
 
     .Article h1 {
         font-family: serif;
-        font-size: 32px;
-        line-height: 40px;
+        font-size: 3.4em;
+        line-height: 1.2em;
         margin-bottom: 0px;
         font-weight: normal;
     }
@@ -142,24 +146,23 @@
 
 
     .Section h2 {
-        page-break-before: avoid;
-        font-family: sans-serif;
-        font-size: 22px;
-        font-weight: bold;
-        line-height: 24px;
-        border-bottom: 2px solid #222;
-        margin-bottom: 0.25em;
+        page-break-before: always;
+        font-family: serif;
+        font-size: 2.8em;
+        line-height: 1.4em;
+        border-bottom: 2px solid #ccc;
+        margin-bottom: 0.3em;
         padding: 0;
         overflow: hidden;
         display: block;
         padding-bottom: 5px;
     }
 
-    h3 {
-        font-size: 16px;
+    .Section h3 {
+        font-size: 2.2em;
         page-break-before:avoid;
         font-family: sans-serif;
-        line-height: 20px;
+        line-height: 1.2em;
         position: relative;
         padding: 0;
         display: block;
@@ -187,8 +190,8 @@
     h6{
         page-break-before:avoid;
         font-family: sans-serif;
-        font-size: 16px;
-        line-height: 18px;
+        font-size: 2em;
+        line-height: 1.2em;
         position: relative;
         padding: 0;
         display: block;
@@ -208,12 +211,32 @@
     - layout classes, right left center
     */
 
-    .thumb {
+    .thumb, .Section .Section-body figure {
         margin-bottom: .5em;
-        width: auto;
-        background-color: transparent;
+        width: 100% !important;
+        display: block;
+        clear: both;
+        background-color: transparent !important;
+        border: none;
+        
+    }
+    .thumb.tmulti > .thumbinner {
+        width: 100% !important;
+    }
+    .thumb.tmulti > .thumbinner > .tsingle {
+        width:50%;
+    }
+    .Section .Section-body figcaption {
+        font-size: 1.2em;
+        width: 100% !important;
+        display: block !important;
+        background: transparent;
+        border: none;
     }
 
+    figure img {
+        width: 100% !important;
+    }
     .thumb a{
         border-bottom: none;
     }
@@ -259,7 +282,7 @@
     }
     li.gallerybox div.thumb {
         text-align: center;
-        border: 1px solid #ccc;
+        
         background-color: #FFF;
         margin: 2px;
     }
@@ -296,11 +319,12 @@
         border: 1px solid #aaa;
         border-collapse: collapse;
         color: #000;
+        font-size: 1.5em;
     }
 
     table.wikitable caption {
         padding: 5px;
-        font-size: 13px;
+        font-size: 1.2em;
     }
     table.wikitable > tr > th, table.wikitable > * > tr > th {
         background-color: #FFF;
@@ -316,7 +340,7 @@
         border-radius: 2px;
         padding: 5px;
         background-color: #FFF;
-        font-size: 12px;
+        font-size: 1.2em;
         color: #666;
         text-align: left;
         overflow: hidden;
@@ -339,13 +363,13 @@
     }
     .refbegin ul li,
     .references li{
-        font-size: 13px;
+        font-size: 1.2em;
         color: #666;
         padding: 5px 0px;
     }
 
     .mw-references li {
-        font-size: 12px;
+        font-size: 1.2em;
         color: #666;
         padding-bottom: 10px;
     }
