@@ -2,7 +2,7 @@ import React from 'react'
 
 import './image.css'
 
-export default function Image ({url, width = '100%', height = 'auto'}) {
+export default function Image ({url, width = 'auto', height = 'auto', style}) {
   const containerStyle = {
     width, height
   }
@@ -11,7 +11,7 @@ export default function Image ({url, width = '100%', height = 'auto'}) {
   }
 
   return (
-    <div className='Image' style={containerStyle}>
+    <div className='Image' style={{...style, ...containerStyle}}>
       <div className='Image-back' style={backgroundImageStyle} />
       <div className='Image-front' style={backgroundImageStyle} />
     </div>

@@ -37,7 +37,7 @@ export default React.createClass({
         <div className='Article'>
 
           {showLeadImage && image
-            ? <LeadImage image={image} /> : null}
+            ? <LeadImage style={{ margin: '0 -1em' }} image={image} /> : null}
 
           <h1 dangerouslySetInnerHTML={{__html: displaytitle}} />
           <p className='Article-description'>{description}</p>

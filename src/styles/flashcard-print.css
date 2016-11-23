@@ -1,6 +1,6 @@
 body.flashcard @page {
     margin: 0;
-    size: 100vw 50cm;
+    size: 375px 670px;
 }
 
 body.flashcard {
@@ -19,7 +19,8 @@ body.flashcard:before {
     background-position: center;
     background-repeat: no-repeat;
     background-color: #fff;
-    border-bottom: solid 1px #ccc;
+    /* border-bottom: solid 1px #ccc; */
+    box-shadow: 0px 0px 4px #ccc;
 }
 
 /* hide on print */
@@ -52,12 +53,20 @@ body.flashcard .infobox img,
 body.flashcard div.ActionBar,
 body.flashcard div.App-header,
 body.flashcard .ambox-Refimprove,
-body.flashcard .vertical-navbox {
+body.flashcard .vertical-navbox,
+body.flashcard .mw-ref,
+body.flashcard .Article .Article-body,
+body.flashcard .Article-get-summary,
+body.flashcard .Article-description,
+body.flashcard .Section .Section-body .infobox
+{
     display: none;
 }
-body.flashcard .Article div.Section-body:first-child {
-    display: block;
+
+body.flashcard .Article div.Section-body p:first-child {
+    font-weight: bold;
 }
+
 
 body.flashcard .Section .Section-body a,
 body.flashcard .Section .Section-body a:visited {
@@ -67,7 +76,7 @@ body.flashcard .Section .Section-body a:visited {
 /*
 - Basic infobox styling
 */
-.Section .Section-body .infobox {
+body.flashcard .Section .Section-body .infobox {
     border: 1px solid #C8CCD1 !important;
     border-spacing: 0px !important;
     background-color: #fff !important;
@@ -115,6 +124,7 @@ body.flashcard p {
 }
 
 /* article title separator - print element from classic editorial practices */
+/*
 body.flashcard .Article-description:after {
     content: " ";
     display: block;
@@ -123,6 +133,7 @@ body.flashcard .Article-description:after {
     height: 1px;
     margin-top: 15px;
 }
+*/
 
 /* header styling
 - Big part of typography
