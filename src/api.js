@@ -18,9 +18,9 @@ export function article (title) {
 
 // Printing
 
-function getPrintingServiceUrl (type, delay, url, pageSize = 'A5', marginsType = 0) {
+function getPrintingServiceUrl (type, url, pageSize = 'A5', marginsType = 0) {
   return `https://pdf-electron.wmflabs.org/${type}?` +
-      `accessKey=secret&delay=${delay}&` +
+      `accessKey=secret&waitForText=${encodeURIComponent('~~PRINT-FINISHED~~')}&` +
       `url=${encodeURIComponent(url)}&` +
       `pageSize=${pageSize}&marginsType=${marginsType}`
 }
@@ -29,9 +29,9 @@ const printOrigin = window.location.host.indexOf('localhost') === 0
   ? 'http://autowiki.surge.sh' : window.location.origin
 
 export function printFlashcardUrl ({title}) {
-  return getPrintingServiceUrl('pdf', 10, `${printOrigin}/flashcard/${title}`, 'A5', 0)
+  return getPrintingServiceUrl('pdf', `${printOrigin}/flashcard/${title}`, 'A5', 0)
 }
 
 export function printUrl ({title, pageSize = 'A5', marginsType = 0}) {
-  return getPrintingServiceUrl('pdf', 10, `${printOrigin}/wiki/${title}`, pageSize, marginsType)
+  return getPrintingServiceUrl('pdf', `${printOrigin}/print/${title}`, pageSize, marginsType)
 }

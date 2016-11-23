@@ -27,7 +27,7 @@ export default React.createClass({
   },
 
   render () {
-    const {article, showLeadImage} = this.props
+    const {article, showLeadImage, print} = this.props
     const {displaytitle, description, sections: [lead], image} = article.lead
     const sections = article.remaining.sections
 
@@ -51,6 +51,8 @@ export default React.createClass({
               <Section key={id + '-' + line} title={line} html={text} />
             )}
           </div>
+
+          {print ? <div style={{ opacity: 0 }}>~~PRINT-FINISHED~~</div> : null}
 
         </div>
 

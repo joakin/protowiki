@@ -12,9 +12,10 @@ const ArticlePage = React.createClass({
   componentWillReceiveProps (props) { props.getArticle(props.title) },
 
   render () {
-    const {title, data} = this.props.article
+    const {article, print, component} = this.props
+    const {title, data} = article
 
-    let Component = this.props.component || Article
+    let Component = component || Article
 
     return RemoteData.match(data, {
       NotAsked: _ => null,
@@ -22,7 +23,7 @@ const ArticlePage = React.createClass({
       Loading: _ => <FakeText />,
 
       Success: article =>
-        <Component title={title} article={article} />,
+        <Component title={title} article={article} print={print} />,
 
       Failure: e =>
         <div>

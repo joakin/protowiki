@@ -40,6 +40,7 @@ function App ({isMenuOpen, isOnline, openMenu, closeMenu}) {
           <div className='App-content'>
 
             <Match exactly pattern='/wiki/:title' render={renderArticle} />
+            <Match exactly pattern='/print/:title' render={renderPrint} />
             <Match exactly pattern='/flashcard/:title' render={renderFlashcard} />
 
             <Match exactly pattern='/about' component={About} />
@@ -79,8 +80,13 @@ function renderArticle ({ params }) {
   return <ArticlePage title={decodeURIComponent(params.title)} />
 }
 
+function renderPrint ({ params }) {
+  return <ArticlePage title={decodeURIComponent(params.title)} print />
+}
+
 function renderFlashcard ({ params }) {
-  return <ArticlePage title={decodeURIComponent(params.title)} component={Flashcard} />
+  return <ArticlePage title={decodeURIComponent(params.title)}
+    component={Flashcard} print />
 }
 
 function NoMatch () {
