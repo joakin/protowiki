@@ -20,7 +20,7 @@ export function article (title) {
 
 function getPrintingServiceUrl (type, url, pageSize = 'A5', marginsType = 0) {
   return `https://pdf-electron.wmflabs.org/${type}?` +
-      `accessKey=secret&waitForText=${encodeURIComponent('~~PRINT-FINISHED~~')}&` +
+      `accessKey=secret&delay=10&` +
       `url=${encodeURIComponent(url)}&` +
       `pageSize=${pageSize}&marginsType=${marginsType}`
 }
