@@ -1,5 +1,10 @@
+.Flashcard {
+    background-color: white;
+}
+
 body.flashcard @page {
     margin: 0;
+    /* Keep browser width and height in sync with api.js browser size */
     size: 375px 670px;
 }
 
@@ -7,6 +12,10 @@ body.flashcard {
     -webkit-print-color-adjust: exact;
     padding: 0;
     font-family: sans-serif;
+    background-color: white;
+    overflow: hidden;
+    /* Keep browser width and height in sync with api.js browser size */
+    width: 375px; height: 670px;
 }
 
 /* Show branding tailored for English Wikipedia */

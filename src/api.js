@@ -18,20 +18,20 @@ export function article (title) {
 
 // Printing
 
-function getPrintingServiceUrl (type, url, pageSize = 'A5', marginsType = 0) {
-  return `https://pdf-electron.wmflabs.org/${type}?` +
-      `accessKey=secret&delay=10&` +
-      `url=${encodeURIComponent(url)}&` +
-      `pageSize=${pageSize}&marginsType=${marginsType}`
-}
-
 const printOrigin = window.location.host.indexOf('localhost') === 0
   ? 'http://autowiki.surge.sh' : window.location.origin
 
 export function printFlashcardUrl ({title}) {
-  return getPrintingServiceUrl('pdf', `${printOrigin}/flashcard/${title}`, 'A5', 0)
+  return `https://pdf-electron.wmflabs.org/jpeg?` +
+    `accessKey=secret&delay=5&quality=100&` +
+    `url=${encodeURIComponent(`${printOrigin}/flashcard/${title}`)}&` +
+    // Keep browser width and height in sync with flashcard.css style sizes
+    `&browserWidth=375&browserHeight=670`
 }
 
 export function printUrl ({title, pageSize = 'Legal', marginsType = 0}) {
-  return getPrintingServiceUrl('pdf', `${printOrigin}/print/${title}`, pageSize, marginsType)
+  return `https://pdf-electron.wmflabs.org/pdf?` +
+    `accessKey=secret&delay=5&` +
+    `url=${encodeURIComponent(`${printOrigin}/print/${title}`)}&` +
+    `pageSize=${pageSize}&marginsType=${marginsType}`
 }
