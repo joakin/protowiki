@@ -7,6 +7,7 @@ import Section from '../section'
 import LeadImage from '../lead-image'
 import {printFlashcardUrl} from '../../api'
 import flags from '../../flags'
+import OnlineStatusBar from '../online-status-bar'
 
 import './article.css'
 
@@ -29,7 +30,7 @@ export default React.createClass({
   },
 
   render () {
-    const {article, showLeadImage, print} = this.props
+    const {article, showLeadImage, print, isOnline} = this.props
     const {displaytitle, description, sections: [lead], image} = article.lead
     const sections = article.remaining.sections
 
@@ -55,6 +56,9 @@ export default React.createClass({
           </div>
 
           {print ? <div style={{ opacity: 0 }}>~~PRINT-FINISHED~~</div> : null}
+
+          {flags.ONLINE_STATUS_BAR
+            ? <OnlineStatusBar online={isOnline} /> : null}
 
         </div>
 

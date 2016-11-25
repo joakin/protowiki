@@ -12,7 +12,7 @@ const ArticlePage = React.createClass({
   componentWillReceiveProps (props) { props.getArticle(props.title) },
 
   render () {
-    const {article, print, component} = this.props
+    const {article, print, component, isOnline} = this.props
     const {title, data} = article
 
     let Component = component || Article
@@ -23,7 +23,8 @@ const ArticlePage = React.createClass({
       Loading: _ => <FakeText />,
 
       Success: article =>
-        <Component title={title} article={article} print={print} />,
+        <Component title={title} article={article}
+          print={print} isOnline={isOnline} />,
 
       Failure: e =>
         <div>
@@ -35,7 +36,10 @@ const ArticlePage = React.createClass({
 
 })
 
-const stateToProps = ({ currentArticle }) => ({ article: currentArticle })
+const stateToProps = ({ currentArticle, online }) => ({
+  article: currentArticle,
+  isOnline: online
+})
 const dispatchToProps = (dispatch) => ({
   getArticle: (title) => dispatch(Actions.getArticle(title))
 })

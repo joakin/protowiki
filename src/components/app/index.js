@@ -6,13 +6,11 @@ import ArticlePage from '../article-page'
 import TrackOnlineStatus from '../track-online-status'
 import LoadPersistentToggles from '../load-persistent-toggles'
 import Flashcard from '../flashcard'
-import OnlineStatusBar from '../online-status-bar'
 import Menu from '../menu'
 import Footer from '../footer'
 import Logo from '../logo'
 import {IconLink, types} from '../icon'
 import SavedPages from '../saved-pages'
-import flags from '../../flags'
 
 import './App.css'
 
@@ -54,9 +52,6 @@ function App ({isMenuOpen, isOnline, openMenu, closeMenu}) {
 
           <Footer />
         </div>
-
-        {flags.ONLINE_STATUS_BAR
-          ? <OnlineStatusBar online={isOnline} /> : null}
 
       </div>
 
