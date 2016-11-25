@@ -22,8 +22,9 @@ const ArticlePage = React.createClass({
 
       Loading: _ => <FakeText />,
 
-      Success: article =>
-        <Component title={title} article={article}
+      Success: articleData =>
+        <Component title={title} article={articleData}
+          saved={article.saved}
           print={print} isOnline={isOnline} />,
 
       Failure: e =>

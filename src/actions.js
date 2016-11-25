@@ -4,7 +4,7 @@ import * as persistentToggles from './db/persistent-toggles'
 import RemoteData from './data/remote-data'
 import {article} from './api'
 
-export default {
+const Actions = {
 
   // Menu
   OpenMenu: { type: 'OpenMenu' },
@@ -22,25 +22,21 @@ export default {
       if (currentArticle().title !== title) {
         dispatch({ type: 'GetArticle', title })
 
-        // Trigger network and cache requests in parallel
-        const networkArticle = article(title)
         return articleDB
           .get(title)
           .then((dbArticle) => {
             // Set the saved article if it exists
             if (dbArticle) {
-              dispatch({ type: 'FromDB', title, article: dbArticle })
-            }
-
-            return networkArticle.then((article) => {
-              dispatch({ type: 'FromNetwork', title, article })
-
-              // Save article only if previously saved and network article is
-              // newer
-              if (dbArticle && dbArticle.revision !== article.revision) {
-                return articleDB.set(title, article)
+              return dispatch({ type: 'FromDB', title, article: dbArticle })
+            } else {
+              // Otherwise fetch it from the network if online
+              if (getStore().online) {
+                return article(title).then((article) =>
+                  dispatch({ type: 'FromNetwork', title, article }))
+              } else {
+                throw new Error('Can\'t get article when offline')
               }
-            })
+            }
           })
           .catch((error) => {
             dispatch({ type: 'GetArticleFailure', title, error })
@@ -48,6 +44,34 @@ export default {
             console.error(error)
           })
       }
+    }
+  },
+
+  // Update article from network
+  updateArticle (title) {
+    return (dispatch, getStore) => {
+      return articleDB.get(title)
+        .then((dbArticle) => {
+          // Fetch it from the network if online
+          if (getStore().online) {
+            return article(title).then((article) => {
+              dispatch({ type: 'FromNetwork', title, article })
+
+              // Save article only if previously saved and network article is
+              // newer
+              if (dbArticle && dbArticle.lead.revision <= article.lead.revision) {
+                return dispatch(Actions.saveArticle(title, article))
+              }
+            })
+          } else {
+            throw new Error('Can\'t get article when offline')
+          }
+        })
+        .catch((error) => {
+          dispatch({ type: 'GetArticleFailure', title, error })
+          console.error(`Error: Failed to update article ${title}`)
+          console.error(error)
+        })
     }
   },
 
@@ -119,5 +143,6 @@ export default {
         .catch((e) => console.error(e))
     }
   }
-
 }
+
+export default Actions

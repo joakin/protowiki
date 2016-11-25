@@ -40,5 +40,6 @@ export const types = {
   WATCHLIST: 'watchlist',
 
   GREENCHECK: 'green-check',
-  OFFLINE: 'offline'
+  OFFLINE: 'offline',
+  REFRESH: 'refresh'
 }

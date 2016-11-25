@@ -40,7 +40,7 @@ export default reducer(initial, {
       !state.data.isSuccess() ||
       // Yes data but newer revision, autoupdate
       (state.data.isSuccess() &&
-       state.data.unwrap().revision !== article.revision)
+       state.data.unwrap().lead.revision !== article.lead.revision)
     )
       ? {
         ...state, // Inherit props like `saved` but update content and origin

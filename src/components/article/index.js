@@ -8,6 +8,7 @@ import LeadImage from '../lead-image'
 import {printFlashcardUrl} from '../../api'
 import flags from '../../flags'
 import OnlineStatusBar from '../online-status-bar'
+import SavedPageStatusBar from '../saved-page-status-bar'
 
 import './article.css'
 
@@ -30,7 +31,7 @@ export default React.createClass({
   },
 
   render () {
-    const {article, showLeadImage, print, isOnline} = this.props
+    const {article, showLeadImage, print, isOnline, saved} = this.props
     const {displaytitle, description, sections: [lead], image} = article.lead
     const sections = article.remaining.sections
 
@@ -59,6 +60,9 @@ export default React.createClass({
 
           {flags.ONLINE_STATUS_BAR
             ? <OnlineStatusBar online={isOnline} /> : null}
+
+          {flags.MANUAL_ARTICLE_UPDATE && saved && isOnline
+            ? <SavedPageStatusBar /> : null}
 
         </div>
 
