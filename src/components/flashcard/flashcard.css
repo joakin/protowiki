@@ -42,6 +42,8 @@
   padding: 0 1.5em;
   margin: 0 -1em;
   box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  position: relative;
+  z-index: 100;
 }
 
 body.flashcard @page {
