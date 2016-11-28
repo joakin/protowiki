@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="91px" height="16px" viewBox="0 0 91 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="half-dome-quick-fact" transform="translate(-264.000000, -23.000000)" fill="#000000">
+            <g id="Group-2">
+                <g id="Group" transform="translate(263.000000, 21.000000)">
+                    <text id="QuickFact" font-family="SFUIText-HeavyItalic, SF UI Text, Helvetica, sans-serif" font-size="15" font-style="italic" font-weight="600" letter-spacing="-0.225000009">
+                        <tspan x="14" y="14">QuickFact</tspan>
+                    </text>
+                    <g id="Group-4" transform="translate(7.000000, 8.500000) rotate(-3.000000) translate(-7.000000, -8.500000) translate(1.000000, 4.000000)">
+                        <polygon id="Triangle" points="11.2348213 0.526464297 10.052336 3.00137047 -1.04583009e-13 4"></polygon>
+                        <polygon id="Triangle-Copy" transform="translate(6.115000, 7.489547) rotate(3.000000) translate(-6.115000, -7.489547) " points="9.23000002 6.5264643 8.54525955 8.45263 3 8.45263"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

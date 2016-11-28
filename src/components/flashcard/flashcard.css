@@ -1,20 +1,47 @@
 .Flashcard {
   background-color: white;
+  position: relative;
+  /* Keep browser width and height in sync with api.js browser size */
+  height: 670px;
 }
 
 .Flashcard .Section-body {
-  max-height: 370px;
   overflow: hidden;
-  position: relative;
 }
 .Flashcard .Section-body:after {
   content: '';
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 80%);
+}
+
+.Flashcard-footer {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   height: 30px;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 80%);
+  line-height: 30px;
+  padding-bottom: 10px;
+  background-color: white;
+}
+.Flashcard-footer a {
+  color: #3366cc;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.Flashcard-header {
+  height: 55px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5em;
+  margin: 0 -1em;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 
 body.flashcard @page {
@@ -31,21 +58,9 @@ body.flashcard {
   overflow: hidden;
   /* Keep browser width and height in sync with api.js browser size */
   width: 375px; height: 670px;
-  border: 1px solid red;
 }
-
-/* Show branding tailored for English Wikipedia */
-body.flashcard:before {
-  content: " ";
-  display: block;
-  background-image: url('https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia_wordmark@2x.png');
-  height: 40px;
-  background-size: 120px 20px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: #fff;
-  /* border-bottom: solid 1px #ccc; */
-  box-shadow: 0px 0px 4px #ccc;
+body.flashcard>#root {
+  overflow: hidden;
 }
 
 /* hide on print */
@@ -56,9 +71,9 @@ body.flashcard:before {
 - Navboxes
 - Categories
 */
+body.flashcard div.App-header,
 body.flashcard .noprint,
 body.flashcard .mw-indicators,
-body.flashcard .App-header,
 body.flashcard #jump-to-nav,
 body.flashcard .mw-redirectedfrom,
 body.flashcard .hatnote,
@@ -75,7 +90,6 @@ body.flashcard #administrator,
 body.flashcard #coordinates .image,
 body.flashcard .infobox img,
 body.flashcard div.ActionBar,
-body.flashcard div.App-header,
 body.flashcard .ambox-Refimprove,
 body.flashcard .vertical-navbox,
 body.flashcard .mw-ref,
