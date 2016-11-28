@@ -1,35 +1,51 @@
 .Flashcard {
-    background-color: white;
+  background-color: white;
+}
+
+.Flashcard .Section-body {
+  max-height: 370px;
+  overflow: hidden;
+  position: relative;
+}
+.Flashcard .Section-body:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 80%);
 }
 
 body.flashcard @page {
-    margin: 0;
-    /* Keep browser width and height in sync with api.js browser size */
-    size: 375px 670px;
+  margin: 0;
+  /* Keep browser width and height in sync with api.js browser size */
+  size: 375px 670px;
 }
 
 body.flashcard {
-    -webkit-print-color-adjust: exact;
-    padding: 0;
-    font-family: sans-serif;
-    background-color: white;
-    overflow: hidden;
-    /* Keep browser width and height in sync with api.js browser size */
-    width: 375px; height: 670px;
+  -webkit-print-color-adjust: exact;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: white;
+  overflow: hidden;
+  /* Keep browser width and height in sync with api.js browser size */
+  width: 375px; height: 670px;
+  border: 1px solid red;
 }
 
 /* Show branding tailored for English Wikipedia */
 body.flashcard:before {
-    content: " ";
-    display: block;
-    background-image: url('https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia_wordmark@2x.png');
-    height: 40px;
-    background-size: 120px 20px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #fff;
-    /* border-bottom: solid 1px #ccc; */
-    box-shadow: 0px 0px 4px #ccc;
+  content: " ";
+  display: block;
+  background-image: url('https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia_wordmark@2x.png');
+  height: 40px;
+  background-size: 120px 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #fff;
+  /* border-bottom: solid 1px #ccc; */
+  box-shadow: 0px 0px 4px #ccc;
 }
 
 /* hide on print */
@@ -65,13 +81,13 @@ body.flashcard .vertical-navbox,
 body.flashcard .mw-ref,
 body.flashcard .Section .Section-body .infobox
 {
-    display: none;
+  display: none;
 }
 
 
 body.flashcard .Section .Section-body a,
 body.flashcard .Section .Section-body a:visited {
-    color: #222;
+  color: #222;
 }
 
 /*
@@ -81,10 +97,10 @@ body.flashcard .Section .Section-body a:visited {
 Lato is an open source serif typeface specfically designed for legibility and reading
 */
 body.flashcard p {
-    font-family: "Lato", sans-serif;
-    font-size: 14px;
-    line-height: 21px;
-    margin-top: 10px;
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+  line-height: 21px;
+  margin-top: 10px;
 }
 
 /* header styling
@@ -100,49 +116,49 @@ body.flashcard p {
 */
 /* article name */
 body.flashcard h1 {
-    font-family: serif;
-    font-size: 28px;
-    line-height: 32px;
-    margin-bottom: 5px;
-    font-weight: normal;
+  font-family: serif;
+  font-size: 28px;
+  line-height: 32px;
+  margin-bottom: 5px;
+  font-weight: normal;
 }
 
 body.flashcard h2 {
-    page-break-before: avoid;
-    font-family: sans-serif;
-    font-size: 20px;
-    line-height: 24px;
-    border-bottom: 2px solid #222;
-    margin-bottom: 0.25em;
-    padding: 0;
-    overflow: hidden;
-    display: block;
-    padding-bottom: 5px;
+  page-break-before: avoid;
+  font-family: sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  border-bottom: 2px solid #222;
+  margin-bottom: 0.25em;
+  padding: 0;
+  overflow: hidden;
+  display: block;
+  padding-bottom: 5px;
 }
 
 body.flashcard h3 {
-    font-size: 18px;
-    page-break-before: avoid;
-    font-family: sans-serif;
-    line-height: 20px;
-    position: relative;
-    padding: 0;
-    display: block;
-    margin: 30px 0px 0px 0px;
+  font-size: 18px;
+  page-break-before: avoid;
+  font-family: sans-serif;
+  line-height: 20px;
+  position: relative;
+  padding: 0;
+  display: block;
+  margin: 30px 0px 0px 0px;
 }
 
 /* rest of the headers*/
 body.flashcard h4,
 body.flashcard h5,
 body.flashcard h6 {
-    page-break-before: avoid;
-    font-family: sans-serif;
-    font-size: 16px;
-    line-height: 18px;
-    position: relative;
-    padding: 0;
-    display: block;
-    margin: 30px 0px 0px 0px;
+  page-break-before: avoid;
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 18px;
+  position: relative;
+  padding: 0;
+  display: block;
+  margin: 30px 0px 0px 0px;
 }
 
 /* all kind of content types
@@ -154,154 +170,154 @@ body.flashcard h6 {
 - layout classes, right left center
 */
 body.flashcard .thumb {
-    margin-bottom: .5em;
-    width: auto;
-    background-color: transparent;
+  margin-bottom: .5em;
+  width: auto;
+  background-color: transparent;
 }
 
 body.flashcard .thumb a {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 body.flashcard .center {
-    width: 100%;
-    text-align: center;
+  width: 100%;
+  text-align: center;
 }
 
 body.flashcard div.tright {
-    margin: .5em 0 1.3em 1.4em;
+  margin: .5em 0 1.3em 1.4em;
 }
 
 body.flashcard div.tleft {
-    margin: .5em 1.4em 1.3em 0;
+  margin: .5em 1.4em 1.3em 0;
 }
 
 body.flashcard div.tright,
 body.flashcard div.floatright,
 body.flashcard table.floatright {
-    clear: right;
-    float: right;
+  clear: right;
+  float: right;
 }
 
 body.flashcard div.tleft,
 body.flashcard div.floatleft,
 body.flashcard table.floatleft {
-    clear: left;
-    float: left;
+  clear: left;
+  float: left;
 }
 
 body.flashcard div.floatright,
 body.flashcard table.floatright {
-    margin: 0 0 .5em .5em;
-    border: 0;
+  margin: 0 0 .5em .5em;
+  border: 0;
 }
 
 body.flashcard ul.gallery {
-    margin: 2px;
-    padding: 2px;
-    display: block;
+  margin: 2px;
+  padding: 2px;
+  display: block;
 }
 
 body.flashcard ul.gallery,
 body.flashcard li.gallerybox {
-    zoom: 1;
+  zoom: 1;
 }
 
 body.flashcard div#content .gallerybox div.thumb {
-    background-color: #FFF;
+  background-color: #FFF;
 }
 
 body.flashcard li.gallerybox div.thumb {
-    text-align: center;
-    border: 1px solid #ccc;
-    background-color: #FFF;
-    margin: 2px;
+  text-align: center;
+  border: 1px solid #ccc;
+  background-color: #FFF;
+  margin: 2px;
 }
 
 body.flashcard li.gallerybox {
-    vertical-align: top;
-    display: -moz-inline-box;
-    display: inline-block;
+  vertical-align: top;
+  display: -moz-inline-box;
+  display: inline-block;
 }
 
 body.flashcard li {
-    margin-bottom: .1em;
+  margin-bottom: .1em;
 }
 
 body.flashcard div.gallerytext {
-    overflow: hidden;
-    font-size: 10pt;
-    padding: 2px 4px;
-    word-wrap: break-word;
+  overflow: hidden;
+  font-size: 10pt;
+  padding: 2px 4px;
+  word-wrap: break-word;
 }
 
 body.flashcard ul {
-    list-style-type: disc;
-    list-style-image: url(data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22…%229.5%22%20r%3D%222.5%22%20fill%3D%22%2300528c%22%2F%3E%0A%3C%2Fsvg%3E%0A);
-    list-style-image: url(/w/skins/Vector/images/bullet-icon.svg?90d59) !ie;
-    list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAANCAIAAADuXjPfAAAABnRST…t9AAAAHklEQVR4AWP4jwrowWcI6oEgEBtIISNCfFT9mOYDACO/lbNIGC/yAAAAAElFTkSuQmCC) \9;
-    list-style-image: url(/w/skins/Vector/images/bullet-icon.png?e31f8) \9 !ie;
+  list-style-type: disc;
+  list-style-image: url(data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22…%229.5%22%20r%3D%222.5%22%20fill%3D%22%2300528c%22%2F%3E%0A%3C%2Fsvg%3E%0A);
+  list-style-image: url(/w/skins/Vector/images/bullet-icon.svg?90d59) !ie;
+  list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAANCAIAAADuXjPfAAAABnRST…t9AAAAHklEQVR4AWP4jwrowWcI6oEgEBtIISNCfFT9mOYDACO/lbNIGC/yAAAAAElFTkSuQmCC) \9;
+  list-style-image: url(/w/skins/Vector/images/bullet-icon.png?e31f8) \9 !ie;
 }
 
 body.flashcard ul {
-    list-style-type: square;
-    margin: .3em 0 0 1.6em;
-    padding: 0;
-    margin-top: 10px;
+  list-style-type: square;
+  margin: .3em 0 0 1.6em;
+  padding: 0;
+  margin-top: 10px;
 }
 
 body.flashcard table.wikitable {
-    margin: 1em 0;
-    background-color: #FFF;
-    border: 1px solid #aaa;
-    border-collapse: collapse;
-    color: #000;
+  margin: 1em 0;
+  background-color: #FFF;
+  border: 1px solid #aaa;
+  border-collapse: collapse;
+  color: #000;
 }
 
 body.flashcard table.wikitable caption {
-    padding: 5px;
-    font-size: 13px;
+  padding: 5px;
+  font-size: 13px;
 }
 
 body.flashcard table.wikitable > tr > th,
 body.flashcard table.wikitable > * > tr > th {
-    background-color: #FFF;
-    text-align: center;
+  background-color: #FFF;
+  text-align: center;
 }
 
 body.flashcard table.wikitable > tr > th,
 body.flashcard table.wikitable > tr > td,
 body.flashcard table.wikitable > * > tr > th,
 body.flashcard table.wikitable > * > tr > td {
-    border: 1px solid #EAECF0;
-    padding: 0.2em 0.4em;
+  border: 1px solid #EAECF0;
+  padding: 0.2em 0.4em;
 }
 
 body.flashcard div.thumbinner {
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    padding: 5px;
-    background-color: #FFF;
-    font-size: 12px;
-    color: #666;
-    text-align: left;
-    overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  padding: 5px;
+  background-color: #FFF;
+  font-size: 12px;
+  color: #666;
+  text-align: left;
+  overflow: hidden;
 }
 
 body.flashcard .thumbinner {
-    min-width: 100px;
+  min-width: 100px;
 }
 
 body.flashcard *.center * {
-    margin-left: auto;
-    margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 body.flashcard ul li {
-    padding: 5px 0px;
-    font-size: 10pt;
+  padding: 5px 0px;
+  font-size: 10pt;
 }
 
 body.flashcard .Footer {
-    display: none;
+  display: none;
 }
