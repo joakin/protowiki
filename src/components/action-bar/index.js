@@ -57,9 +57,9 @@ const ActionBar = React.createClass({
             } />
           : null}
         {flags.DOWNLOAD_IN_ACTION_BAR
-          ? <IconLink type={types.DOWNLOAD} onClick={() =>
-            window.open(printUrl({ title }))
-          } /> : null}
+          ? <IconLink type={types.DOWNLOAD} href={printUrl({ title })}
+            target='_blank' download={title + '.pdf'} />
+          : null}
         <IconLink type={types.WATCH} />
         <IconLink type={types.EDIT} />
       </div>

@@ -17,17 +17,13 @@ export default React.createClass({
   componentDidMount () {
     document.body.classList.add('article')
     if (flags.DOWNLOAD_SUMMARY) {
-      createGetSummaryElement(this.downloadSummary)
+      createGetSummaryElement(this.props.title)
     }
   },
 
   componentWillUnmount () {
     document.body.classList.remove('article')
     if (flags.DOWNLOAD_SUMMARY) { removeGetSummaryElement() }
-  },
-
-  downloadSummary () {
-    window.open(printFlashcardUrl({ title: this.props.title }))
   },
 
   render () {
@@ -71,9 +67,10 @@ export default React.createClass({
   }
 })
 
-function createGetSummaryElement (downloadSummary) {
+function createGetSummaryElement (title) {
   const summary =
-    <a onClick={downloadSummary}>
+    <a href={printFlashcardUrl({ title: title })}
+      target='_blank' download={title + '.jpg'}>
       <Icon type={types.GET_SUMMARY} />
       <span>Get article summary (JPG 15kb)</span>
     </a>
