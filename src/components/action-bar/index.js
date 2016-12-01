@@ -58,6 +58,12 @@ const ActionBar = React.createClass({
           : null}
         {flags.DOWNLOAD_IN_ACTION_BAR
           ? <IconLink type={types.DOWNLOAD} href={printUrl({ title })}
+            onClick={(e) => {
+              // Force new window on click to show feedback that something happened
+              // in mobile devices
+              e.preventDefault()
+              window.open(printUrl({ title }))
+            }}
             target='_blank' download={title + '.pdf'} />
           : null}
         <IconLink type={types.WATCH} />

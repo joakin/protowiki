@@ -70,6 +70,12 @@ export default React.createClass({
 function createGetSummaryElement (title) {
   const summary =
     <a href={printFlashcardUrl({ title: title })}
+      onClick={(e) => {
+        // Force new window on click to show feedback that something happened
+        // in mobile devices
+        e.preventDefault()
+        window.open(printFlashcardUrl({ title: title }))
+      }}
       target='_blank' download={title + '.jpg'}>
       <Icon type={types.GET_SUMMARY} />
       <span>Get article summary (JPG 15kb)</span>
