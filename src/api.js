@@ -21,8 +21,12 @@ export function article (title) {
 const printOrigin = window.location.host.indexOf('localhost') === 0
   ? 'http://autowiki.surge.sh' : window.location.origin
 
+const printService =
+  'https://pdf-service-proxy-sxrojsmlfq.now.sh' // proxy on server/pdf-service-proxy
+  // 'https://pdf-electron.wmflabs.org' // gwicke's service
+
 export function printFlashcardUrl ({title}) {
-  return `https://pdf-electron.wmflabs.org/jpeg?` +
+  return `${printService}/jpeg?` +
     `accessKey=secret&delay=5&quality=100&` +
     `url=${encodeURIComponent(`${printOrigin}/flashcard/${title}`)}&` +
     // Keep browser width and height in sync with flashcard.css style sizes
@@ -30,7 +34,7 @@ export function printFlashcardUrl ({title}) {
 }
 
 export function printUrl ({title, pageSize = 'Legal', marginsType = 0}) {
-  return `https://pdf-electron.wmflabs.org/pdf?` +
+  return `${printService}/pdf?` +
     `accessKey=secret&delay=5&` +
     `url=${encodeURIComponent(`${printOrigin}/print/${title}`)}&` +
     `pageSize=${pageSize}&marginsType=${marginsType}`
