@@ -1,0 +1,16 @@
+{
+  "name": "pdf-service-proxy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Joaquin Oltra <joaquin@chimeces.com> (http://chimeces.com)",
+  "license": "ISC",
+  "dependencies": {
+    "concat-stream": "^1.5.2",
+    "lru-cache": "^4.0.2"
+  }
+}
