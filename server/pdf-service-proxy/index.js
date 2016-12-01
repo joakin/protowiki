@@ -1,7 +1,10 @@
 const http = require('http')
 const concat = require('concat-stream')
 const LRU = require('lru-cache')
-const cache = LRU(100)
+const cache = LRU({
+  max: 50,
+  maxAge: 10 /* minutes, to ms: */ * 60 * 1000
+})
 
 const target = 'http://pdf-electron.wmflabs.org'
 
