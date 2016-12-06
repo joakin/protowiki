@@ -22,7 +22,7 @@ const printOrigin = window.location.host.indexOf('localhost') === 0
   ? 'http://autowiki.surge.sh' : window.location.origin
 
 const printService =
-  'https://pdf-service-proxy-lepehkpwkj.now.sh' // proxy on server/pdf-service-proxy
+  'https://pdf-service-proxy-dtauxfgiyk.now.sh' // proxy on server/pdf-service-proxy
   // 'https://pdf-electron.wmflabs.org' // gwicke's service
 
 export function printFlashcardUrl ({title}) {
