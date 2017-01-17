@@ -1,3 +1,6 @@
+.Section {
+  clear: both;
+}
 .Section .Section-title {
   border-bottom: 1px solid #e2e3e4;
   padding: 0.5em 0.5em 0.5em 36px;
