@@ -12,6 +12,7 @@
 .Icon.is-type-home        { background-image: url('icons/home.png');        }
 .Icon.is-type-history     { background-image: url('icons/history.png');     }
 .Icon.is-type-arrow       { background-image: url('icons/arrow.png');       }
+.Icon.is-type-arrow.up    { transform: rotate(180deg);                      }
 .Icon.is-type-download    { background-image: url('icons/download.png');    }
 .Icon.is-type-edit        { background-image: url('icons/edit.png');        }
 .Icon.is-type-watch       { background-image: url('icons/star.png');        }
