@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Actions from '../../actions'
+import msg from '../../i18n'
 
 import './saved-pages-menu-item.css'
 
@@ -12,7 +13,7 @@ const SavedPagesMenuItem = React.createClass({
     const {total, highlightSavedPages} = this.props
     return (
       <span className={`SavedPagesMenuItem ${highlightSavedPages ? 'is-highlighted' : ''}`}>
-        <span>Saved pages</span>
+        <span>{msg('saved_pages')}</span>
         <span className='SavedPagesMenuItem-total'>{total}</span>
       </span>
     )

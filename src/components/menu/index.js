@@ -3,14 +3,15 @@ import {Link} from 'react-router'
 import Icon, {types} from '../icon'
 import flags from '../../flags'
 import SavedPagesMenuItem from '../saved-pages-menu-item'
+import msg from '../../i18n'
 
 import './menu.css'
 
 const menus = [[
 
-  { label: 'Home', path: '/', icon: types.HOME },
-  { label: 'Random', path: '#', icon: types.RANDOM },
-  { label: 'Nearby', path: '#', icon: types.NEARBY }
+  { label: msg('home'), path: '/', icon: types.HOME },
+  { label: msg('random'), path: '#', icon: types.RANDOM },
+  { label: msg('nearby'), path: '#', icon: types.NEARBY }
 
 ], [
 
@@ -20,11 +21,11 @@ const menus = [[
     icon: types.SAVEDPAGES
   } : null,
 
-  { label: 'Login', path: '/', icon: types.ANONYMOUS }
+  { label: msg('login'), path: '/', icon: types.ANONYMOUS }
 
 ].filter((i) => !!i), [
 
-  { label: 'Settings', path: '#', icon: types.SETTINGS }
+  { label: msg('settings'), path: '#', icon: types.SETTINGS }
 
 ]]
 
@@ -49,9 +50,9 @@ export default React.createClass({
             </ul>
           )}
           <ul className='Menu-footer-list'>
-            <li><Link to='/about' onClick={onItemClick}>About</Link></li>
-            <li><a href='https://en.m.wikipedia.org/wiki/Wikipedia:About'>About Wikipedia</a></li>
-            <li><a href='https://en.m.wikipedia.org/wiki/Wikipedia:General_disclaimer'>Disclaimers</a></li>
+            <li><Link to='/about' onClick={onItemClick}>{msg('about')}</Link></li>
+            <li><a href='https://en.m.wikipedia.org/wiki/Wikipedia:About'>{msg('about_wikipedia')}</a></li>
+            <li><a href='https://en.m.wikipedia.org/wiki/Wikipedia:General_disclaimer'>{msg('disclaimers')}</a></li>
           </ul>
         </div>
       </div>

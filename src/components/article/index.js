@@ -9,6 +9,7 @@ import {printFlashcardUrl} from '../../api'
 import flags from '../../flags'
 import OnlineStatusBar from '../online-status-bar'
 import SavedPageStatusBar from '../saved-page-status-bar'
+import msg from '../../i18n'
 
 import './article.css'
 
@@ -78,7 +79,7 @@ function createGetSummaryElement (title) {
       }}
       target='_blank' download={title + '.jpg'}>
       <Icon type={types.GET_SUMMARY} />
-      <span>Get article summary (JPG 15kb)</span>
+      <span>{msg('get_article_summary_jpg_kb', [15])}</span>
     </a>
   const firstParagraph = document.querySelector('.Section-body p')
   const wrapper = document.createElement('div')

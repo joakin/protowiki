@@ -1,5 +1,6 @@
 import React from 'react'
 import Logo from '../logo'
+import msg from '../../i18n'
 
 import './footer.css'
 
@@ -8,16 +9,12 @@ export default function Footer () {
     <div className='Footer'>
       <div className='Footer-logo'><Logo size={50} /><sup>®</sup></div>
       <p className='license'>
-        Content is available under
-        {' '}<a className='external' rel='nofollow' href='//creativecommons.org/licenses/by-sa/3.0/'>
-          CC BY-SA 3.0
-        </a>{' '}
-        unless otherwise noted.
+        {msg('content_is_available_under_cc_bysa___unless_otherwise_noted_')}
       </p>
       <ul className='Footer-links'>
         <li>
           <a href='//m.wikimediafoundation.org/wiki/Terms_of_Use'>
-          Terms of Use</a>
+            {msg('terms_of_use')}</a>
         </li>
       </ul>
     </div>

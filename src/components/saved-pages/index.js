@@ -8,6 +8,7 @@ import FakeText from '../fake-text'
 import relativeDate from 'relative-date'
 import prettyBytes from './pretty-bytes'
 import Icon, {types} from '../icon'
+import msg from '../../i18n'
 
 import './saved-pages.css'
 
@@ -21,12 +22,10 @@ const SavedPages = React.createClass({
     const {pages, hasSeenSavedPagesInfo, seenSavedPagesInfo} = this.props
 
     const count = (pages.withDefault([]) || []).length
-    const subtitle = count
-      ? `${count} page${count > 1 ? 's' : ''}`
-      : ''
+    const subtitle = msg('_pages', [count])
 
     return (
-      <SpecialPage title='Saved pages' subtitle={subtitle}
+      <SpecialPage title={msg('saved_pages')} subtitle={subtitle}
         headerActions={
           <OfflineMarker />
         }
@@ -78,7 +77,7 @@ function OfflineMarker () {
   return (
     <div className='OfflineMarker'>
       <Icon type={types.GREENCHECK} />
-      Offline
+      {msg('offline')}
     </div>
   )
 }
@@ -92,13 +91,13 @@ function FirstTimeMessage ({ onClose }) {
     <div className='SavedPages-FirstTimeMessage'>
       <p><img style={{ marginLeft: '5px' }} src={savePlusOfflineImage} /></p>
       <p>
-        You can read these pages even when you are offline!
+        {msg('you_can_read_these_pages_even_when_you_are_offline')}
         <br />
-        We recommend adding this page to your homescreen for easy access.
+        {msg('we_recommend_adding_this_page_to_your_homescreen_for_easy_access_')}
       </p>
       <p>
         <a className='SavedPages-FirstTimeMessage-close' onClick={onClose}>
-          Got it!
+          {msg('got_it')}
         </a>
       </p>
     </div>

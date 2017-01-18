@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Actions from '../../actions'
 import Icon, {types} from '../icon'
 import relativeDate from 'relative-date'
+import msg from '../../i18n'
 
 import './saved-page-status-bar.css'
 
@@ -11,7 +12,9 @@ function SavedPageStatusBar ({article, savedPage, updateArticle}) {
     <div className='SavedPageStatusBar'>
       <div>Saved {relativeDate(savedPage.lastSave)}</div>
       <div>
-        <a onClick={() => updateArticle(article.title)}><Icon type={types.REFRESH} /> Update now</a>
+        <a onClick={() => updateArticle(article.title)}><Icon type={types.REFRESH} />
+          {msg('update_now')}
+        </a>
       </div>
     </div>
   )
