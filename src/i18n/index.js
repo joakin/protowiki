@@ -17,7 +17,9 @@ const labels = Object.keys(langs).reduce((ls, lang) => {
   return ls
 }, {})
 
-const defaultLanguage = 'hi'
+const languages = Object.keys(langs)
+
+const defaultLanguage = languages[0]
 let currentLanguage = defaultLanguage
 
 export default function label (key, params) {
@@ -32,6 +34,10 @@ export default function label (key, params) {
     return 'UNKNOWN'
   }
 }
+
+export function getLanguages () { return languages }
+
+export function getCurrentLanguage () { return currentLanguage }
 
 export function setCurrentLanguage (newLanguage) {
   currentLanguage = newLanguage

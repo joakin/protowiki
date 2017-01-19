@@ -1,18 +1,20 @@
-const HOST = 'en.wikipedia.org'
+import {getCurrentLanguage} from './i18n'
+
+const HOST = 'wikipedia.org'
 
 const restOptions = {
   mode: 'cors'
 }
 
-const rest = (host, endpoint) =>
-  `https://${host}/api/rest_v1${endpoint}`
+const rest = (lang, host, endpoint) =>
+  `https://${lang}.${host}/api/rest_v1${endpoint}`
 
 const endpoints = {
   article: (title) => `/page/mobile-sections/${title}`
 }
 
 export function article (title) {
-  return window.fetch(rest(HOST, endpoints.article(title)), restOptions)
+  return window.fetch(rest(getCurrentLanguage(), HOST, endpoints.article(title)), restOptions)
     .then((resp) => resp.json())
 }
 

@@ -2,15 +2,18 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Actions from '../../actions'
 import Icon, {types} from '../icon'
-import relativeDate from 'relative-date'
-import msg from '../../i18n'
+import SavedAgo from '../saved-ago'
+import msg, {getCurrentLanguage} from '../../i18n'
 
 import './saved-page-status-bar.css'
 
 function SavedPageStatusBar ({article, savedPage, updateArticle}) {
+  if (!savedPage) {
+    return null
+  }
   return (
     <div className='SavedPageStatusBar'>
-      <div>Saved {relativeDate(savedPage.lastSave)}</div>
+      <SavedAgo date={savedPage.lastSave} />
       <div>
         <a onClick={() => updateArticle(article.title)}><Icon type={types.REFRESH} />
           {msg('update_now')}
@@ -24,8 +27,8 @@ const stateToProps = ({ currentArticle, savedPages }) => ({
   article: currentArticle,
   savedPage: savedPages.pages
     .withDefault([])
-    .filter((p) => p.title === currentArticle.title)[0] ||
-      { title: currentArticle.title, lastSave: 0 }
+    .filter((p) => p.key === getCurrentLanguage() + '-' + currentArticle.title)[0] ||
+      undefined
 })
 
 const dispatchToProps = (dispatch) => ({

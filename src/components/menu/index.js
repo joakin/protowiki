@@ -3,36 +3,38 @@ import {Link} from 'react-router'
 import Icon, {types} from '../icon'
 import flags from '../../flags'
 import SavedPagesMenuItem from '../saved-pages-menu-item'
-import msg from '../../i18n'
-
+import msg, {getCurrentLanguage} from '../../i18n'
 import './menu.css'
-
-const menus = [[
-
-  { label: msg('home'), path: '/', icon: types.HOME },
-  { label: msg('random'), path: '#', icon: types.RANDOM },
-  { label: msg('nearby'), path: '#', icon: types.NEARBY }
-
-], [
-
-  flags.SAVE_PAGE ? {
-    label: <SavedPagesMenuItem />,
-    path: '/saved',
-    icon: types.SAVEDPAGES
-  } : null,
-
-  { label: msg('login'), path: '/', icon: types.ANONYMOUS }
-
-].filter((i) => !!i), [
-
-  { label: msg('settings'), path: '#', icon: types.SETTINGS }
-
-]]
 
 export default React.createClass({
 
   render () {
     const {isOpen, onItemClick, onBackdropClick} = this.props
+
+    // Menus defined here so that the messages are updated if the languages
+    // change
+    const menus = [[
+
+      { label: msg('home'), path: '/' + getCurrentLanguage(), icon: types.HOME },
+      { label: msg('random'), path: '#', icon: types.RANDOM },
+      { label: msg('nearby'), path: '#', icon: types.NEARBY }
+
+    ], [
+
+      flags.SAVE_PAGE ? {
+        label: <SavedPagesMenuItem />,
+        path: '/' + getCurrentLanguage() + '/saved',
+        icon: types.SAVEDPAGES
+      } : null,
+
+      { label: msg('login'), path: '/', icon: types.ANONYMOUS }
+
+    ].filter((i) => !!i), [
+
+      { label: msg('settings'), path: '#', icon: types.SETTINGS }
+
+    ]]
+
     return (
       <div className={'Menu ' + (isOpen ? 'is-open' : '')}>
         <div className='Menu-backdrop' onClick={onBackdropClick} />

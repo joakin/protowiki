@@ -1,6 +1,8 @@
 import lf from 'localforage'
 
-export function key (title) { return `article-${title}` }
+import {getCurrentLanguage} from '../i18n'
+
+export function key (title) { return `article-${getCurrentLanguage()}-${title}` }
 
 export function get (title) {
   return lf.getItem(key(title))

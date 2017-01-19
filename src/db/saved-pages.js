@@ -1,6 +1,8 @@
 import lf from 'localforage'
 import * as articleDB from './article'
 
+import {getCurrentLanguage} from '../i18n'
+
 export function key (title) { return `saved-pages` }
 
 export function get () {
@@ -9,10 +11,11 @@ export function get () {
 }
 
 export function set (title, article) {
+  const lang = getCurrentLanguage()
   return get().then((ps) => {
     const pages = ps || []
-    const needle = pages.findIndex((page) => page.title === title)
-    const savedPage = fromArticle(title, article)
+    const needle = pages.findIndex((page) => page.key === lang + '-' + title)
+    const savedPage = fromArticle(lang, title, article)
     if (needle > -1) {
       pages[needle] = savedPage
     } else {
@@ -37,9 +40,10 @@ export function remove (title) {
   })
 }
 
-function fromArticle (title, article) {
+function fromArticle (lang, title, article) {
   return {
     title,
+    key: lang + '-' + title,
     displaytitle: article.lead.displaytitle,
     description: article.lead.description,
     image: article.lead.image,

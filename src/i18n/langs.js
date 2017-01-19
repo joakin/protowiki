@@ -18,9 +18,16 @@ export default {
     "offline": "Offline",
     "update_now": "Update now",
     "_days_ago": "# days ago",
-    "get_article_summary_jpg_kb": "Get article summary (JPG #)"
+    "get_article_summary_jpg_kb": "Get article summary (JPG #kb)",
+    "saved_years_ago": "Saved # years ago",
+    "saved_months_ago": "Saved # months ago",
+    "saved_weeks_ago": "Saved # weeks ago",
+    "saved_days_ago": "Saved # days ago",
+    "saved_hours_ago": "Saved # hours ago",
+    "saved_minutes_ago": "Saved # minutes ago",
+    "saved_seconds_ago": "Saved # seconds ago"
   },
-  "sp": {
+  "es": {
     "home": "Inicio",
     "random": "Al azar",
     "nearby": "Cercanos",
@@ -29,7 +36,7 @@ export default {
     "settings": "Configuraciones",
     "about": "Acerca de la aplicación",
     "about_wikipedia": "Acerca de Wikipedia",
-    "disclaimers": "https://es.m.wikipedia.org/wiki/Wikipedia:Limitaci%C3%B3n_general_de_responsabilidad",
+    "disclaimers": "Descargo de responsabilidades",
     "_pages": "# páginas",
     "content_is_available_under_cc_bysa___unless_otherwise_noted_": "El contenido está disponible en CC BY-SA 3.0 a menos que se indique lo contrario.",
     "terms_of_use": "Privacidad y términos",
@@ -39,7 +46,14 @@ export default {
     "offline": "Desconectado",
     "update_now": "Actualiza ahora",
     "_days_ago": "hace # días",
-    "get_article_summary_jpg_kb": "Obtiene resumen del artículo (JPG #)"
+    "get_article_summary_jpg_kb": "Obtiene resumen del artículo (JPG #kb)",
+    "saved_years_ago": "Guardado hace # años",
+    "saved_months_ago": "Guardado hace # meses",
+    "saved_weeks_ago": "Guardado hace # semanas",
+    "saved_days_ago": "Guardado hace # días",
+    "saved_hours_ago": "Guardado hace # horas",
+    "saved_minutes_ago": "Guardado hace # minutos",
+    "saved_seconds_ago": "Guardado hace # segundos"
   },
   "hi": {
     "home": "ग्रुह ",
@@ -60,6 +74,13 @@ export default {
     "offline": "ऑफ़लाइन",
     "update_now": "अभी अद्यतन करें",
     "_days_ago": "# दिन पहले ",
-    "get_article_summary_jpg_kb": "लेख का सारांश प्राप्त केरे "
+    "get_article_summary_jpg_kb": "लेख का सारांश प्राप्त केरे ",
+    "saved_years_ago": "बचा लिया # साल पहले",
+    "saved_months_ago": "बचाया # महीने पहले",
+    "saved_weeks_ago": "बचाया # सप्ताह पहले",
+    "saved_days_ago": "बचाया # दिन पहले",
+    "saved_hours_ago": "बचाया # घंटे पहले",
+    "saved_minutes_ago": "बचाया # मिनट पहले",
+    "saved_seconds_ago": "बचाया # सेकंड पहले"
   }
 }

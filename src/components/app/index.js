@@ -11,6 +11,7 @@ import Footer from '../footer'
 import Logo from '../logo'
 import {IconLink, types} from '../icon'
 import SavedPages from '../saved-pages'
+import {getCurrentLanguage, setCurrentLanguage, getLanguages} from '../../i18n'
 
 import './App.css'
 
@@ -18,42 +19,52 @@ function App ({isMenuOpen, isOnline, openMenu, closeMenu}) {
   return (
     <BrowserRouter>
 
-      <div>
+      <Match pattern='/:lang?' render={({location, pathname, params}) => {
+        if (getLanguages().indexOf(params.lang) === -1) {
+          return <Redirect to={`/${getCurrentLanguage()}${location.pathname}`} />
+        }
 
-        <TrackOnlineStatus />
-        <LoadPersistentToggles />
+        setCurrentLanguage(params.lang)
 
-        <Menu isOpen={isMenuOpen}
-          onItemClick={closeMenu} onBackdropClick={closeMenu} />
+        return (
+        <div>
 
-        <div className={'App ' + (!isOnline ? 'is-offline' : '')}>
-          <div className='App-header'>
-            <div>
-              <IconLink type={types.MENU} onClick={openMenu} />
+          <TrackOnlineStatus />
+          <LoadPersistentToggles />
+
+          <Menu isOpen={isMenuOpen}
+            onItemClick={closeMenu} onBackdropClick={closeMenu} />
+
+          <div className={'App ' + (!isOnline ? 'is-offline' : '')}>
+            <div className='App-header'>
+              <div>
+                <IconLink type={types.MENU} onClick={openMenu} />
+              </div>
+              <Logo size={60} />
+              <div>{/* Empty right side */}</div>
             </div>
-            <Logo size={60} />
-            <div>{/* Empty right side */}</div>
+
+            <div className='App-content'>
+
+              <Match exactly pattern={`${pathname}/wiki/:title`} render={renderArticle} />
+              <Match exactly pattern={`${pathname}/print/:title`} render={renderPrint} />
+              <Match exactly pattern={`${pathname}/flashcard/:title`} render={renderFlashcard} />
+
+              <Match exactly pattern={`${pathname}/about`} component={About} />
+              <Match exactly pattern={`${pathname}/saved`} component={SavedPages} />
+              <Match exactly pattern={`${pathname}/`} component={() =>
+                <Redirect to='/en/wiki/Wikimedia' />
+              } />
+
+            </div>
+
+            <Footer />
           </div>
 
-          <div className='App-content'>
-
-            <Match exactly pattern='/wiki/:title' render={renderArticle} />
-            <Match exactly pattern='/print/:title' render={renderPrint} />
-            <Match exactly pattern='/flashcard/:title' render={renderFlashcard} />
-
-            <Match exactly pattern='/about' component={About} />
-            <Match exactly pattern='/saved' component={SavedPages} />
-            <Match exactly pattern='/' component={() =>
-              <Redirect to='/wiki/Wikimedia' />
-            } />
-            <Miss component={NoMatch} />
-
-          </div>
-
-          <Footer />
         </div>
+        )
 
-      </div>
+      }} />
 
     </BrowserRouter>
   )

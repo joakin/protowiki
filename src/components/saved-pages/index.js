@@ -8,6 +8,7 @@ import FakeText from '../fake-text'
 import relativeDate from 'relative-date'
 import prettyBytes from './pretty-bytes'
 import Icon, {types} from '../icon'
+import SavedAgo from '../saved-ago'
 import msg from '../../i18n'
 
 import './saved-pages.css'
@@ -48,7 +49,7 @@ const SavedPages = React.createClass({
                 whenEmpty={() => <SavedPagesError>You don't have any saved pages</SavedPagesError>}
                 footer={(page) => [
                   <div key='up' className='PageList-item-last-updated'>
-                    Saved {relativeDate(page.lastSave)}
+                    <SavedAgo date={page.lastSave} />
                   </div>,
                   <div key='si' className='PageList-item-size'>
                     {prettyBytes(page.size)}
