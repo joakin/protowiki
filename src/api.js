@@ -1,4 +1,5 @@
 import {getCurrentLanguage} from './i18n'
+import {normalize} from './data/title'
 
 const HOST = 'wikipedia.org'
 
@@ -10,7 +11,7 @@ const rest = (lang, host, endpoint) =>
   `https://${lang}.${host}/api/rest_v1${endpoint}`
 
 const endpoints = {
-  article: (title) => `/page/mobile-sections/${title}`
+  article: (title) => `/page/mobile-sections/${encodeURIComponent(normalize(title))}`
 }
 
 export function article (title) {
@@ -30,7 +31,7 @@ const printService =
 export function printFlashcardUrl ({title}) {
   return `${printService}/jpeg?` +
     `accessKey=secret&delay=5&quality=100&` +
-    `url=${encodeURIComponent(`${printOrigin}/flashcard/${title}`)}&` +
+    `url=${encodeURIComponent(`${printOrigin}/${getCurrentLanguage()}/flashcard/${normalize(title)}`)}&` +
     // Keep browser width and height in sync with flashcard.css style sizes
     `&browserWidth=375&browserHeight=670`
 }
@@ -38,6 +39,6 @@ export function printFlashcardUrl ({title}) {
 export function printUrl ({title, pageSize = 'Legal', marginsType = 0}) {
   return `${printService}/pdf?` +
     `accessKey=secret&delay=5&` +
-    `url=${encodeURIComponent(`${printOrigin}/print/${title}`)}&` +
+    `url=${encodeURIComponent(`${printOrigin}/${getCurrentLanguage()}/print/${normalize(title)}`)}&` +
     `pageSize=${pageSize}&marginsType=${marginsType}`
 }
