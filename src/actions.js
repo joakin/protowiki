@@ -17,33 +17,29 @@ const Actions = {
   // Current article
   getArticle (title) {
     return (dispatch, getStore) => {
-      const currentArticle = () => getStore().currentArticle
+      dispatch({ type: 'GetArticle', title })
 
-      if (currentArticle().title !== title) {
-        dispatch({ type: 'GetArticle', title })
-
-        return articleDB
-          .get(title)
-          .then((dbArticle) => {
-            // Set the saved article if it exists
-            if (dbArticle) {
-              return dispatch({ type: 'FromDB', title, article: dbArticle })
+      return articleDB
+        .get(title)
+        .then((dbArticle) => {
+          // Set the saved article if it exists
+          if (dbArticle) {
+            return dispatch({ type: 'FromDB', title, article: dbArticle })
+          } else {
+            // Otherwise fetch it from the network if online
+            if (getStore().online) {
+              return article(title).then((article) =>
+                dispatch({ type: 'FromNetwork', title, article }))
             } else {
-              // Otherwise fetch it from the network if online
-              if (getStore().online) {
-                return article(title).then((article) =>
-                  dispatch({ type: 'FromNetwork', title, article }))
-              } else {
-                throw new Error('Can\'t get article when offline')
-              }
+              throw new Error('Can\'t get article when offline')
             }
-          })
-          .catch((error) => {
-            dispatch({ type: 'GetArticleFailure', title, error })
-            console.error(`Error: Failed to update article ${title}`)
-            console.error(error)
-          })
-      }
+          }
+        })
+        .catch((error) => {
+          dispatch({ type: 'GetArticleFailure', title, error })
+          console.error(`Error: Failed to update article ${title}`)
+          console.error(error)
+        })
     }
   },
 

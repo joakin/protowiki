@@ -8,9 +8,16 @@ import msg from '../../i18n'
 
 const ArticlePage = React.createClass({
 
-  componentDidMount () { this.props.getArticle(this.props.title) },
+  componentDidMount () { this.getArticle(this.props) },
 
-  componentWillReceiveProps (props) { props.getArticle(props.title) },
+  componentWillReceiveProps (props) { this.getArticle(props) },
+
+  getArticle (props) {
+    if (props.title !== this.pageTitle) {
+      this.pageTitle = props.title
+      props.getArticle(props.title)
+    }
+  },
 
   render () {
     const {article, print, component, isOnline} = this.props
