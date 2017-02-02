@@ -4,6 +4,7 @@ import Article from '../article'
 import FakeText from '../fake-text'
 import RemoteData from '../../data/remote-data'
 import Actions from '../../actions'
+import msg from '../../i18n'
 
 const ArticlePage = React.createClass({
 
@@ -30,7 +31,7 @@ const ArticlePage = React.createClass({
       Failure: e =>
         <div>
           <h1>{title}</h1>
-          <p>There was a problem retrieving <em>{title}</em></p>
+          <p>{msg('there_was_a_problem_retrieving_', [title])}</p>
         </div>
     })
   }

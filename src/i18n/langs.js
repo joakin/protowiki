@@ -25,7 +25,8 @@ export default {
     "saved_days_ago": "Saved # days ago",
     "saved_hours_ago": "Saved # hours ago",
     "saved_minutes_ago": "Saved # minutes ago",
-    "saved_seconds_ago": "Saved # seconds ago"
+    "saved_seconds_ago": "Saved # seconds ago",
+    "there_was_a_problem_retrieving_": "There was a problem loading #"
   },
   "es": {
     "home": "Inicio",
@@ -53,7 +54,8 @@ export default {
     "saved_days_ago": "Guardado hace # días",
     "saved_hours_ago": "Guardado hace # horas",
     "saved_minutes_ago": "Guardado hace # minutos",
-    "saved_seconds_ago": "Guardado hace # segundos"
+    "saved_seconds_ago": "Guardado hace # segundos",
+    "there_was_a_problem_retrieving_": "Ha habido un problema cargando la pagina #"
   },
   "hi": {
     "home": "ग्रुह ",
@@ -81,6 +83,7 @@ export default {
     "saved_days_ago": "बचाया # दिन पहले",
     "saved_hours_ago": "बचाया # घंटे पहले",
     "saved_minutes_ago": "बचाया # मिनट पहले",
-    "saved_seconds_ago": "बचाया # सेकंड पहले"
+    "saved_seconds_ago": "बचाया # सेकंड पहले",
+    "there_was_a_problem_retrieving_": "एक समस्या यह पेज लोड किया गया था: #"
   }
 }
