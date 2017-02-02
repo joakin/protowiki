@@ -11,7 +11,7 @@ export default React.createClass({
   componentDidMount () {
     this.timer = setInterval(() => this.setState({ now: Date.now() }), 3000)
   },
-  componentWillMount () {
+  componentWillUnmount () {
     clearInterval(this.timer)
   },
   render () {
