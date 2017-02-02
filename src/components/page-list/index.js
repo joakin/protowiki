@@ -14,7 +14,7 @@ export default function PageList ({pages, whenEmpty, footer}) {
               url={page.image && page.image.urls[Object.keys(page.image.urls)[0]]} />
 
             <div className='PageList-item-contents'>
-              <Link className='PageList-item-link' to={`/wiki/${encodeURIComponent(page.title)}`} />
+              <Link className='PageList-item-link' to={page.url} />
               <div className='PageList-item-header'>
                 <div className='PageList-item-title'
                   dangerouslySetInnerHTML={{ __html: page.displaytitle }} />

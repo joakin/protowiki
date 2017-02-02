@@ -43,6 +43,7 @@ export function remove (title) {
 function fromArticle (lang, title, article) {
   return {
     title,
+    lang,
     key: lang + '-' + title,
     displaytitle: article.lead.displaytitle,
     description: article.lead.description,

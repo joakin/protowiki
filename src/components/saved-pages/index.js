@@ -45,7 +45,10 @@ const SavedPages = React.createClass({
               <SavedPagesError>Failed to retrieve the list of pages</SavedPagesError>,
 
             Success: pages =>
-              <PageList pages={pages}
+              <PageList
+                pages={pages.map((page) => ({
+                  ...page, url: `/${page.lang || 'en'}/wiki/${encodeURIComponent(page.title)}`
+                }))}
                 whenEmpty={() => <SavedPagesError>You don't have any saved pages</SavedPagesError>}
                 footer={(page) => [
                   <div key='up' className='PageList-item-last-updated'>
