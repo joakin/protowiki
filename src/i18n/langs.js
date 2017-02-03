@@ -84,6 +84,6 @@ export default {
     "saved_hours_ago": "बचाया # घंटे पहले",
     "saved_minutes_ago": "बचाया # मिनट पहले",
     "saved_seconds_ago": "बचाया # सेकंड पहले",
-    "there_was_a_problem_retrieving_": "एक समस्या यह पेज लोड किया गया था: #"
+    "there_was_a_problem_retrieving_": "# पेज एक समस्या की वजह से लोड नहीं किया जा सका"
   }
 }
