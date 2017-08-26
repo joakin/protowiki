@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Match, Redirect, Miss } from 'react-router'
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Actions from '../../actions'
 import ArticlePage from '../article-page'
@@ -19,8 +19,9 @@ function App ({isMenuOpen, isOnline, openMenu, closeMenu}) {
   return (
     <BrowserRouter>
 
-      <Match pattern='/:lang?' render={({location, pathname, params}) => {
-        if (getLanguages().indexOf(params.lang) === -1) {
+      <Route path='/:lang?' render={({match, location}) => {
+        const {url, params} = match
+        if (!params.lang || getLanguages().indexOf(params.lang) === -1) {
           return <Redirect to={`/${getCurrentLanguage()}${location.pathname}`} />
         }
 
@@ -46,16 +47,19 @@ function App ({isMenuOpen, isOnline, openMenu, closeMenu}) {
 
             <div className='App-content'>
 
-              <Match exactly pattern={`${pathname}/wiki/:title`} render={renderArticle} />
-              <Match exactly pattern={`${pathname}/print/:title`} render={renderPrint} />
-              <Match exactly pattern={`${pathname}/flashcard/:title`} render={renderFlashcard} />
+              <Switch>
+                <Route exact path={`${url}/wiki/:title`} render={renderArticle} />
+                <Route exact path={`${url}/print/:title`} render={renderPrint} />
+                <Route exact path={`${url}/flashcard/:title`} render={renderFlashcard} />
 
-              <Match exactly pattern={`${pathname}/about`} component={About} />
-              <Match exactly pattern={`${pathname}/saved`} component={SavedPages} />
-              <Match exactly pattern={`${pathname}/`} component={() =>
-                <Redirect to='/en/wiki/Main_page' />
-              } />
+                <Route exact path={`${url}/about`} component={About} />
+                <Route exact path={`${url}/saved`} component={SavedPages} />
+                <Route exact path={`${url}`} render={() =>
+                  <Redirect to={`/${params.lang}/wiki/Main_page`} />
+                } />
 
+                <Route component={NoMatch}/>
+              </Switch>
             </div>
 
             <Footer />
@@ -82,15 +86,15 @@ const dispatchToProps = (dispatch) => ({
 
 export default connect(stateToProps, dispatchToProps)(App)
 
-function renderArticle ({ params }) {
+function renderArticle ({ match: { params } }) {
   return <ArticlePage title={decodeURIComponent(params.title)} />
 }
 
-function renderPrint ({ params }) {
+function renderPrint ({ match: { params } }) {
   return <ArticlePage title={decodeURIComponent(params.title)} print />
 }
 
-function renderFlashcard ({ params }) {
+function renderFlashcard ({ match: { params } }) {
   return <ArticlePage title={decodeURIComponent(params.title)}
     component={Flashcard} print />
 }

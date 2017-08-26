@@ -3,23 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "localforage": "^1.4.3",
-    "react-router": "^4.0.0-alpha.4",
-    "react-scripts": "0.6.1",
-    "standard": "^8.4.0",
-    "sw-precache": "^4.1.0"
+    "localforage": "^1.5.0",
+    "react-router": "^4.2.0",
+    "react-scripts": "^1.0.11",
+    "standard": "^8.6.0",
+    "sw-precache": "^5.2.0"
   },
   "dependencies": {
-    "babel-polyfill": "^6.16.0",
+    "babel-polyfill": "^6.26.0",
     "date-diff": "^0.1.3",
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2",
-    "react-redux": "^4.4.5",
-    "redux": "^3.6.0",
-    "redux-logger": "^2.7.0",
-    "redux-thunk": "^2.1.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "^4.4.8",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-logger": "^2.10.2",
+    "redux-thunk": "^2.2.0",
     "relative-date": "^1.1.3",
-    "results": "^0.14.0"
+    "results": "^0.14.1"
   },
   "scripts": {
     "start": "react-scripts start",

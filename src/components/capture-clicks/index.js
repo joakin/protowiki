@@ -1,14 +1,14 @@
 import React from 'react'
+import { withRouter } from 'react-router'
 
 let origin = window.location.origin
 
-export default React.createClass({
-
-  contextTypes: {
-    router: React.PropTypes.any
-  },
+export default withRouter(React.createClass({
 
   propTypes: {
+    match: React.PropTypes.object.isRequired,
+    location: React.PropTypes.object.isRequired,
+    history: React.PropTypes.object.isRequired,
     children: React.PropTypes.oneOfType([
       React.PropTypes.array,
       React.PropTypes.element
@@ -28,9 +28,9 @@ export default React.createClass({
       let originIndex = e.target.href.indexOf(origin)
       if (originIndex === 0) {
         e.preventDefault()
-        const { router } = this.context
-        router.transitionTo(e.target.href.slice(origin.length))
+        const { history } = this.props
+        history.push(e.target.href.slice(origin.length))
       }
     }
   }
-})
+}))

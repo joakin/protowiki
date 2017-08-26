@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from '../image'
-import {Link} from 'react-router'
+import {Link} from 'react-router-dom'
 
 import './page-list.css'
 
