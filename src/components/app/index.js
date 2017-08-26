@@ -53,7 +53,7 @@ function App ({isMenuOpen, isOnline, openMenu, closeMenu}) {
               <Match exactly pattern={`${pathname}/about`} component={About} />
               <Match exactly pattern={`${pathname}/saved`} component={SavedPages} />
               <Match exactly pattern={`${pathname}/`} component={() =>
-                <Redirect to='/en/wiki/Wikimedia' />
+                <Redirect to='/en/wiki/Main_page' />
               } />
 
             </div>
